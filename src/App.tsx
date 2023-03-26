@@ -1,3 +1,6 @@
+import Header from './components/Header'
+import Technologies from './components/Technologies'
+
 type AppPropTypes = {};
 const App = (props: AppPropTypes) => {
   return (
@@ -7,32 +10,5 @@ const App = (props: AppPropTypes) => {
     </div>
   );
 };
-
-interface Header {}
-const Header = <Header extends {}>(props: Header) => {
-  return <div>header</div>;
-};
-
-interface Technologies {}
-const Technologies = <Technologies extends {}>() => {
-  return (
-    <ul>
-      <li>css</li>
-      <li>html</li>
-      <li>js</li>
-    </ul>
-  );
-};
-
-export default App;
-
-
-
-
-
-
-
-
-
 
 export default App;
