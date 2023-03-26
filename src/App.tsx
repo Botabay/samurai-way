@@ -1,29 +1,30 @@
-import React from 'react';
-import './App.css';
-
-function App() {
+type AppPropTypes = {};
+const App = (props: AppPropTypes) => {
   return (
     <div className="App">
-      <Header/>
-      <Techonologies/>
+      <Header />
+      <Technologies />
     </div>
   );
-}
+};
 
-const Header=()=>{
-  return <div>header</div>
-}
+interface Header {}
+const Header = <Header extends {}>(props: Header) => {
+  return <div>header</div>;
+};
 
-const Techonologies=()=>{
+interface Technologies {}
+const Technologies = <Technologies extends {}>() => {
   return (
     <ul>
       <li>css</li>
       <li>html</li>
       <li>js</li>
     </ul>
-  )
-}
+  );
+};
 
+export default App;
 
 
 
