@@ -1,4 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
+.app {
+  /* background-color: red; */
+  display: grid;
+  grid-template-areas: 'h h' 'n c';
+  grid-template-rows: 60px 20fr;
+  grid-template-columns: 1fr 4fr;
 }
