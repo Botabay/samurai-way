@@ -3,10 +3,10 @@ import { MessagesType } from '../../state/state';
 
 type PropsType={
     pageName:string
-    messages:MessagesType
+    messages?:MessagesType
 }
 
-const Music = ({pageName}:PropsType) => {
+export const Music = ({pageName}:PropsType) => {
     return (
         <div className={s.music}>
             <div className={s.wallpaper}>{pageName}</div>
@@ -17,5 +17,3 @@ const Music = ({pageName}:PropsType) => {
         </div>
     )
 }
-
-export default Music;

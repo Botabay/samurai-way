@@ -6,7 +6,7 @@ type PropsType={
     messages:MessagesType
 }
 
-const Messages = ({pageName,messages}:PropsType) => {
+export const Messages = ({pageName,messages}:PropsType) => {
     const messagesList=messages.map((el)=><p>{el.text}</p>);
     return (
         <div className={s.messages}>
@@ -20,5 +20,3 @@ const Messages = ({pageName,messages}:PropsType) => {
         </div>
     )
 }
-
-export default Messages;

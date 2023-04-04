@@ -3,10 +3,10 @@ import { MessagesType } from '../../state/state';
 
 type PropsType={
     pageName:string
-    messages:MessagesType
+    messages?:MessagesType
 }
 
-const News = ({pageName}:PropsType) => {
+export const News = ({pageName}:PropsType) => {
     return (
         <div className={s.news}>
             <div className={s.wallpaper}>{pageName}</div>
@@ -17,5 +17,3 @@ const News = ({pageName}:PropsType) => {
         </div>
     )
 }
-
-export default News;
