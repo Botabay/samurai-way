@@ -1,6 +1,12 @@
 import s from './Messages.module.css';
+import {MessagesType} from '../../state/state'
 
-const Messages = ({pageName,messages}) => {
+type PropsType={
+    pageName:string
+    messages:MessagesType
+}
+
+const Messages = ({pageName,messages}:PropsType) => {
     const messagesList=messages.map((el)=><p>{el.text}</p>);
     return (
         <div className={s.messages}>

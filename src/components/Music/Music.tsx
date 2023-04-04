@@ -1,6 +1,12 @@
 import s from './Music.module.css';
+import { MessagesType } from '../../state/state';
 
-const Music = ({pageName}) => {
+type PropsType={
+    pageName:string
+    messages:MessagesType
+}
+
+const Music = ({pageName}:PropsType) => {
     return (
         <div className={s.music}>
             <div className={s.wallpaper}>{pageName}</div>

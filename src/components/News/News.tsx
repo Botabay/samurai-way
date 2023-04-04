@@ -1,6 +1,12 @@
 import s from './News.module.css';
+import { MessagesType } from '../../state/state';
 
-const News = ({pageName}) => {
+type PropsType={
+    pageName:string
+    messages:MessagesType
+}
+
+const News = ({pageName}:PropsType) => {
     return (
         <div className={s.news}>
             <div className={s.wallpaper}>{pageName}</div>

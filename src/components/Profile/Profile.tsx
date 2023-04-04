@@ -1,6 +1,12 @@
 import s from './Profile.module.css';
+import { MessagesType } from '../../state/state';
 
-const Profile = ({pageName}) => {
+type PropsType={
+    pageName:string
+    messages:MessagesType
+}
+
+const Profile = ({pageName}:PropsType) => {
     return (
         <div className={s.content}>
             <div className={s.wallpaper}>{pageName}</div>
