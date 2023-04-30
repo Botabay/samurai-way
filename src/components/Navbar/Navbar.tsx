@@ -1,5 +1,5 @@
 import s from './Navbar.module.css';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
     return (
@@ -7,20 +7,20 @@ export const Navbar = () => {
             <div className={s.navbar}>
                 <div>
                     <div>
-                        <Link to="/">profile</Link>
+                        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/">profile</NavLink>
                     </div>
                     <div>
-                        <Link to="/messages">messages</Link>
+                        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/messages">messages</NavLink>
                     </div>
                     <div>
-                        <Link to="/news">news</Link>
+                        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/news">news</NavLink>
                     </div>
                     <div>
-                        <Link to="/music">music</Link>
+                        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/music">music</NavLink>
                     </div>
                 </div>
                 <div>
-                    <Link to="/settings">settings</Link>
+                    <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/settings">settings</NavLink>
                 </div>
             </div>
         </nav>

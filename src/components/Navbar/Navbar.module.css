@@ -1,3 +1,11 @@
+nav a {
+    color:white;
+    text-decoration: none;
+}
 .navbar {
     
+}
+
+.active {
+    color:blue;
 }
