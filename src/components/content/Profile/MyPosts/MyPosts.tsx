@@ -14,7 +14,7 @@ const NewPost = (props:NewPostPropsType) => {
             <div>
                 <textarea ref={textareaRef}></textarea>
             </div>
-            <button onClick={()=>{props.callback({id:4,text:''+textareaRef.current?.value})}}>send</button>
+            <button onClick={()=>{props.callback({id:4,text:''+textareaRef.current?.value}); }}>send</button>
         </div>
     )
 }

@@ -67,5 +67,5 @@ export const state = {
 
 export const add=(obj:MessageType)=>{
   state.profilePage.posts.push(obj);
-  rerender()
+  rerender(state)
 }

@@ -19,7 +19,7 @@ import {rerender} from './rerender'
 //     </React.StrictMode>
 //   );
 // }
-rerender()
+rerender(state)
 // root.render(
 //   <React.StrictMode>
 //       <App state={state} callback={add}/>
