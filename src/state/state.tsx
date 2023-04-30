@@ -1,3 +1,5 @@
+import { rerender } from "../rerender"
+
 export type MessageType = {
   id: number,
   text: string
@@ -64,5 +66,6 @@ export const state = {
 }
 
 export const add=(obj:MessageType)=>{
-  state.profilePage.posts.push(obj)
+  state.profilePage.posts.push(obj);
+  rerender()
 }
