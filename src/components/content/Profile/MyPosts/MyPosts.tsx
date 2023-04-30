@@ -1,14 +1,16 @@
+import {createRef} from 'react'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
 import {PostType} from './../../../../state/state'
 
 const NewPost = () => {
+    const textareaRef=createRef<HTMLTextAreaElement>();
     return (
         <div>new post
             <div>
-                <textarea></textarea>
+                <textarea ref={textareaRef}></textarea>
             </div>
-            <button>send</button>
+            <button onClick={()=>{console.log(textareaRef.current?.value)}}>send</button>
         </div>
     )
 }
