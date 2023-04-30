@@ -1,5 +1,5 @@
 import s from './Profile.module.css';
-import { MessagesType } from '../../state/state';
+import { MessagesType } from '../../../state/state';
 import { MyPosts } from './MyPosts/MyPosts';
 
 type PropsType={

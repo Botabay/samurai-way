@@ -1,13 +1,9 @@
-.news {
-    grid-area: c;
-}
-
 .wallpaper {
     background-color: rgb(136, 136, 145);
     height: 10vh;
 }
 
-.news_block {
+.settings_block {
     background-color: green;
     padding: 10px;
 }

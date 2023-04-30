@@ -1,18 +1,9 @@
-.messages {
-    grid-area: c;
-}
-
 .wallpaper {
     background-color: rgb(136, 136, 145);
     height: 10vh;
 }
 
-.messages_block {
+.news_block {
     background-color: green;
     padding: 10px;
-}
-
-.messages_list {
-    padding: 10px;
-    outline: 1px dotted;
 }

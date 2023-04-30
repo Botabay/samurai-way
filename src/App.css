@@ -14,3 +14,7 @@ nav {
   background-color: red;
   grid-area: n;
 }
+
+.content {
+    grid-area: c;
+}
