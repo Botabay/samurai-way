@@ -1,0 +1,11 @@
+
+
+.posts_block {
+    background-color: green;
+    padding: 10px;
+}
+
+.posts_block h2 {
+    margin-left: 40px;
+    font-size: 16px;
+}

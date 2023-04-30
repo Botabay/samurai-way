@@ -5,3 +5,12 @@
   grid-template-rows: 60px 20fr;
   grid-template-columns: 1fr 4fr;
 }
+
+header {
+  background-color: yellow;
+  grid-area: h;
+}
+nav {
+  background-color: red;
+  grid-area: n;
+}

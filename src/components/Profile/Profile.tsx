@@ -1,5 +1,6 @@
 import s from './Profile.module.css';
 import { MessagesType } from '../../state/state';
+import { MyPosts } from './MyPosts/MyPosts';
 
 type PropsType={
     pageName:string
@@ -22,16 +23,7 @@ export const Profile = ({pageName}:PropsType) => {
                     <p>web site</p>
                 </div>
             </div>
-            <div className={s.posts_block}>
-                <h2>My posts</h2>
-                <div>
-                    <div>
-                        <textarea></textarea>
-                    </div>
-                    <button>send</button>
-                </div>
-                <div>list of posts</div>
-            </div>
+            <MyPosts/>
         </div>
     )
 }

@@ -4,24 +4,26 @@ import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
     return (
-        <div className={s.navbar}>
-            <div>
+        <nav>
+            <div className={s.navbar}>
                 <div>
-                    <Link to="/">profile</Link>
+                    <div>
+                        <Link to="/">profile</Link>
+                    </div>
+                    <div>
+                        <Link to="/messages">messages</Link>
+                    </div>
+                    <div>
+                        <Link to="/news">news</Link>
+                    </div>
+                    <div>
+                        <Link to="/music">music</Link>
+                    </div>
                 </div>
                 <div>
-                    <Link to="/messages">messages</Link>
-                </div>
-                <div>
-                    <Link to="/news">news</Link>
-                </div>
-                <div>
-                    <Link to="/music">music</Link>
+                    <Link to="/settings">settings</Link>
                 </div>
             </div>
-            <div>
-                <Link to="/settings">settings</Link>
-            </div>
-        </div>
+        </nav>
     )
 }

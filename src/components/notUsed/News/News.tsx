@@ -1,9 +1,9 @@
 import s from './News.module.css';
-import { MessagesType } from '../../state/state';
+// import { MessagesType } from '../../state/state';
 
 type PropsType={
     pageName:string
-    messages?:MessagesType
+    // messages?:MessagesType
 }
 
 export const News = ({pageName}:PropsType) => {
