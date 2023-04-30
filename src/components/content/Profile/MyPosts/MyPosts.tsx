@@ -9,12 +9,16 @@ type NewPostPropsType={
 
 const NewPost = (props:NewPostPropsType) => {
     const textareaRef=createRef<HTMLTextAreaElement>();
+    const onClickHandler=()=>{
+        props.callback({id:4,text:''+textareaRef.current?.value});
+        if (textareaRef.current?.value) textareaRef.current.value='';
+    }
     return (
         <div>new post
             <div>
                 <textarea ref={textareaRef}></textarea>
             </div>
-            <button onClick={()=>{props.callback({id:4,text:''+textareaRef.current?.value}); }}>send</button>
+            <button onClick={onClickHandler}>send</button>
         </div>
     )
 }
