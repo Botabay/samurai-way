@@ -23,7 +23,7 @@ export const App = ({ messages }: PropsType) => {
         <div className='content'>
           <Routes>
             <Route path="/" element={<Profile pageName='Profile' />}></Route>
-            <Route path="/messages" element={<Dialogs/>}></Route>
+            <Route path="/dialogs" element={<Dialogs/>}></Route>
             <Route path="/news" element={<News pageName='News' />}></Route>
             <Route path="/music" element={<Music pageName='Music' />}></Route>
             <Route path="/settings" element={<Settings pageName='Settings' />}></Route>

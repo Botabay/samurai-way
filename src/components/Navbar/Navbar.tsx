@@ -10,7 +10,7 @@ export const Navbar = () => {
                         <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/">profile</NavLink>
                     </div>
                     <div>
-                        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/messages">messages</NavLink>
+                        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/dialogs">messages</NavLink>
                     </div>
                     <div>
                         <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? s.active : ""} to="/news">news</NavLink>
