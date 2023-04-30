@@ -1,6 +1,6 @@
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
-import {DataType} from './../../../../state/state'
+import {PostType} from './../../../../state/state'
 
 const NewPost = () => {
     return (
@@ -13,10 +13,10 @@ const NewPost = () => {
     )
 }
 type PropsType={
-    data: DataType
+    state: PostType[]
 }
 export const MyPosts = (props:PropsType) => {
-    const postsData=props.data.postsData;
+    const postsData=props.state;
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>

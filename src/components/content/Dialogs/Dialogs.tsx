@@ -2,15 +2,15 @@ import { NavLink } from 'react-router-dom'
 import s from './Dialogs.module.css'
 import {Dialog} from './Dialog/Dialog'
 import {Message} from './Message/Message'
-import { DataType } from './../../../state/state'
+import { DialogsPageType } from './../../../state/state'
 
 type PropsType ={
-    data:DataType
+    state:DialogsPageType
 }
 
 export const Dialogs = (props:PropsType) => {
-    const dialogsData=props.data.dialogsData;
-    const messagesData=props.data.messagesData;
+    const dialogsData=props.state.dialogs;
+    const messagesData=props.state.messages;
     return (
         <div className={s.dialogs}>
             <div className="dialogItems">
