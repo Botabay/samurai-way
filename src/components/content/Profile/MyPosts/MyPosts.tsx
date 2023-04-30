@@ -22,7 +22,7 @@ export const MyPosts = (props:PropsType) => {
             <h2>My posts</h2>
             <NewPost />
             <div>list of posts
-            {postsData.map(el => <Post id={el.id} text={el.text} />)}
+            {postsData.map(el => <Post key={el.id} id={el.id} text={el.text} />)}
             </div>
         </div>
     )

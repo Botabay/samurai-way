@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { Header } from './components/Header/Header';
-import { Navbar } from './components/Navbar/Navbar';
 import { Profile } from './components/content/Profile/Profile';
 import { Routes, Route } from 'react-router-dom';
 import { PageType } from './state/state'
@@ -10,6 +9,7 @@ import { Dialogs } from './components/content/Dialogs/Dialogs';
 import { News } from './components/content/News/News';
 import { Music } from './components/content/Music/Music';
 import { Settings } from './components/content/Settings/Settings';
+import { Sidebar } from './components/Sidebar/Sidebar';
 
 type PropsType = {
   state: PageType
@@ -19,7 +19,7 @@ export const App = ({ state }: PropsType) => {
     <div className="app">
       <BrowserRouter>
         <Header />
-        <Navbar />
+        <Sidebar state={state.subjects}/>
         <div className='content'>
           <Routes>
             <Route path="/" element={<Profile state={state.profilePage} pageName='Profile' />}></Route>
