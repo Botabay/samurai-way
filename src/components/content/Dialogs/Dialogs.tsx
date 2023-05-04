@@ -26,8 +26,8 @@ const NewMessage = (props:NewMessagePropsType) => {
 
 type DialogsPropsType = {
     state: DialogsPageType
-    newMessageText:string
-    addNewMessageText:(value:string)=>void
+    // newMessageText:string
+    // addNewMessageText:(value:string)=>void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
