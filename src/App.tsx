@@ -13,7 +13,7 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 
 type PropsType = {
   state: PageType
-  callback:(obj:MessageType)=>void
+  callback:()=>void
   addNewPostText:(value:string)=>void
 }
 export const App = ({ state, callback ,addNewPostText}: PropsType) => {

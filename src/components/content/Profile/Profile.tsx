@@ -6,7 +6,7 @@ import {MessageType, ProfilePageType} from './../../../state/state'
 type PropsType = {
     pageName: string
     state:ProfilePageType
-    callback:(obj:MessageType)=>void
+    callback:()=>void
     addNewPostText:(value:string)=>void
 }
 

@@ -67,11 +67,14 @@ export const state = {
   },
 }
 
-export const add=(obj:MessageType)=>{
-  state.profilePage.posts.push(obj);
-  rerender(state)
-}
-
+// export const add=(obj:MessageType)=>{
+//   state.profilePage.posts.push(obj);
+//   rerender(state)
+// }
+export const add=()=>{
+    state.profilePage.posts.push({id:4,text:state.profilePage.newPostText});
+    rerender(state)
+  }
 export const addNewPostText=(value:string)=>{
   state.profilePage.newPostText=value;
   rerender(state)

@@ -4,7 +4,7 @@ import { Post } from './Post/Post'
 import {MessageType, PostType} from './../../../../state/state'
 
 type NewPostPropsType={
-    callback:(obj:MessageType)=>void
+    callback:()=>void
     newPostText:string
     addNewPostText:(value:string)=>void
 }
@@ -12,17 +12,16 @@ type NewPostPropsType={
 const NewPost = (props:NewPostPropsType) => {
     const textareaRef=createRef<HTMLTextAreaElement>();
     const onClickHandler=()=>{
-        props.callback({id:4,text:''+textareaRef.current?.value});
+        // props.callback({id:4,text:''+textareaRef.current?.value});
+        props.callback();
         if (textareaRef.current?.value) textareaRef.current.value='';
+        props.addNewPostText('')
     }
     return (
         <div>new post
             <div>
                 <textarea ref={textareaRef} value={props.newPostText}
                 onChange={(e)=>{
-                    console.log(e.currentTarget.value);
-                    
-                    props.callback({id:4,text:e.currentTarget.value})
                     props.addNewPostText(e.currentTarget.value)
                     }}></textarea>
             </div>
@@ -33,7 +32,8 @@ const NewPost = (props:NewPostPropsType) => {
 
 type MyPostsPropsType={
     state: PostType[]
-    callback:(obj:MessageType)=>void
+    // callback:(obj:MessageType)=>void
+    callback:()=>void
     newPostText:string
     addNewPostText:(value:string)=>void
 }
