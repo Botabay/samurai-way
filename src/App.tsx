@@ -13,10 +13,12 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 
 type PropsType = {
   state: PageType
-  callback:()=>void
+  addNewPost:()=>void
   updateNewPostText:(value:string)=>void
+  addNewMessage:()=>void
+  updateNewMessageText:(value:string)=>void
 }
-export const App = ({ state, callback ,updateNewPostText}: PropsType) => {
+export const App = ({ state, addNewPost ,updateNewPostText,addNewMessage,updateNewMessageText}: PropsType) => {
   return (
     <div className="app">
       <BrowserRouter>
@@ -24,12 +26,15 @@ export const App = ({ state, callback ,updateNewPostText}: PropsType) => {
         <Sidebar state={state.subjects}/>
         <div className='content'>
           <Routes>
-            <Route path="/" element={<Profile state={state.profilePage} pageName='Profile'
-              callback={callback} 
+            <Route path="/" element={<Profile state={state.profilePage} 
+              addNewPost={addNewPost} 
               updateNewPostText={updateNewPostText}
               />}></Route>
             {/* <Route path="/" render={()=> <Profile data={data} pageName='Profile' /> }></Route> */}
-            <Route path="/dialogs" element={<Dialogs state={state.dialogsPage}/>}></Route>
+            <Route path="/dialogs" element={<Dialogs state={state.dialogsPage}
+              addNewMessage={addNewMessage}
+              updateNewMessageText={updateNewMessageText}
+            />}></Route>
             <Route path="/news" element={<News pageName='News' />}></Route>
             <Route path="/music" element={<Music pageName='Music' />}></Route>
             <Route path="/settings" element={<Settings pageName='Settings' />}></Route>

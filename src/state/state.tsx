@@ -20,6 +20,7 @@ export type FriendType = {
 export type DialogsPageType = {
   dialogs: DialogType[]
   messages: MessageType[]
+  newMessageText:string
 };
 export type ProfilePageType = {
   posts:PostType[],
@@ -80,4 +81,14 @@ export const addNewPost=()=>{
 export const updateNewPostText=(value:string)=>{
   state.profilePage.newPostText=value;
   rerender(state)
+}
+
+export const addNewMessage=()=>{
+  state.dialogsPage.messages.push({id:4,text:state.dialogsPage.newMessageText})
+  state.dialogsPage.newMessageText=''
+  rerender(state)
+}
+export const updateNewMessageText=(value:string)=>{
+state.dialogsPage.newMessageText=value;
+rerender(state)
 }

@@ -6,19 +6,22 @@ import { DialogsPageType } from './../../../state/state'
 
 type NewMessagePropsType={
     newMessageText:string
-    addNewMessageText:(value:string)=>void
+    addNewMessage:()=>void
+    updateNewMessageText:(value:string)=>void
 }
 const NewMessage = (props:NewMessagePropsType) => {
     const textareaRef = createRef<HTMLTextAreaElement>();
     return (
-        <div>new post
+        <div>NEW MESSAGE
             <div>
                 <textarea ref={textareaRef} value={props.newMessageText}
                     onChange={(e) => {
-                        props.addNewMessageText(e.currentTarget.value)
+                        props.updateNewMessageText(e.currentTarget.value)
                 }}></textarea>
             </div>
-            <button onClick={() => { console.log(textareaRef.current?.value) }}>send</button>
+            <button onClick={() => {
+                props.addNewMessage();
+            }}>send</button>
         </div>
     )
 }
@@ -26,8 +29,8 @@ const NewMessage = (props:NewMessagePropsType) => {
 
 type DialogsPropsType = {
     state: DialogsPageType
-    // newMessageText:string
-    // addNewMessageText:(value:string)=>void
+    addNewMessage:()=>void
+    updateNewMessageText:(value:string)=>void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -41,56 +44,9 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div className="messageItems">
                 {messagesData.map((el, ind) => <Message key={ind} text={el.text} />)}
             </div>
-            <NewMessage newMessageText={newMessageText}     addNewMessageText={addNewMessageText}/>
+            <NewMessage newMessageText={props.state.newMessageText}
+                addNewMessage={props.addNewMessage} updateNewMessageText={props.updateNewMessageText}
+            />
         </div>
     )
 }
-
-/**
- * type NewPostPropsType={
-    callback:()=>void
-    newPostText:string
-    addNewPostText:(value:string)=>void
-}
-
-const NewPost = (props:NewPostPropsType) => {
-    const textareaRef=createRef<HTMLTextAreaElement>();
-    const onClickHandler=()=>{
-        // props.callback({id:4,text:''+textareaRef.current?.value});
-        props.callback();
-        if (textareaRef.current?.value) textareaRef.current.value='';
-        // props.addNewPostText('')
-    }
-    return (
-        <div>new post
-            <div>
-                <textarea ref={textareaRef} value={props.newPostText}
-                onChange={(e)=>{
-                    props.addNewPostText(e.currentTarget.value)
-                    }}></textarea>
-            </div>
-            <button onClick={onClickHandler}>send</button>
-        </div>
-    )
-}
-
-type MyPostsPropsType={
-    state: PostType[]
-    // callback:(obj:MessageType)=>void
-    callback:()=>void
-    newPostText:string
-    addNewPostText:(value:string)=>void
-}
-export const MyPosts = (props:MyPostsPropsType) => {
-    const postsData=props.state;    
-    return (
-        <div className={s.posts_block}>
-            <h2>My posts</h2>
-            <NewPost callback={props.callback} newPostText={props.newPostText} addNewPostText={props.addNewPostText}/>
-            <div>list of posts
-            {postsData.map(el => <Post key={el.id} id={el.id} text={el.text} />)}
-            </div>
-        </div>
-    )
-}
- */
