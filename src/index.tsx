@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 // import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { state,add } from './state/state'
+import { state,addNewPost } from './state/state'
 
 import {rerender} from './rerender'
 

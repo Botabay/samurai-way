@@ -48,7 +48,8 @@ export const state = {
       { id: 2, text: 'Hey, zuuuup!' },
       { id: 3, text: 'yo' },
       { id: 4, text: 'Hey guys!' },
-    ]
+    ],
+    newMessageText:'this is a place for your message'
   }  ,
   profilePage: {
     posts: [
@@ -56,7 +57,7 @@ export const state = {
       { id: 2, text: 'post2' },
       { id: 3, text: 'post3' }
     ],
-    newPostText:'www'
+    newPostText:'this is a place for your post'
   },
   subjects: {
     friends: [
@@ -71,11 +72,12 @@ export const state = {
 //   state.profilePage.posts.push(obj);
 //   rerender(state)
 // }
-export const add=()=>{
+export const addNewPost=()=>{
     state.profilePage.posts.push({id:4,text:state.profilePage.newPostText});
+    state.profilePage.newPostText=''
     rerender(state)
   }
-export const addNewPostText=(value:string)=>{
+export const updateNewPostText=(value:string)=>{
   state.profilePage.newPostText=value;
   rerender(state)
 }
