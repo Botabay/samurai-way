@@ -7,13 +7,16 @@ type PropsType = {
     pageName: string
     state:ProfilePageType
     callback:(obj:MessageType)=>void
+    addNewPostText:(value:string)=>void
 }
 
-export const Profile = ({ state,pageName,callback }: PropsType) => {
+export const Profile = ({ state,pageName,callback , addNewPostText}: PropsType) => {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPosts state={state.posts} callback={callback} newPostText={state.newPostText}/>
+            <MyPosts state={state.posts} callback={callback} newPostText={state.newPostText}
+                addNewPostText={addNewPostText}    
+            />
         </div>
     )
 }

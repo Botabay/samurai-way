@@ -71,3 +71,8 @@ export const add=(obj:MessageType)=>{
   state.profilePage.posts.push(obj);
   rerender(state)
 }
+
+export const addNewPostText=(value:string)=>{
+  state.profilePage.newPostText=value;
+  rerender(state)
+}

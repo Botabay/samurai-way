@@ -14,8 +14,9 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 type PropsType = {
   state: PageType
   callback:(obj:MessageType)=>void
+  addNewPostText:(value:string)=>void
 }
-export const App = ({ state, callback }: PropsType) => {
+export const App = ({ state, callback ,addNewPostText}: PropsType) => {
   return (
     <div className="app">
       <BrowserRouter>
@@ -25,7 +26,7 @@ export const App = ({ state, callback }: PropsType) => {
           <Routes>
             <Route path="/" element={<Profile state={state.profilePage} pageName='Profile'
               callback={callback} 
-              // newPostText={s}
+              addNewPostText={addNewPostText}
               />}></Route>
             {/* <Route path="/" render={()=> <Profile data={data} pageName='Profile' /> }></Route> */}
             <Route path="/dialogs" element={<Dialogs state={state.dialogsPage}/>}></Route>

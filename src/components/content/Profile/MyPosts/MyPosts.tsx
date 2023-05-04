@@ -6,6 +6,7 @@ import {MessageType, PostType} from './../../../../state/state'
 type NewPostPropsType={
     callback:(obj:MessageType)=>void
     newPostText:string
+    addNewPostText:(value:string)=>void
 }
 
 const NewPost = (props:NewPostPropsType) => {
@@ -18,7 +19,12 @@ const NewPost = (props:NewPostPropsType) => {
         <div>new post
             <div>
                 <textarea ref={textareaRef} value={props.newPostText}
-                onChange={(e)=>{props.callback({id:4,text:e.currentTarget.value})}}></textarea>
+                onChange={(e)=>{
+                    console.log(e.currentTarget.value);
+                    
+                    props.callback({id:4,text:e.currentTarget.value})
+                    props.addNewPostText(e.currentTarget.value)
+                    }}></textarea>
             </div>
             <button onClick={onClickHandler}>send</button>
         </div>
@@ -29,13 +35,14 @@ type MyPostsPropsType={
     state: PostType[]
     callback:(obj:MessageType)=>void
     newPostText:string
+    addNewPostText:(value:string)=>void
 }
 export const MyPosts = (props:MyPostsPropsType) => {
     const postsData=props.state;    
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>
-            <NewPost callback={props.callback} newPostText={props.newPostText}/>
+            <NewPost callback={props.callback} newPostText={props.newPostText} addNewPostText={props.addNewPostText}/>
             <div>list of posts
             {postsData.map(el => <Post key={el.id} id={el.id} text={el.text} />)}
             </div>
