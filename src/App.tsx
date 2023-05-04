@@ -23,7 +23,10 @@ export const App = ({ state, callback }: PropsType) => {
         <Sidebar state={state.subjects}/>
         <div className='content'>
           <Routes>
-            <Route path="/" element={<Profile state={state.profilePage} pageName='Profile' callback={callback}/>}></Route>
+            <Route path="/" element={<Profile state={state.profilePage} pageName='Profile'
+              callback={callback} 
+              // newPostText={s}
+              />}></Route>
             {/* <Route path="/" render={()=> <Profile data={data} pageName='Profile' /> }></Route> */}
             <Route path="/dialogs" element={<Dialogs state={state.dialogsPage}/>}></Route>
             <Route path="/news" element={<News pageName='News' />}></Route>

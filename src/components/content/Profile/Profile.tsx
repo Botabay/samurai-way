@@ -13,7 +13,7 @@ export const Profile = ({ state,pageName,callback }: PropsType) => {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPosts state={state.posts} callback={callback}/>
+            <MyPosts state={state.posts} callback={callback} newPostText={state.newPostText}/>
         </div>
     )
 }

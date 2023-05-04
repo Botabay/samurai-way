@@ -22,7 +22,8 @@ export type DialogsPageType = {
   messages: MessageType[]
 };
 export type ProfilePageType = {
-  posts:PostType[]
+  posts:PostType[],
+  newPostText:string
 };
 export type SubjectsType = {
   friends:FriendType[]
@@ -54,7 +55,8 @@ export const state = {
       { id: 1, text: 'post1' },
       { id: 2, text: 'post2' },
       { id: 3, text: 'post3' }
-    ]
+    ],
+    newPostText:'www'
   },
   subjects: {
     friends: [
