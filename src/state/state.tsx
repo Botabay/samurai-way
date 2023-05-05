@@ -1,6 +1,6 @@
 // import { rerender } from "../rerender"
 
-let rerender=(c:any)=>{
+let rerender=(c:any)=>{///////////////
   console.log('');
  };
 export type MessageType = {
@@ -96,6 +96,6 @@ state.dialogsPage.newMessageText=value;
 rerender(state)
 }
 
-export const bb=(c:any)=>{
-  rerender=c;
+export const subscribe=(observer:any)=>{//////////////////
+  rerender=observer;
 }

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { state,addNewPost,updateNewMessageText,updateNewPostText,addNewMessage,bb } from './state/state'
+import { state,addNewPost,updateNewMessageText,updateNewPostText,addNewMessage, subscribe } from './state/state'
 
 // import {rerender} from './rerender'
 
@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(
 //     </React.StrictMode>
 //   );
 // }
-const rerender=(state:any)=>{
+const rerender=(state:any)=>{//////////////////
     root.render(
       <React.StrictMode>
           {/* <App state={state} callback={add}/> */}
@@ -30,7 +30,7 @@ const rerender=(state:any)=>{
     );
   }
 rerender(state)
-bb(rerender)
+subscribe(rerender) /////////////////
 // root.render(
 //   <React.StrictMode>
 //       <App state={state} callback={add}/>
