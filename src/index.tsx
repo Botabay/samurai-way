@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import './index.css';
-// import { App } from './App';
+import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { state,addNewPost } from './state/state'
+import { state,addNewPost,updateNewMessageText,updateNewPostText,addNewMessage,bb } from './state/state'
 
-import {rerender} from './rerender'
+// import {rerender} from './rerender'
 
-// const root = ReactDOM.createRoot(
-//   document.getElementById('root') as HTMLElement
-// );
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
 
 // const rerender=()=>{
 //   root.render(
@@ -19,7 +19,18 @@ import {rerender} from './rerender'
 //     </React.StrictMode>
 //   );
 // }
+const rerender=(state:any)=>{
+    root.render(
+      <React.StrictMode>
+          {/* <App state={state} callback={add}/> */}
+          <App state={state} addNewPost={addNewPost} updateNewPostText={updateNewPostText}
+            addNewMessage={addNewMessage} updateNewMessageText={updateNewMessageText}
+          />
+      </React.StrictMode>
+    );
+  }
 rerender(state)
+bb(rerender)
 // root.render(
 //   <React.StrictMode>
 //       <App state={state} callback={add}/>

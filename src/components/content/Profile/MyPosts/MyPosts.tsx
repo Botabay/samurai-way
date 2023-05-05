@@ -6,7 +6,7 @@ import {PostType} from './../../../../state/state'
 type NewPostPropsType={
     addNewPost:()=>void
     newPostText:string
-    addNewPostText:(value:string)=>void
+    updateNewPostText:(value:string)=>void
 }
 
 const NewPost = (props:NewPostPropsType) => {
@@ -19,7 +19,7 @@ const NewPost = (props:NewPostPropsType) => {
             <div>
                 <textarea ref={textareaRef} value={props.newPostText}
                 onChange={(e)=>{
-                    props.addNewPostText(e.currentTarget.value)
+                    props.updateNewPostText(e.currentTarget.value)
                     }}></textarea>
             </div>
             <button onClick={onClickHandler}>send</button>
@@ -31,14 +31,14 @@ type MyPostsPropsType={
     state: PostType[]
     addNewPost:()=>void
     newPostText:string
-    addNewPostText:(value:string)=>void
+    updateNewPostText:(value:string)=>void
 }
 export const MyPosts = (props:MyPostsPropsType) => {
     const postsData=props.state;    
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>
-            <NewPost addNewPost={props.addNewPost} newPostText={props.newPostText} addNewPostText={props.addNewPostText}/>
+            <NewPost addNewPost={props.addNewPost} newPostText={props.newPostText} updateNewPostText={props.updateNewPostText}/>
             <div>list of posts
             {postsData.map(el => <Post key={el.id} id={el.id} text={el.text} />)}
             </div>

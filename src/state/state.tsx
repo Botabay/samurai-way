@@ -1,5 +1,8 @@
-import { rerender } from "../rerender"
+// import { rerender } from "../rerender"
 
+let rerender=(c:any)=>{
+  console.log('');
+ };
 export type MessageType = {
   id: number,
   text: string
@@ -91,4 +94,8 @@ export const addNewMessage=()=>{
 export const updateNewMessageText=(value:string)=>{
 state.dialogsPage.newMessageText=value;
 rerender(state)
+}
+
+export const bb=(c:any)=>{
+  rerender=c;
 }
