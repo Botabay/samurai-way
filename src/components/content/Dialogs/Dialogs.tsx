@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import { Dialog } from './Dialog/Dialog'
 import { Message } from './Message/Message'
 import { store } from '../../../redux/reduxStore'
-import { updateNewMessageTextActionCreator, addNewMessageActionCreator } from '../../../myRedux/dialogReducer'
+import { updateNewMessageTextActionCreator, addNewMessageActionCreator } from '../../../redux/dialogReducer'
 
 type NewMessagePropsType = {
 
@@ -30,8 +30,8 @@ type DialogsPropsType = {
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
-    const dialogsData = store.getState().dialogsPage.dialogs;
-    const messagesData = store.getState().dialogsPage.messages;
+    const dialogsData = store.getState().dialogProfile.dialogs;
+    const messagesData = store.getState().dialogProfile.messages;
     return (
         <div className={s.dialogs}>
             <div className="dialogItems">
