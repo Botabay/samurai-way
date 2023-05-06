@@ -2,12 +2,13 @@ import { createRef } from 'react'
 import s from './Dialogs.module.css'
 import { Dialog } from './Dialog/Dialog'
 import { Message } from './Message/Message'
-import { store,updateNewMessageTextActionCreator,addNewMessageActionCreator } from './../../../state/state'
+import { store } from './../../../state/state'
+import { updateNewMessageTextActionCreator, addNewMessageActionCreator } from './../../../state/dialogReducer'
 
-type NewMessagePropsType={
-    
+type NewMessagePropsType = {
+
 }
-const NewMessage = (props:NewMessagePropsType) => {
+const NewMessage = (props: NewMessagePropsType) => {
     const textareaRef = createRef<HTMLTextAreaElement>();
     return (
         <div>NEW MESSAGE
@@ -15,7 +16,7 @@ const NewMessage = (props:NewMessagePropsType) => {
                 <textarea ref={textareaRef} value={store.getState().dialogsPage.newMessageText}
                     onChange={(e) => {
                         store.dispatch(updateNewMessageTextActionCreator(e.currentTarget.value))
-                }}></textarea>
+                    }}></textarea>
             </div>
             <button onClick={() => {
                 store.dispatch(addNewMessageActionCreator());

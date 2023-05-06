@@ -1,6 +1,9 @@
 const ADDNEWMESSAGE = 'addNewMessage';
 const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
 
+export const addNewMessageActionCreator = () => ({ type: ADDNEWMESSAGE })
+export const updateNewMessageTextActionCreator = (value: string) => ({ type: UPDATENEWMESSAGETEXT, value })
+
 export const dialogReducer = (state: any, action: any) => {
     switch (action.type) {
         case ADDNEWMESSAGE: {

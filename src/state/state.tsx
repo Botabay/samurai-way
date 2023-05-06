@@ -1,15 +1,5 @@
 import { dialogReducer } from "./dialogReducer";
 import { profileReducer } from "./profileReducer";
-
-const ADDNEWMESSAGE = 'addNewMessage';
-export const addNewMessageActionCreator = () => ({ type: ADDNEWMESSAGE })
-const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
-export const updateNewMessageTextActionCreator = (value: string) => ({ type: UPDATENEWMESSAGETEXT, value })
-const ADDNEWPOST = 'addNewPost';
-export const addNewPostActionCreator = () => ({ type: ADDNEWPOST })
-const UPDATENEWPOSTTEXT = 'updateNewPostText';
-export const updateNewPostTextActionCreator = (value: string) => ({ type: UPDATENEWPOSTTEXT, value })
-
 export type MessageType = {
   id: number,
   text: string
@@ -86,32 +76,10 @@ export const store = {
   },
 
   dispatch(action: any) {
-    switch (action.type) {
-      case ADDNEWPOST: {
-        // this._state.profilePage.posts.push({ id: 4, text: this._state.profilePage.newPostText });
-        // this._state.profilePage.newPostText = ''
-        this._state.profilePage=profileReducer(this._state.profilePage,action);
-        this._callSubscriber(this._state);
-        break
-      }
-      case UPDATENEWPOSTTEXT: {
-        // this._state.profilePage.newPostText = action.value;
-        this._state.profilePage=profileReducer(this._state.profilePage,action)
-        this._callSubscriber(this._state)
-        break
-      }
-      case ADDNEWMESSAGE: {
-        this._state.dialogsPage=dialogReducer(this._state.dialogsPage, action)
-        this._callSubscriber(this._state)
-        break
-      }
-      case UPDATENEWMESSAGETEXT: {
-        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
-        this._callSubscriber(this._state)
-        break
-      }
-      default:
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
+
+    this._callSubscriber(this._state);
   }
 }
 /** 06.05.2023

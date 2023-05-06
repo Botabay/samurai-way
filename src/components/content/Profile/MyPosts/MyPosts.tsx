@@ -1,7 +1,8 @@
 import {createRef} from 'react'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
-import {store,updateNewPostTextActionCreator,addNewPostActionCreator} from './../../../../state/state'
+import {store} from './../../../../state/state'
+import {updateNewPostTextActionCreator,addNewPostActionCreator} from './../../../../state/profileReducer'
 
 type NewPostPropsType={
     
