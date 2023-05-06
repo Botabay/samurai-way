@@ -1,12 +1,3 @@
-const ADDNEWPOST='addNewPost';
-export const addNewPostActionCreator=()=> ({type:ADDNEWPOST})
-const UPDATENEWPOSTTEXT='updateNewPostText';
-export const updateNewPostTextActionCreator=(value:string)=> ({type:UPDATENEWPOSTTEXT,value})
-const ADDNEWMESSAGE='addNewMessage';
-export const addNewMessageActionCreator=()=> ({type:ADDNEWMESSAGE})
-const UPDATENEWMESSAGETEXT='updateNewMessageText';
-export const updateNewMessageTextActionCreator=(value:string)=> ({type:UPDATENEWMESSAGETEXT,value})
-
 export type MessageType = {
   id: number,
   text: string
