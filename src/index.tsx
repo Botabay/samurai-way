@@ -19,17 +19,17 @@ const root = ReactDOM.createRoot(
 //     </React.StrictMode>
 //   );
 // }
-const rerender=(state:any)=>{
+const rerender=()=>{
     root.render(
       <React.StrictMode>
           {/* <App state={state} callback={add}/> */}
-          <App state={state} addNewPost={store.addNewPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}
-            addNewMessage={store.addNewMessage.bind(store)} updateNewMessageText={store.updateNewMessageText.bind(store)}
-          />
+          {/* <App state={state} addNewPost={store.addNewPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}
+            addNewMessage={store.addNewMessage.bind(store)} updateNewMessageText={store.updateNewMessageText.bind(store)} */}
+            <App />
       </React.StrictMode>
     );
   }
-rerender(store.getState())
+rerender()
 store.subscribe(rerender) 
 // root.render(
 //   <React.StrictMode>

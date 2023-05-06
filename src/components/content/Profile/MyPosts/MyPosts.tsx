@@ -1,25 +1,23 @@
 import {createRef} from 'react'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
-import {PostType} from './../../../../state/state'
+import {store} from './../../../../state/state'
 
 type NewPostPropsType={
-    addNewPost:()=>void
-    newPostText:string
-    updateNewPostText:(value:string)=>void
+    
 }
 
 const NewPost = (props:NewPostPropsType) => {
     const textareaRef=createRef<HTMLTextAreaElement>();
     const onClickHandler=()=>{
-        props.addNewPost();
+        store.dispatch({type:'addNewPost'});
     }
     return (
         <div>new post
             <div>
-                <textarea ref={textareaRef} value={props.newPostText}
+                <textarea ref={textareaRef} value={store.getState().profilePage.newPostText}
                 onChange={(e)=>{
-                    props.updateNewPostText(e.currentTarget.value)
+                    store.dispatch({type:'updateNewPostText',value:e.currentTarget.value})
                     }}></textarea>
             </div>
             <button onClick={onClickHandler}>send</button>
@@ -28,17 +26,13 @@ const NewPost = (props:NewPostPropsType) => {
 }
 
 type MyPostsPropsType={
-    state: PostType[]
-    addNewPost:()=>void
-    newPostText:string
-    updateNewPostText:(value:string)=>void
 }
 export const MyPosts = (props:MyPostsPropsType) => {
-    const postsData=props.state;    
+    const postsData=store.getState().profilePage.posts;    
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>
-            <NewPost addNewPost={props.addNewPost} newPostText={props.newPostText} updateNewPostText={props.updateNewPostText}/>
+            <NewPost />
             <div>list of posts
             {postsData.map(el => <Post key={el.id} id={el.id} text={el.text} />)}
             </div>

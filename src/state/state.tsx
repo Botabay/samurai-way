@@ -1,6 +1,3 @@
-// let rerender=(c:any)=>{
-//   console.log('');
-//  };
 export type MessageType = {
   id: number,
   text: string
@@ -69,33 +66,42 @@ export const store = {
       ]
     },
   },
-  getState() { return this._state },
-  addNewPost() {
-    this._state.profilePage.posts.push({ id: 4, text: this._state.profilePage.newPostText });
-    this._state.profilePage.newPostText = ''
-    this.rerender(this._state)
-  },
-  updateNewPostText(value: string)  {
-    console.log(value);    ////////////////
-    this._state.profilePage.newPostText = value;
-    console.log(this._state.profilePage.newPostText);////////
-    this.rerender(this._state)
-  },
-  addNewMessage () {
-    this._state.dialogsPage.messages.push({ id: 4, text: this._state.dialogsPage.newMessageText })
-    this._state.dialogsPage.newMessageText = ''
-    this.rerender(this._state)
-  },
-   updateNewMessageText (value: string)  {
-    this._state.dialogsPage.newMessageText = value;
-    this.rerender(this._state)
-  },
-   subscribe  (observer: any)  {
-    this.rerender = observer;
-  },
-  rerender (c:any){
+  _callSubscriber(c: any) {
     console.log('');
-   }
+  },
+
+  getState() { return this._state },
+  subscribe(observer: any) {
+    this._callSubscriber = observer;
+  },
+
+  dispatch(action: any) {
+    switch (action.type) {
+      case 'addNewPost': {
+        this._state.profilePage.posts.push({ id: 4, text: this._state.profilePage.newPostText });
+        this._state.profilePage.newPostText = ''
+        this._callSubscriber(this._state);
+        break
+      }
+      case 'updateNewPostText': {
+        this._state.profilePage.newPostText = action.value;
+        this._callSubscriber(this._state)
+        break
+      }
+      case 'addNewMessage': {
+        this._state.dialogsPage.messages.push({ id: 4, text: this._state.dialogsPage.newMessageText })
+        this._state.dialogsPage.newMessageText = ''
+        this._callSubscriber(this._state)
+        break
+      }
+      case 'updateNewMessageText': {
+        this._state.dialogsPage.newMessageText = action.value;
+        this._callSubscriber(this._state)
+        break
+      }
+      default:
+    }
+}
 }
 /** 06.05.2023
  * // import { rerender } from "../rerender"
