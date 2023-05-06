@@ -1,8 +1,8 @@
 import {createRef} from 'react'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
-import {store} from './../../../../state/state'
-import {updateNewPostTextActionCreator,addNewPostActionCreator} from './../../../../state/profileReducer'
+import {store} from '../../../../myRedux/store'
+import {updateNewPostTextActionCreator,addNewPostActionCreator} from '../../../../myRedux/profileReducer'
 
 type NewPostPropsType={
     

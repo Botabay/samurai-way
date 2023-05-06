@@ -1,4 +1,4 @@
-import { FriendType } from './../../../state/state'
+import { FriendType } from '../../../myRedux/store'
 import s from './FriendsList.module.css';
 
 type FriendPropsType=FriendType;

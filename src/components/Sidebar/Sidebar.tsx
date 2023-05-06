@@ -1,7 +1,7 @@
 import { FriendsList } from './FriendsList/FriendsList';
 import { Navbar } from './Navbar/Navbar';
 import s from './Sidebar.module.css';
-import { SubjectsType } from '../../state/state';
+import { SubjectsType } from '../../myRedux/store';
 
 type PropsType={
     state:SubjectsType

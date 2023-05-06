@@ -2,8 +2,8 @@ import { createRef } from 'react'
 import s from './Dialogs.module.css'
 import { Dialog } from './Dialog/Dialog'
 import { Message } from './Message/Message'
-import { store } from './../../../state/state'
-import { updateNewMessageTextActionCreator, addNewMessageActionCreator } from './../../../state/dialogReducer'
+import { store } from '../../../myRedux/store'
+import { updateNewMessageTextActionCreator, addNewMessageActionCreator } from '../../../myRedux/dialogReducer'
 
 type NewMessagePropsType = {
 
