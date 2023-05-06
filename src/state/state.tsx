@@ -1,3 +1,4 @@
+import { dialogReducer } from "./dialogReducer";
 import { profileReducer } from "./profileReducer";
 
 const ADDNEWMESSAGE = 'addNewMessage';
@@ -100,13 +101,12 @@ export const store = {
         break
       }
       case ADDNEWMESSAGE: {
-        this._state.dialogsPage.messages.push({ id: 4, text: this._state.dialogsPage.newMessageText })
-        this._state.dialogsPage.newMessageText = ''
+        this._state.dialogsPage=dialogReducer(this._state.dialogsPage, action)
         this._callSubscriber(this._state)
         break
       }
       case UPDATENEWMESSAGETEXT: {
-        this._state.dialogsPage.newMessageText = action.value;
+        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
         this._callSubscriber(this._state)
         break
       }

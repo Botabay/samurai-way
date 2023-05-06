@@ -1,12 +1,10 @@
 const ADDNEWMESSAGE = 'addNewMessage';
-export const addNewMessageActionCreator = () => ({ type: ADDNEWMESSAGE })
 const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
-export const updateNewMessageTextActionCreator = (value: string) => ({ type: UPDATENEWMESSAGETEXT, value })
 
 export const dialogReducer = (state: any, action: any) => {
     switch (action.type) {
         case ADDNEWMESSAGE: {
-            state.messages.push({ id: 4, text: state.dialogsPage.newMessageText })
+            state.messages.push({ id: 4, text: state.newMessageText })
             state.newMessageText = '';
             return state;
         }

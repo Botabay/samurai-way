@@ -1,7 +1,5 @@
 const ADDNEWPOST = 'addNewPost';
-export const addNewPostActionCreator = () => ({ type: ADDNEWPOST })
 const UPDATENEWPOSTTEXT = 'updateNewPostText';
-export const updateNewPostTextActionCreator = (value: string) => ({ type: UPDATENEWPOSTTEXT, value })
 
 export const profileReducer = (state: any, action: any) => {
     switch (action.type) {
