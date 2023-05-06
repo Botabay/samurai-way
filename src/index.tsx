@@ -23,8 +23,8 @@ const rerender=(state:any)=>{
     root.render(
       <React.StrictMode>
           {/* <App state={state} callback={add}/> */}
-          <App state={state} addNewPost={store.addNewPost} updateNewPostText={store.updateNewPostText}
-            addNewMessage={store.addNewMessage} updateNewMessageText={store.updateNewMessageText}
+          <App state={state} addNewPost={store.addNewPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}
+            addNewMessage={store.addNewMessage.bind(store)} updateNewMessageText={store.updateNewMessageText.bind(store)}
           />
       </React.StrictMode>
     );

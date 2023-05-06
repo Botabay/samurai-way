@@ -71,27 +71,27 @@ export const store = {
   },
   getState() { return this._state },
   addNewPost() {
-    store._state.profilePage.posts.push({ id: 4, text: store._state.profilePage.newPostText });
-    store._state.profilePage.newPostText = ''
-    store.rerender(store._state)
+    this._state.profilePage.posts.push({ id: 4, text: this._state.profilePage.newPostText });
+    this._state.profilePage.newPostText = ''
+    this.rerender(this._state)
   },
-  updateNewPostText:(value: string)=>  {
-    store._state.profilePage.newPostText = value;
-    store.rerender(store._state)
+  updateNewPostText(value: string)  {
+    console.log(value);    ////////////////
+    this._state.profilePage.newPostText = value;
+    console.log(this._state.profilePage.newPostText);////////
+    this.rerender(this._state)
   },
-  addNewMessage: ()=> {
-    store._state.dialogsPage.messages.push({ id: 4, text: store._state.dialogsPage.newMessageText })
-    store._state.dialogsPage.newMessageText = ''
-    store.rerender(store._state)
+  addNewMessage () {
+    this._state.dialogsPage.messages.push({ id: 4, text: this._state.dialogsPage.newMessageText })
+    this._state.dialogsPage.newMessageText = ''
+    this.rerender(this._state)
   },
-   updateNewMessageText: (value: string) => {
-    store._state.dialogsPage.newMessageText = value;
-    store.rerender(store._state)
+   updateNewMessageText (value: string)  {
+    this._state.dialogsPage.newMessageText = value;
+    this.rerender(this._state)
   },
-   subscribe : (observer: any) => {
-    console.log(observer);
-    
-    store.rerender = observer;
+   subscribe  (observer: any)  {
+    this.rerender = observer;
   },
   rerender (c:any){
     console.log('');
