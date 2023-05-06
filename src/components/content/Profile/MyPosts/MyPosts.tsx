@@ -2,7 +2,7 @@ import {createRef} from 'react'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
 import {store} from '../../../../redux/reduxStore'
-import {updateNewPostTextActionCreator,addNewPostActionCreator} from '../../../../myRedux/profileReducer'
+import {updateNewPostTextActionCreator,addNewPostActionCreator} from '../../../../redux/profileReducer'
 
 type NewPostPropsType={
     
@@ -29,7 +29,7 @@ const NewPost = (props:NewPostPropsType) => {
 type MyPostsPropsType={
 }
 export const MyPosts = (props:MyPostsPropsType) => {
-    const postsData=store.getState().profilePage.posts;    
+    const postsData=store.getState().profileReducer.posts;    
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>
