@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { state,addNewPost,updateNewMessageText,updateNewPostText,addNewMessage, subscribe } from './state/state'
-
+// import { state,addNewPost,updateNewMessageText,updateNewPostText,addNewMessage, subscribe } from './state/state'
+import { store } from './state/state'
 // import {rerender} from './rerender'
 
 const root = ReactDOM.createRoot(
@@ -19,18 +19,18 @@ const root = ReactDOM.createRoot(
 //     </React.StrictMode>
 //   );
 // }
-const rerender=(state:any)=>{//////////////////
+const rerender=(state:any)=>{
     root.render(
       <React.StrictMode>
           {/* <App state={state} callback={add}/> */}
-          <App state={state} addNewPost={addNewPost} updateNewPostText={updateNewPostText}
-            addNewMessage={addNewMessage} updateNewMessageText={updateNewMessageText}
+          <App state={state} addNewPost={store.addNewPost} updateNewPostText={store.updateNewPostText}
+            addNewMessage={store.addNewMessage} updateNewMessageText={store.updateNewMessageText}
           />
       </React.StrictMode>
     );
   }
-rerender(state)
-subscribe(rerender) /////////////////
+rerender(store.getState())
+store.subscribe(rerender) 
 // root.render(
 //   <React.StrictMode>
 //       <App state={state} callback={add}/>
