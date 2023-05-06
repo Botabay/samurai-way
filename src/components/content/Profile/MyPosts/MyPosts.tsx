@@ -1,7 +1,7 @@
 import {createRef} from 'react'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
-import {store} from './../../../../state/state'
+import {store,updateNewPostTextActionCreator,addNewPostActionCreator} from './../../../../state/state'
 
 type NewPostPropsType={
     
@@ -10,14 +10,14 @@ type NewPostPropsType={
 const NewPost = (props:NewPostPropsType) => {
     const textareaRef=createRef<HTMLTextAreaElement>();
     const onClickHandler=()=>{
-        store.dispatch({type:'addNewPost'});
+        store.dispatch(addNewPostActionCreator());
     }
     return (
         <div>new post
             <div>
                 <textarea ref={textareaRef} value={store.getState().profilePage.newPostText}
                 onChange={(e)=>{
-                    store.dispatch({type:'updateNewPostText',value:e.currentTarget.value})
+                    store.dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
                     }}></textarea>
             </div>
             <button onClick={onClickHandler}>send</button>

@@ -1,3 +1,12 @@
+const ADDNEWPOST='addNewPost';
+export const addNewPostActionCreator=()=> ({type:ADDNEWPOST})
+const UPDATENEWPOSTTEXT='updateNewPostText';
+export const updateNewPostTextActionCreator=(value:string)=> ({type:UPDATENEWPOSTTEXT,value})
+const ADDNEWMESSAGE='addNewMessage';
+export const addNewMessageActionCreator=()=> ({type:ADDNEWMESSAGE})
+const UPDATENEWMESSAGETEXT='updateNewMessageText';
+export const updateNewMessageTextActionCreator=(value:string)=> ({type:UPDATENEWMESSAGETEXT,value})
+
 export type MessageType = {
   id: number,
   text: string
@@ -14,7 +23,6 @@ export type FriendType = {
   id: number,
   name: string
 }
-
 export type DialogsPageType = {
   dialogs: DialogType[]
   messages: MessageType[]
@@ -27,7 +35,6 @@ export type ProfilePageType = {
 export type SubjectsType = {
   friends: FriendType[]
 };
-
 export type PageType = {
   dialogsPage: DialogsPageType
   profilePage: ProfilePageType
@@ -77,31 +84,33 @@ export const store = {
 
   dispatch(action: any) {
     switch (action.type) {
-      case 'addNewPost': {
+      case ADDNEWPOST: {
         this._state.profilePage.posts.push({ id: 4, text: this._state.profilePage.newPostText });
         this._state.profilePage.newPostText = ''
         this._callSubscriber(this._state);
         break
       }
-      case 'updateNewPostText': {
+      case UPDATENEWPOSTTEXT: {
+        console.log('case');
+        
         this._state.profilePage.newPostText = action.value;
         this._callSubscriber(this._state)
         break
       }
-      case 'addNewMessage': {
+      case ADDNEWMESSAGE: {
         this._state.dialogsPage.messages.push({ id: 4, text: this._state.dialogsPage.newMessageText })
         this._state.dialogsPage.newMessageText = ''
         this._callSubscriber(this._state)
         break
       }
-      case 'updateNewMessageText': {
+      case UPDATENEWMESSAGETEXT: {
         this._state.dialogsPage.newMessageText = action.value;
         this._callSubscriber(this._state)
         break
       }
       default:
     }
-}
+  }
 }
 /** 06.05.2023
  * // import { rerender } from "../rerender"

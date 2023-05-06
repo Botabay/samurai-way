@@ -2,7 +2,7 @@ import { createRef } from 'react'
 import s from './Dialogs.module.css'
 import { Dialog } from './Dialog/Dialog'
 import { Message } from './Message/Message'
-import { store } from './../../../state/state'
+import { store,updateNewMessageTextActionCreator,addNewMessageActionCreator } from './../../../state/state'
 
 type NewMessagePropsType={
     
@@ -14,11 +14,11 @@ const NewMessage = (props:NewMessagePropsType) => {
             <div>
                 <textarea ref={textareaRef} value={store.getState().dialogsPage.newMessageText}
                     onChange={(e) => {
-                        store.dispatch({type:'updateNewMessageText',value:e.currentTarget.value})
+                        store.dispatch(updateNewMessageTextActionCreator(e.currentTarget.value))
                 }}></textarea>
             </div>
             <button onClick={() => {
-                store.dispatch({type:'addNewMessage'});
+                store.dispatch(addNewMessageActionCreator());
             }}>send</button>
         </div>
     )
