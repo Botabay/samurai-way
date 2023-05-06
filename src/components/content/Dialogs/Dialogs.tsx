@@ -2,7 +2,7 @@ import { createRef } from 'react'
 import s from './Dialogs.module.css'
 import { Dialog } from './Dialog/Dialog'
 import { Message } from './Message/Message'
-import { store } from '../../../myRedux/store'
+import { store } from '../../../redux/reduxStore'
 import { updateNewMessageTextActionCreator, addNewMessageActionCreator } from '../../../myRedux/dialogReducer'
 
 type NewMessagePropsType = {
@@ -13,7 +13,7 @@ const NewMessage = (props: NewMessagePropsType) => {
     return (
         <div>NEW MESSAGE
             <div>
-                <textarea ref={textareaRef} value={store.getState().dialogsPage.newMessageText}
+                <textarea ref={textareaRef} value={store.getState().dialogReducer.newMessageText}
                     onChange={(e) => {
                         store.dispatch(updateNewMessageTextActionCreator(e.currentTarget.value))
                     }}></textarea>

@@ -1,8 +1,10 @@
-import { FriendType } from '../../../myRedux/store'
+// import { FriendType } from '../../../redux/reduxStore'
 import s from './FriendsList.module.css';
 
-type FriendPropsType=FriendType;
-const Friend = (props:FriendPropsType) => {
+// type FriendPropsType=FriendType;
+const Friend = (props:any
+    //FriendPropsType
+    ) => {
     return (
             <div className={s.sidebar}>
                {props.name}
@@ -12,7 +14,7 @@ const Friend = (props:FriendPropsType) => {
 
 
 type FriendsListPropsType={
-    state:FriendType[]
+     state:any//FriendType[]
 }
 export const FriendsList = (props:FriendsListPropsType) => {
     return (

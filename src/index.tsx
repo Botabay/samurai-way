@@ -5,7 +5,7 @@ import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
 // import { state,addNewPost,updateNewMessageText,updateNewPostText,addNewMessage, subscribe } from './state/state'
-import { store } from './myRedux/store'
+import { store } from './redux/reduxStore'
 // import {rerender} from './rerender'
 
 const root = ReactDOM.createRoot(
