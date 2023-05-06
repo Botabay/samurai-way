@@ -3,18 +3,16 @@ export const addNewPostActionCreator = () => ({ type: ADDNEWPOST })
 const UPDATENEWPOSTTEXT = 'updateNewPostText';
 export const updateNewPostTextActionCreator = (value: string) => ({ type: UPDATENEWPOSTTEXT, value })
 
-const profileReducer = (state: any, action: any) => {
+export const profileReducer = (state: any, action: any) => {
     switch (action.type) {
         case ADDNEWPOST: {
-            state.profilePage.posts.push({ id: 4, text: state.profilePage.newPostText });
-            state.profilePage.newPostText = ''
-            //   callSubscriber(state);
-            break
+            state.posts.push({ id: 4, text: state.newPostText });
+            state.newPostText = '';
+            return state;
         }
         case UPDATENEWPOSTTEXT: {
-            state.profilePage.newPostText = action.value;
-            //   callSubscriber(state)
-            break
+            state.newPostText = action.value;
+            return state;
         }
         default: return state
     }

@@ -3,18 +3,16 @@ export const addNewMessageActionCreator = () => ({ type: ADDNEWMESSAGE })
 const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
 export const updateNewMessageTextActionCreator = (value: string) => ({ type: UPDATENEWMESSAGETEXT, value })
 
-const dialogReducer = (state: any, action: any) => {
+export const dialogReducer = (state: any, action: any) => {
     switch (action.type) {
         case ADDNEWMESSAGE: {
-            state.dialogsPage.messages.push({ id: 4, text: state.dialogsPage.newMessageText })
-            state.dialogsPage.newMessageText = ''
-            //   callSubscriber(state)
-            break
+            state.messages.push({ id: 4, text: state.dialogsPage.newMessageText })
+            state.newMessageText = '';
+            return state;
         }
         case UPDATENEWMESSAGETEXT: {
-            state.dialogsPage.newMessageText = action.value;
-            //   callSubscriber(state)
-            break
+            state.newMessageText = action.value;
+            return state;
         }
         default: return state
     }
