@@ -1,8 +1,7 @@
 import {createRef} from 'react'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
-import {store} from '../../../../redux/reduxStore'
-import {updateNewPostTextActionCreator,addNewPostActionCreator} from '../../../../redux/profileReducer'
+import {MyPostsContainer} from './MyPostsContainer'
 
 type NewPostPropsType={
     
@@ -26,16 +25,19 @@ const NewPost = (props:NewPostPropsType) => {
     )
 }
 
+
+
 type MyPostsPropsType={
+    postsData:any
 }
 export const MyPosts = (props:MyPostsPropsType) => {
-    const postsData=store.getState().profileReducer.posts;    
+    const postsData=store.getState().profileReducer.posts; ////   
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>
             <NewPost />
             <div>list of posts
-            {postsData.map(el => <Post key={el.id} id={el.id} text={el.text} />)}
+            {postsData.map((el:any) => <Post key={el.id} id={el.id} text={el.text} />)}
             </div>
         </div>
     )

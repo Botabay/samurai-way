@@ -30,15 +30,15 @@ type DialogsPropsType = {
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
-    const dialogsData = store.getState().dialogProfile.dialogs;
-    const messagesData = store.getState().dialogProfile.messages;
+    const dialogsData = store.getState().dialogReducer.dialogs;
+    const messagesData = store.getState().dialogReducer.messages;
     return (
         <div className={s.dialogs}>
             <div className="dialogItems">
-                {dialogsData.map(el => <Dialog key={el.id} id={el.id} name={el.name} />)}
+                {dialogsData.map((el:any) => <Dialog key={el.id} id={el.id} name={el.name} />)}
             </div>
             <div className="messageItems">
-                {messagesData.map((el, ind) => <Message key={ind} text={el.text} />)}
+                {messagesData.map((el:any, ind:number) => <Message key={ind} text={el.text} />)}
             </div>
             <NewMessage />
         </div>
