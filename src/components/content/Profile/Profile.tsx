@@ -1,14 +1,13 @@
 import s from './Profile.module.css';
-import { MyPosts } from './MyPosts/MyPosts';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
-import { ProfilePageType} from '../../../myRedux/store'
+import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 
 
 export const Profile = () => {
     return (
         <div className={s.content}>
-            <ProfileInfo/>
-            <MyPosts />
+            <ProfileInfo />
+            <MyPostsContainer />
         </div>
     )
 }

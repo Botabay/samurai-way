@@ -1,11 +1,11 @@
-import {store} from '../../../../redux/reduxStore'
-import {updateNewPostTextActionCreator,addNewPostActionCreator} from '../../../../redux/profileReducer'
+import { store } from '../../../../redux/reduxStore';
+import { MyPosts } from './MyPosts';
 
-type MyPostsContainerPropsType={
+type MyPostsContainerPropsType = {
 }
-export const MyPostsContainer = (props:MyPostsContainerPropsType) => {
-    const postsData=store.getState().profileReducer.posts;    
+export const MyPostsContainer = (props: MyPostsContainerPropsType) => {
+    const postsData = store.getState().profileReducer.posts;
     return (
-        <MyPosts postsData={postsData}/>
+        <MyPosts postsData={postsData} />
     )
 }
