@@ -1,7 +1,7 @@
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
 import { ProfileDataType } from '../../../../redux/profileReducer'
-import { NewPost } from './NewPost/NewPost'
+import { NewItem } from '../../NewItem/NewItem'
 
 type MyPostsPropsType = {
     postsData: ProfileDataType
@@ -16,10 +16,11 @@ export const MyPosts = ({
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>
-            <NewPost
-                newPostText={postsData.newPostText}
-                addNewPost={addNewPost}
-                updateNewPostText={updateNewPostText}
+            <NewItem
+                title={'new post'}
+                newItemText={postsData.newPostText}
+                addNewItem={addNewPost}
+                updateNewItemText={updateNewPostText}
             />
             <div>list of posts
                 {postsData.posts.map((el: any) => <Post key={el.id} id={el.id} text={el.text} />)}

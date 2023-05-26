@@ -9,18 +9,19 @@ type MyPostsContainerPropsType = {}
 
 export const DialogsContainer = ({ }: MyPostsContainerPropsType) => {
     const dialogsData = store.getState().dialogReducer;
-    const updateNewMessageText = (v:string) => {
+    const updateNewMessageText = (v: string) => {
         store.dispatch(updateNewMessageTextActionCreator(v))
     }
     const addNewMessage = () => {
-        store.dispatch(addNewMessageActionCreator(v))
+        store.dispatch(addNewMessageActionCreator())
     }
     return (
         <Dialogs
             dialogs={dialogsData.dialogs}
             messages={dialogsData.messages}
-        addNewMessage={addNewMessage}
-        updateNewMessageText={updateNewMessageText}
+            newMessageText={dialogsData.newMessageText}
+            addNewMessage={addNewMessage}
+            updateNewMessageText={updateNewMessageText}
         />
     )
 }

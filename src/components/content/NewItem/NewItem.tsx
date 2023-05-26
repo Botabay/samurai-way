@@ -1,26 +1,28 @@
 import { createRef } from 'react'
 
 type NewPostPropsType = {
-    newPostText: string
-    addNewPost: () => void
-    updateNewPostText: (v: string) => void
+    title: string
+    newItemText: string
+    addNewItem: () => void
+    updateNewItemText: (v: string) => void
 }
 
-export const NewPost = ({
-    newPostText,
-    addNewPost,
-    updateNewPostText
+export const NewItem = ({
+    title,
+    newItemText,
+    addNewItem,
+    updateNewItemText
 }: NewPostPropsType) => {
     const textareaRef = createRef<HTMLTextAreaElement>();
     const onClickHandler = () => {
-        addNewPost()
+        addNewItem()
     }
     return (
-        <div>new post
+        <div>{title}
             <div>
-                <textarea ref={textareaRef} value={newPostText}
+                <textarea ref={textareaRef} value={newItemText}
                     onChange={(e) => {
-                        updateNewPostText(e.currentTarget.value)
+                        updateNewItemText(e.currentTarget.value)
                     }}></textarea>
             </div>
             <button onClick={onClickHandler}>send</button>
