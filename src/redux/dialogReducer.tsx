@@ -4,15 +4,15 @@ const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
 export const addNewMessageActionCreator = () => ({ type: ADDNEWMESSAGE })
 export const updateNewMessageTextActionCreator = (value: string) => ({ type: UPDATENEWMESSAGETEXT, value })
 
-type DialogType = {
+export type DialogType = {
   id: number,
   name: string
 }
-type MessageType = {
+export type MessageType = {
   id: number,
   text: string
 }
-type DialogDataType = {
+export type DialogDataType = {
   dialogs: DialogType[]
   messages: MessageType[]
   newMessageText: string

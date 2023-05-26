@@ -5,11 +5,14 @@ type PropsDialogType = {
     name: string
     id: number
 }
-export const Dialog = (props: PropsDialogType) => {
+export const Dialog = ({
+    id,
+    name
+}: PropsDialogType) => {
     const path = '/dialogs/';
     return (
         <div className="dialog">
-            <NavLink to={path + props.id}>{props.name}</NavLink>
+            <NavLink to={path + id}>{name}</NavLink>
         </div>
     )
 }

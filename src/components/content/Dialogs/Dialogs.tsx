@@ -2,13 +2,14 @@ import { createRef } from 'react'
 import s from './Dialogs.module.css'
 import { Dialog } from './Dialog/Dialog'
 import { Message } from './Message/Message'
-import { store } from '../../../redux/reduxStore'
-import { updateNewMessageTextActionCreator, addNewMessageActionCreator } from '../../../redux/dialogReducer'
+import { MessageType, DialogType, } from '../../../redux/dialogReducer'
 
 type NewMessagePropsType = {
 
 }
-const NewMessage = (props: NewMessagePropsType) => {
+const NewMessage = ({
+
+}: NewMessagePropsType) => {
     const textareaRef = createRef<HTMLTextAreaElement>();
     return (
         <div>NEW MESSAGE
@@ -27,18 +28,26 @@ const NewMessage = (props: NewMessagePropsType) => {
 
 
 type DialogsPropsType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    updateNewMessageText:(v:string)=>void
+    addNewMessage:()=>void
 }
 
-export const Dialogs = (props: DialogsPropsType) => {
-    const dialogsData = store.getState().dialogReducer.dialogs;
-    const messagesData = store.getState().dialogReducer.messages;
+export const Dialogs = ({
+    dialogs,
+    messages,
+    updateNewMessageText,
+    addNewMessage
+}: DialogsPropsType) => {
+
     return (
         <div className={s.dialogs}>
             <div className="dialogItems">
-                {dialogsData.map((el:any) => <Dialog key={el.id} id={el.id} name={el.name} />)}
+                {dialogs.map((el: any) => <Dialog key={el.id} id={el.id} name={el.name} />)}
             </div>
             <div className="messageItems">
-                {messagesData.map((el:any, ind:number) => <Message key={ind} text={el.text} />)}
+                {messages.map((el: any, ind: number) => <Message key={ind} text={el.text} />)}
             </div>
             <NewMessage />
         </div>
