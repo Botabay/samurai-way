@@ -1,6 +1,6 @@
 import { createRef } from 'react'
 
-type NewPostPropsType = {
+type NewItemPropsType = {
     title: string
     newItemText: string
     addNewItem: () => void
@@ -12,7 +12,7 @@ export const NewItem = ({
     newItemText,
     addNewItem,
     updateNewItemText
-}: NewPostPropsType) => {
+}: NewItemPropsType) => {
     const textareaRef = createRef<HTMLTextAreaElement>();
     const onClickHandler = () => {
         addNewItem()

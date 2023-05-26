@@ -1,8 +1,8 @@
 const ADDNEWMESSAGE = 'addNewMessage';
 const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
 
-export const addNewMessageActionCreator = () => ({ type: ADDNEWMESSAGE })
-export const updateNewMessageTextActionCreator = (value: string) => ({ type: UPDATENEWMESSAGETEXT, value })
+export const addNewMessageAC = () => ({ type: ADDNEWMESSAGE })
+export const updateNewMessageTextAC = (value: string) => ({ type: UPDATENEWMESSAGETEXT, value })
 
 export type DialogType = {
   id: number,
