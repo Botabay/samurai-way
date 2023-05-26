@@ -4,11 +4,11 @@ const UPDATENEWPOSTTEXT = 'updateNewPostText';
 export const addNewPostActionCreator = () => ({ type: ADDNEWPOST })
 export const updateNewPostTextActionCreator = (value: string) => ({ type: UPDATENEWPOSTTEXT, value })
 
-type PostsType={
+export type PostsType={
     id:number,
     text:string;
 }
-type ProfileDataType={
+export type ProfileDataType={
     posts:PostsType[]
     newPostText:string
 }

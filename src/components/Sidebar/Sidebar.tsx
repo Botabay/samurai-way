@@ -1,10 +1,10 @@
 import { FriendsList } from './FriendsList/FriendsList';
 import { Navbar } from './Navbar/Navbar';
 import s from './Sidebar.module.css';
-import { SubjectsType } from '../../myRedux/store';
+// import { SubjectsType } from '../../redux/reduxStore';
 
 type PropsType={
-    state:SubjectsType
+    state:any
 }
 export const Sidebar = (props:PropsType) => {
     return (

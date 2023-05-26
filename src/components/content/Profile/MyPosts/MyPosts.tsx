@@ -1,24 +1,29 @@
-import {createRef} from 'react'
+import { createRef } from 'react'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
-import { addNewPostActionCreator } from '../../../../redux/profileReducer'
-import { updateNewPostTextActionCreator } from '../../../../redux/profileReducer'
+import { ProfileDataType } from '../../../../redux/profileReducer'
 
-type NewPostPropsType={
-    postsData:any///????type redux
+type NewPostPropsType = {
+    newPostText: string
+    addNewPostActionCreatorTempCallback: () => void
+    updateNewPostTextActionCreatorTempCallback:(v:string)=>void
 }
 
-const NewPost = ({postsData}:NewPostPropsType) => {
-    const textareaRef=createRef<HTMLTextAreaElement>();
-    const onClickHandler=()=>{
-        postsData.dispatch(addNewPostActionCreator());
+const NewPost = ({
+    newPostText,
+    addNewPostActionCreatorTempCallback,
+    updateNewPostTextActionCreatorTempCallback
+}: NewPostPropsType) => {
+    const textareaRef = createRef<HTMLTextAreaElement>();
+    const onClickHandler = () => {
+        addNewPostActionCreatorTempCallback()
     }
     return (
         <div>new post
             <div>
-                <textarea ref={textareaRef} value={postsData.getState().profileReducer.newPostText}
-                onChange={(e)=>{
-                    postsData.dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
+                <textarea ref={textareaRef} value={newPostText}
+                    onChange={(e) => {
+                        updateNewPostTextActionCreatorTempCallback(e.currentTarget.value)
                     }}></textarea>
             </div>
             <button onClick={onClickHandler}>send</button>
@@ -26,17 +31,26 @@ const NewPost = ({postsData}:NewPostPropsType) => {
     )
 }
 
-type MyPostsPropsType={
-    postsData:any
+type MyPostsPropsType = {
+    postsData: ProfileDataType
+    addNewPostActionCreatorTempCallback: () => void
+    updateNewPostTextActionCreatorTempCallback:(v:string)=>void
 }
-export const MyPosts = (props:MyPostsPropsType) => {
-    const postsData=props.postsData.getState().profileReducer.posts; ////   
+export const MyPosts = ({
+    postsData,
+    addNewPostActionCreatorTempCallback,
+    updateNewPostTextActionCreatorTempCallback
+}: MyPostsPropsType) => {
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>
-            <NewPost postsData={postsData}/>
+            <NewPost 
+            newPostText={postsData.newPostText} 
+            addNewPostActionCreatorTempCallback={addNewPostActionCreatorTempCallback} 
+            updateNewPostTextActionCreatorTempCallback={updateNewPostTextActionCreatorTempCallback}
+            />
             <div>list of posts
-            {postsData.map((el:any) => <Post key={el.id} id={el.id} text={el.text} />)}
+                {postsData.posts.map((el: any) => <Post key={el.id} id={el.id} text={el.text} />)}
             </div>
         </div>
     )
