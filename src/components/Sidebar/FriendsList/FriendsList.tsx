@@ -1,25 +1,27 @@
-// import { FriendType } from '../../../redux/reduxStore'
+import { FriendType } from '../../../redux/subjectReducer';
 import s from './FriendsList.module.css';
 
-// type FriendPropsType=FriendType;
-const Friend = (props:any
-    //FriendPropsType
-    ) => {
+type FriendPropsType = {
+    name: string
+};
+const Friend = ({
+    name
+}: FriendPropsType) => {
     return (
-            <div className={s.sidebar}>
-               {props.name}
-            </div>
+        <div className={s.sidebar}>
+            {name}
+        </div>
     )
 }
 
 
-type FriendsListPropsType={
-     state:any//FriendType[]
+type FriendsListPropsType = {
+    friends: FriendType[]
 }
-export const FriendsList = (props:FriendsListPropsType) => {
+export const FriendsList = ({ friends }: FriendsListPropsType) => {
     return (
-            <div className={s.sidebar}>
-               {props.state.map((el:any) => <Friend key={el.id}id={el.id} name={el.name} />)}
-            </div>
+        <div className={s.sidebar}>
+            {friends.map((el: any) => <Friend key={el.id} name={el.name} />)}
+        </div>
     )
 }

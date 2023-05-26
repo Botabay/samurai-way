@@ -3,7 +3,6 @@ import './App.css';
 import { Header } from './components/Header/Header';
 import { Profile } from './components/content/Profile/Profile';
 import { Routes, Route } from 'react-router-dom';
-import { store } from './redux/reduxStore'
 import { BrowserRouter } from "react-router-dom";
 import { Dialogs } from './components/content/Dialogs/Dialogs';
 import { News } from './components/content/News/News';
@@ -16,10 +15,10 @@ export const App = () => {
     <div className="app">
       <BrowserRouter>
         <Header />
-        <Sidebar state={store.getState().subjectReducer}/>
+        <Sidebar />
         <div className='content'>
           <Routes>
-            <Route path="/" element={<Profile  />}></Route>
+            <Route path="/" element={<Profile />}></Route>
             {/* <Route path="/" render={()=> <Profile data={data} pageName='Profile' /> }></Route> */}
             <Route path="/dialogs" element={<Dialogs />}></Route>
             <Route path="/news" element={<News pageName='News' />}></Route>
