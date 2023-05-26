@@ -7,17 +7,17 @@ type MyPostsContainerPropsType = {
 }
 export const MyPostsContainer = (props: MyPostsContainerPropsType) => {
     const postsData = store.getState().profileReducer;
-    const addNewPostActionCreatorTempCallback = () => {
+    const addNewPost = () => {
         store.dispatch(addNewPostActionCreator())
     }
-    const updateNewPostTextActionCreatorTempCallback = (v:string) => {
+    const updateNewPostText = (v: string) => {
         store.dispatch(updateNewPostTextActionCreator(v))
     }
     return (
         <MyPosts
-        postsData={postsData}
-            addNewPostActionCreatorTempCallback={addNewPostActionCreatorTempCallback}
-            updateNewPostTextActionCreatorTempCallback={updateNewPostTextActionCreatorTempCallback}
+            postsData={postsData}
+            addNewPost={addNewPost}
+            updateNewPostText={updateNewPostText}
         />
     )
 }
