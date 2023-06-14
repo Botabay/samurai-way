@@ -1,6 +1,6 @@
 import { addNewMessageAC, updateNewMessageTextAC, DialogDataType, dialogReducer } from './dialogReducer';
 
-test('correct task should be added to correct array', () => {
+test('correct dialog should be added to correct array', () => {
     const startState: DialogDataType = {
         dialogs: [
             { id: 1, name: 'Lee' },
@@ -31,6 +31,7 @@ test('correct task should be added to correct array', () => {
             { id: 2, text: 'Hey, zuuuup!' },
             { id: 3, text: 'yo' },
             { id: 4, text: 'Hey guys!' },
+            { id: 5, text: 'this is a place for your message' },
         ],
         newMessageText: ''
     })
@@ -39,24 +40,32 @@ test('correct task should be added to correct array', () => {
     expect(endState.dialogs.length).toBe(3)
     expect(endState.messages.length).toBe(5)
     expect(endState.messages[4].id).toBeDefined()
-    expect(endState.messages[4].text).toBe('this is a place for your post')
+    expect(endState.messages[4].text).toBe('this is a place for your message')
 
 });
 
-// test('status of specified NewPostText should be changed', () => {
-//     const startState: ProfileDataType = {
-//         posts: [
-//             { id: 1, text: 'post1' },
-//             { id: 2, text: 'post2' },
-//             { id: 3, text: 'post3' }
-//         ],
-//         newPostText: 'this is a place for your post'
-//     };
+test('value of specified NewPostText should be changed', () => {
+    const startState: DialogDataType = {
+        dialogs: [
+            { id: 1, name: 'Lee' },
+            { id: 2, name: 'Kim' },
+            { id: 3, name: 'John' }
+        ],
+        messages: [
+            { id: 1, text: 'Hallo everybody' },
+            { id: 2, text: 'Hey, zuuuup!' },
+            { id: 3, text: 'yo' },
+            { id: 4, text: 'Hey guys!' },
+        ],
+        newMessageText: 'this is a place for your message'
+    }
 
-//     const action = updateNewMessageTextAC('test value')
 
-//     const endState = dialogReducer(startState, action)
+    const action = updateNewMessageTextAC('test value')
 
-//     expect(endState.posts.length).toBe(3)
-//     expect(endState.newPostText).toBe('test value')
-// })
+    const endState = dialogReducer(startState, action)
+
+    expect(endState.dialogs.length).toBe(3)
+    expect(endState.messages.length).toBe(4)
+    expect(endState.newMessageText).toBe('test value')
+})

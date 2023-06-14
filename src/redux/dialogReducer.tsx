@@ -36,7 +36,7 @@ const initS = {
 export const dialogReducer = (state: DialogDataType = initS, action: any) => {
   switch (action.type) {
     case ADDNEWMESSAGE: {
-      state.messages.push({ id: 4, text: state.newMessageText })
+      state.messages.push({ id: 5, text: state.newMessageText })
       state.newMessageText = '';
       return state;
     }
