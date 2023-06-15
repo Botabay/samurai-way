@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 // import { state,addNewPost,updateNewMessageText,updateNewPostText,addNewMessage, subscribe } from './state/state'
 import { AppRootStateType, store } from './redux/reduxStore'
-import { TContext } from './contextTemp';
+import { Provider } from './contextTemp';
 // import {rerender} from './rerender'
 
 const root = ReactDOM.createRoot(
@@ -27,9 +27,9 @@ const rerender = () => {
       {/* <App state={state} addNewPost={store.addNewPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}
             addNewMessage={store.addNewMessage.bind(store)} updateNewMessageText={store.updateNewMessageText.bind(store)} */}
       {/* <TContext.Provider value={store as AppRootStateType}> */}
-      <TContext.Provider value={store as any}>
+      <Provider value={store as any}>
         <App />
-      </TContext.Provider>
+      </Provider>
 
     </React.StrictMode>
   );
