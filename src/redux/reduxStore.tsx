@@ -1,11 +1,12 @@
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore, legacy_createStore } from 'redux'
 import { dialogReducer } from './dialogReducer'
 import { profileReducer } from './profileReducer'
 import { subjectReducer } from './subjectReducer'
 
 const reducers = combineReducers({
-  dialogReducer,
-  profileReducer,
-  subjectReducer
+    dialogs: dialogReducer,
+    profile: profileReducer,
+    subject: subjectReducer
 })
-export const store = createStore(reducers);
+export type AppRootStateType = ReturnType<typeof reducers>
+export const store = legacy_createStore(reducers);

@@ -7,7 +7,7 @@ export const Sidebar = () => {
     return (
         <div className={s.sidebar}>
             <Navbar />
-            <FriendsList friends={store.getState().subjectReducer.friends} />
+            <FriendsList friends={store.getState().subject.friends} />
         </div>
     )
 }

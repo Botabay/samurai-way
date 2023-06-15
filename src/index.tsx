@@ -5,7 +5,7 @@ import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
 // import { state,addNewPost,updateNewMessageText,updateNewPostText,addNewMessage, subscribe } from './state/state'
-import { store } from './redux/reduxStore'
+import { AppRootStateType, store } from './redux/reduxStore'
 import { TContext } from './contextTemp';
 // import {rerender} from './rerender'
 
@@ -20,19 +20,22 @@ const root = ReactDOM.createRoot(
 //     </React.StrictMode>
 //   );
 // }
-const rerender=()=>{
-    root.render(
-      <React.StrictMode>
-          {/* <App state={state} callback={add}/> */}
-          {/* <App state={state} addNewPost={store.addNewPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}
+const rerender = () => {
+  root.render(
+    <React.StrictMode>
+      {/* <App state={state} callback={add}/> */}
+      {/* <App state={state} addNewPost={store.addNewPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}
             addNewMessage={store.addNewMessage.bind(store)} updateNewMessageText={store.updateNewMessageText.bind(store)} */}
-            <TContext.Provider value={store}></TContext.Provider>
-            <App />
-      </React.StrictMode>
-    );
-  }
+      {/* <TContext.Provider value={store as AppRootStateType}> */}
+      <TContext.Provider value={store as any}>
+        <App />
+      </TContext.Provider>
+
+    </React.StrictMode>
+  );
+}
 rerender()
-store.subscribe(rerender) 
+store.subscribe(rerender)
 // root.render(
 //   <React.StrictMode>
 //       <App state={state} callback={add}/>

@@ -15,12 +15,15 @@ export const MyPostsContainer = (props: MyPostsContainerPropsType) => {
     }
     return (
         <TContext.Consumer>
-            {(store) => <MyPosts
-                // postsData={postsData}
-                postsData={store.getState()}
-                addNewPost={addNewPost}
-                updateNewPostText={updateNewPostText}
-            />}
+            {(store) => {
+                return <MyPosts
+                    // postsData={postsData}
+                    postsData={store.getState().profile}
+                    addNewPost={addNewPost}
+                    updateNewPostText={updateNewPostText}
+                />
+            }
+            }
         </TContext.Consumer>
     )
 }

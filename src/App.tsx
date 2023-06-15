@@ -11,23 +11,23 @@ import { Settings } from './components/content/Settings/Settings';
 import { Sidebar } from './components/Sidebar/Sidebar';
 
 export const App = () => {
-  return (
-    <div className="app">
-      <BrowserRouter>
-        <Header />
-        <Sidebar />
-        <div className='content'>
-          <Routes>
-            <Route path="/" element={<Profile />}></Route>
-            <Route path="/dialogs" element={<DialogsContainer />}></Route>
-            <Route path="/news" element={<News pageName='News' />}></Route>
-            <Route path="/music" element={<Music pageName='Music' />}></Route>
-            <Route path="/settings" element={<Settings pageName='Settings' />}></Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
+    return (
+        <div className="app">
+            <BrowserRouter>
+                <Header />
+                <Sidebar />
+                <div className='content'>
+                    <Routes>
+                        <Route path="/" element={<Profile />}></Route>
+                        <Route path="/dialogs" element={<DialogsContainer />}></Route>
+                        <Route path="/news" element={<News pageName='News' />}></Route>
+                        <Route path="/music" element={<Music pageName='Music' />}></Route>
+                        <Route path="/settings" element={<Settings pageName='Settings' />}></Route>
+                    </Routes>
+                </div>
+            </BrowserRouter>
 
-    </div>
-  );
+        </div>
+    );
 }
 

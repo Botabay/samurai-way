@@ -1,49 +1,59 @@
 const ADDNEWMESSAGE = 'addNewMessage';
 const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
-
-export const addNewMessageAC = () => ({ type: ADDNEWMESSAGE })
-export const updateNewMessageTextAC = (value: string) => ({ type: UPDATENEWMESSAGETEXT, value })
+type addNewMessageACType = {
+    type: string
+}
+type updateNewMessageTextACType = {
+    type: string
+    value: string
+}
+export const addNewMessageAC = (): addNewMessageACType => ({ type: ADDNEWMESSAGE }) as const;
+export const updateNewMessageTextAC =
+    (value: string): updateNewMessageTextACType => ({ type: UPDATENEWMESSAGETEXT, value }) as const;
 
 export type DialogType = {
-  id: number,
-  name: string
+    id: number,
+    name: string
 }
 export type MessageType = {
-  id: number,
-  text: string
+    id: number,
+    text: string
 }
 export type DialogDataType = {
-  dialogs: DialogType[]
-  messages: MessageType[]
-  newMessageText: string
+    dialogs: DialogType[]
+    messages: MessageType[]
+    newMessageText: string
 }
+
+export type DialogsACType = addNewMessageACType | updateNewMessageTextACType
 
 const initS = {
-  dialogs: [
-    { id: 1, name: 'Lee' },
-    { id: 2, name: 'Kim' },
-    { id: 3, name: 'John' }
-  ],
-  messages: [
-    { id: 1, text: 'Hallo everybody' },
-    { id: 2, text: 'Hey, zuuuup!' },
-    { id: 3, text: 'yo' },
-    { id: 4, text: 'Hey guys!' },
-  ],
-  newMessageText: 'this is a place for your message'
+    dialogs: [
+        { id: 1, name: 'Lee' },
+        { id: 2, name: 'Kim' },
+        { id: 3, name: 'John' }
+    ],
+    messages: [
+        { id: 1, text: 'Hallo everybody' },
+        { id: 2, text: 'Hey, zuuuup!' },
+        { id: 3, text: 'yo' },
+        { id: 4, text: 'Hey guys!' },
+    ],
+    newMessageText: 'this is a place for your message'
 }
 
-export const dialogReducer = (state: DialogDataType = initS, action: any) => {
-  switch (action.type) {
-    case ADDNEWMESSAGE: {
-      state.messages.push({ id: 5, text: state.newMessageText })
-      state.newMessageText = '';
-      return state;
+export const dialogReducer = (state: DialogDataType = initS, action: any): DialogDataType => {
+    // console.log(action)
+    switch (action.type) {
+        case ADDNEWMESSAGE: {
+            state.messages.push({ id: 5, text: state.newMessageText })
+            state.newMessageText = '';
+            return state;
+        }
+        case UPDATENEWMESSAGETEXT: {
+            state.newMessageText = action.value;//action does not work when typing
+            return state;
+        }
+        default: return state
     }
-    case UPDATENEWMESSAGETEXT: {
-      state.newMessageText = action.value;
-      return state;
-    }
-    default: return state
-  }
 }
