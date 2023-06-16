@@ -15,6 +15,8 @@ export const NewItem = ({
 }: NewItemPropsType) => {
     const textareaRef = createRef<HTMLTextAreaElement>();
     const onClickHandler = () => {
+        console.log('send',addNewItem);
+        
         addNewItem()
     }
     return (

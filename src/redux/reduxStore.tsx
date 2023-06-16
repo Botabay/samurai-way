@@ -1,4 +1,4 @@
-import { combineReducers, createStore, legacy_createStore } from 'redux'
+import { combineReducers, legacy_createStore } from 'redux'
 import { dialogReducer } from './dialogReducer'
 import { profileReducer } from './profileReducer'
 import { subjectReducer } from './subjectReducer'

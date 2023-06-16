@@ -1,4 +1,4 @@
-import s from './Post.module.css'
+// import s from './Post.module.css'
 export type PropsType={
     id:number
     text:string

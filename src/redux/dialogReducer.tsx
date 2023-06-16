@@ -46,13 +46,19 @@ export const dialogReducer = (state: DialogDataType = initS, action: any): Dialo
     // console.log(action)
     switch (action.type) {
         case ADDNEWMESSAGE: {
-            state.messages.push({ id: 5, text: state.newMessageText })
-            state.newMessageText = '';
-            return state;
+        //     state.messages.push({ id: 5, text: state.newMessageText })
+        //     state.newMessageText = '';
+            return {
+                ...state, messages:[{ id: 5, text: state.newMessageText },
+                    ...state.messages],
+                    newMessageText:''
+            }
         }
         case UPDATENEWMESSAGETEXT: {
-            state.newMessageText = action.value;//action does not work when typing
-            return state;
+            // state.newMessageText = action.value;//action does not work when typing
+            return {
+                ...state, newMessageText:action.value
+            }
         }
         default: return state
     }

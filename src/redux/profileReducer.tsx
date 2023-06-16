@@ -30,13 +30,16 @@ export const profileReducer = (state: ProfileDataType = initS, action: any) => {
     switch (action.type) {
         // case ADDNEWPOST: addNewPost(state,state.newPostText);break;
         case ADDNEWPOST: {
-            state.posts.push({ id: state.posts.length + 1, text: state.newPostText });
-            state.newPostText = '';
-            return state;
+            // state.posts.push({ id: state.posts.length + 1, text: state.newPostText });
+            // state.newPostText = '';
+            //return state;
+            return {...state,posts:[
+                { id: state.posts.length + 1, text: state.newPostText },...state.posts
+            ],newPostText:''}
         }
         case UPDATENEWPOSTTEXT: {
-            state.newPostText = action.value;
-            return state;
+            // state.newPostText = action.value;
+            return {...state,newPostText:action.value};
         }
         default: return state
     }

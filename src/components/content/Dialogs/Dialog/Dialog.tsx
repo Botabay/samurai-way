@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import s from './Dialog.module.css'
+// import s from './Dialog.module.css'
 
 type PropsDialogType = {
     name: string
