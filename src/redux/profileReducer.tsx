@@ -21,11 +21,6 @@ const initS: ProfileDataType = {
     newPostText: 'this is a place for your post'
 }
 
-// export const addNewPost = (state: ProfileDataType, text: string) => {
-//     state.posts.push({ id: state.posts.length + 1, text });
-//     state.newPostText = '';
-//     return state;
-// }
 export const profileReducer = (state: ProfileDataType = initS, action: any) => {
     switch (action.type) {
         // case ADDNEWPOST: addNewPost(state,state.newPostText);break;

@@ -43,21 +43,20 @@ const initS = {
 }
 
 export const dialogReducer = (state: DialogDataType = initS, action: any): DialogDataType => {
-    // console.log(action)
     switch (action.type) {
         case ADDNEWMESSAGE: {
-        //     state.messages.push({ id: 5, text: state.newMessageText })
-        //     state.newMessageText = '';
+            //     state.messages.push({ id: 5, text: state.newMessageText })
+            //     state.newMessageText = '';
             return {
-                ...state, messages:[{ id: 5, text: state.newMessageText },
-                    ...state.messages],
-                    newMessageText:''
+                ...state, messages: [{ id: 5, text: state.newMessageText },
+                ...state.messages],
+                newMessageText: ''
             }
         }
         case UPDATENEWMESSAGETEXT: {
             // state.newMessageText = action.value;//action does not work when typing
             return {
-                ...state, newMessageText:action.value
+                ...state, newMessageText: action.value
             }
         }
         default: return state

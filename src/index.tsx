@@ -10,16 +10,16 @@ import { Provider } from 'react-redux';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-const rerender = () => {
+// const rerender = () => {
   root.render(
     //  <Provider store={store as AppRootStateType}> 
     <Provider store={store as any}>
       <App />
     </Provider>
   );
-}
-rerender()
-store.subscribe(rerender)
+// }
+// rerender()
+// store.subscribe(rerender)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

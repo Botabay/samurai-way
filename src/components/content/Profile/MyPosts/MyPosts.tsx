@@ -14,7 +14,7 @@ export const MyPosts = ({
     updateNewPostText
 }: MyPostsPropsType) => {
     console.log(addNewPost);
-    
+
     return (
         <div className={s.posts_block}>
             <h2>My posts</h2>
