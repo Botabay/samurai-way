@@ -8,7 +8,7 @@ import { News } from './components/content/News/News';
 import { Music } from './components/content/Music/Music';
 import { Settings } from './components/content/Settings/Settings';
 import { Sidebar } from './components/Sidebar/Sidebar';
-import { Users } from './components/content/Users/Users';
+import { UsersContainer } from './components/content/Users/UsersContainer';
 
 export const App = () => {
     return (
@@ -23,7 +23,7 @@ export const App = () => {
                         <Route path="/news" element={<News pageName='News' />}></Route>
                         <Route path="/music" element={<Music pageName='Music' />}></Route>
                         <Route path="/settings" element={<Settings pageName='Settings' />}></Route>
-                        <Route path="/users" element={<Users pageName='Users' />}></Route>
+                        <Route path="/users" element={<UsersContainer />}></Route>
                     </Routes>
                 </div>
             </BrowserRouter>

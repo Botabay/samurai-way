@@ -1,4 +1,14 @@
+import { UserType, UsersDataType } from "../../../redux/usersReducer"
+import { User } from "./User/User"
+
 type PropsType={
-    pageName: string
+    users: UsersDataType
 }
-export const Users=({pageName}:PropsType)=><div>{pageName}</div>
+export const Users=({users}:PropsType)=>{
+    console.log(users);
+    
+   return (<div>{
+        users.map((el:UserType)=><User/>)
+    }
+    </div>)
+}
