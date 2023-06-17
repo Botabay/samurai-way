@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import { Header } from './components/Header/Header';
 import { Profile } from './components/content/Profile/Profile';
@@ -9,6 +8,7 @@ import { News } from './components/content/News/News';
 import { Music } from './components/content/Music/Music';
 import { Settings } from './components/content/Settings/Settings';
 import { Sidebar } from './components/Sidebar/Sidebar';
+import { Users } from './components/content/Users/Users';
 
 export const App = () => {
     return (
@@ -23,6 +23,7 @@ export const App = () => {
                         <Route path="/news" element={<News pageName='News' />}></Route>
                         <Route path="/music" element={<Music pageName='Music' />}></Route>
                         <Route path="/settings" element={<Settings pageName='Settings' />}></Route>
+                        <Route path="/users" element={<Users pageName='Users' />}></Route>
                     </Routes>
                 </div>
             </BrowserRouter>
