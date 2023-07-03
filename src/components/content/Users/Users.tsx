@@ -1,13 +1,24 @@
+import axios from "axios"
 import { UserType, UsersDataType } from "../../../redux/usersReducer"
 import { User } from "./User/User"
+import { useEffect } from "react"
 
 type PropsType = {
     users: UsersDataType
     toFollow: any
     toUnfollow: any
+    toSetUsers: any
 }
-export const Users = ({ users, toFollow, toUnfollow }: PropsType) => {
-    console.log(toFollow);
+export const Users = ({ users, toFollow, toUnfollow, toSetUsers }: PropsType) => {
+    useEffect(() => {
+        // if (users.length===0) {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(res => {
+                console.log(res.data);
+                toSetUsers(res.data.items)
+            })
+        // }
+    }, [])
 
     return (<div>{
         users.map((el: UserType) => (
@@ -20,10 +31,11 @@ export const Users = ({ users, toFollow, toUnfollow }: PropsType) => {
                     </p>
                 </div>
                 <div className="infoSection">
-                    <span>{el.fullName}</span>
+                <span>{el.name}</span>
+                    {/* <span>{el.fullName}</span>
                     <span>{el.status}</span>
                     <span>{el.location.city}</span>
-                    <span>{el.location.country}</span>
+                    <span>{el.location.country}</span> */}
                 </div>
             </div>
         ))

@@ -6,7 +6,8 @@ export type UserType = {
     id: string
     avatarUrl: string
     follow: boolean
-    fullName: string
+    // fullName: string
+    name:string
     status: string
     location: LocactionType
 }
@@ -19,11 +20,11 @@ type ActionsType = followACType | unfollowACType | setUsersACType
 const initialState: UsersDataType = [
     {
         id: '1', avatarUrl: '',
-        follow: true, fullName: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
+        follow: true, name: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
     },
     {
         id: '2', avatarUrl: '',
-        follow: false, fullName: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
+        follow: false, name: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
     },
 ]
 
@@ -33,7 +34,7 @@ export const usersReducer = (state = initialState, action: ActionsType) => {
             el.id === action.userId ? { ...el, follow: true } : el);
         case 'UNFOLLOW': return state.map((el: UserType) =>
             el.id === action.userId ? { ...el, follow: false } : el);
-        case 'SET_USERS': return [...state];
+        case 'SET_USERS': return [...action.users];
         default: return state;
     }
 }
