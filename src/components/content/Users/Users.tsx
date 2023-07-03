@@ -11,14 +11,14 @@ type PropsType = {
 }
 
 export class Users extends React.Component<PropsType>{
-    constructor(props: PropsType) {
-        super(props);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(res => {
-                console.log(res.data);
-                this.props.toSetUsers(res.data.items)
-            })
-    }
+    // constructor(props: PropsType) {
+    //     super(props);
+    //     axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    //         .then(res => {
+    //             console.log(res.data);
+    //             this.props.toSetUsers(res.data.items)
+    //         })
+    // }
     // getUsers = () => {
     //     if (this.props.users.length === 0) {
     //         axios.get('https://social-network.samuraijs.com/api/1.0/users')
@@ -28,6 +28,13 @@ export class Users extends React.Component<PropsType>{
     //             })
     //     }
     // }
+    componentDidMount(): void {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(res => {
+                console.log(res.data);
+                this.props.toSetUsers(res.data.items)
+            })
+    }
     render() {
         return (<div>
             {/* <button onClick={this.getUsers}>get users</button> */}
