@@ -17,17 +17,18 @@ export type unfollowACType = ReturnType<typeof unfollowAC>
 export type setUsersACType = ReturnType<typeof setUsersAC>
 type ActionsType = followACType | unfollowACType | setUsersACType
 
+// const initialState: UsersDataType = [
+//     {
+//         id: '1', avatarUrl: '',
+//         follow: true, name: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
+//     },
+//     {
+//         id: '2', avatarUrl: '',
+//         follow: false, name: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
+//     },
+// ]
 const initialState: UsersDataType = [
-    {
-        id: '1', avatarUrl: '',
-        follow: true, name: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
-    },
-    {
-        id: '2', avatarUrl: '',
-        follow: false, name: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
-    },
 ]
-
 export const usersReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'FOLLOW': return state.map((el: UserType) =>
