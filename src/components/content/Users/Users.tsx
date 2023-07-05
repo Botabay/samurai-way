@@ -2,44 +2,51 @@ import axios from "axios"
 import { UserType, UsersDataType } from "../../../redux/usersReducer"
 import { User } from "./User/User"
 import React, { useEffect } from "react"
+import s from './Users.module.css'
 
 type PropsType = {
     users: UsersDataType
     toFollow: any
     toUnfollow: any
     toSetUsers: any
+    toSetTotalUsersCount: any
+    toSetCurrentPage:any
 }
 
 export class Users extends React.Component<PropsType>{
-    // constructor(props: PropsType) {
-    //     super(props);
-    //     axios.get('https://social-network.samuraijs.com/api/1.0/users')
-    //         .then(res => {
-    //             console.log(res.data);
-    //             this.props.toSetUsers(res.data.items)
-    //         })
-    // }
-    // getUsers = () => {
-    //     if (this.props.users.length === 0) {
-    //         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-    //             .then(res => {
-    //                 console.log(res.data);
-    //                 this.props.toSetUsers(res.data.items)
-    //             })
-    //     }
-    // }
     componentDidMount(): void {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}&page=${this.props.users.currentPage}`)
             .then(res => {
-                console.log(res.data);
-                this.props.toSetUsers(res.data.items)
+                this.props.toSetUsers(res.data.items);
+                this.props.toSetTotalUsersCount(res.data.totalCount);
             })
     }
+
     render() {
+        const pagesCount = Math.ceil(this.props.users.totalUsersCount / this.props.users.pageSize)
+        const arr = []
+        for (let i = 1; i < pagesCount; i++) arr.push(i);
+        const getPageUsers = (ind: number) => {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}&page=${ind}`)
+                .then(res => {
+                    this.props.toSetUsers(res.data.items)
+                })
+        }
+        const onClickHandler=(el:number) => {
+                        this.props.toSetCurrentPage(el)
+                        getPageUsers(el);
+                    }
         return (<div>
-            {/* <button onClick={this.getUsers}>get users</button> */}
+            <div>
+                {arr.map((el: number) => <span
+                    onClick={()=>onClickHandler(el)}
+                    className={ el === this.props.users.currentPage ? s.selected : ''}
+                >
+                    {el}
+                </span>)}
+            </div>
             {
-                this.props.users.map((el: UserType) => (
+                this.props.users.users.map((el: UserType) => (
                     <div key={el.id}>
                         <div className="avatarSection">
                             <p>{el.avatarUrl}</p>

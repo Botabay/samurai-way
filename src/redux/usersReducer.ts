@@ -7,39 +7,56 @@ export type UserType = {
     avatarUrl: string
     follow: boolean
     // fullName: string
-    name:string
+    name: string
     status: string
     location: LocactionType
 }
-export type UsersDataType = UserType[];
+export type UsersDataType = {
+    users: UserType[],
+    currentPage: number,
+    pageSize: number,
+    totalUsersCount: number
+};
 export type followACType = ReturnType<typeof followAC>
 export type unfollowACType = ReturnType<typeof unfollowAC>
 export type setUsersACType = ReturnType<typeof setUsersAC>
-type ActionsType = followACType | unfollowACType | setUsersACType
+export type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>
+export type setCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 
-// const initialState: UsersDataType = [
-//     {
-//         id: '1', avatarUrl: '',
-//         follow: true, name: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
-//     },
-//     {
-//         id: '2', avatarUrl: '',
-//         follow: false, name: 'Lee', status: 'sleeping', location: { city: 'B', country: 'AS' }
-//     },
-// ]
-const initialState: UsersDataType = [
-]
+type ActionsType = followACType | 
+unfollowACType | 
+setUsersACType | 
+setTotalUsersCountACType |
+setCurrentPageACType
+
+
+const initialState: UsersDataType = {
+    users: [],
+    currentPage: 1,
+    pageSize: 4,
+    totalUsersCount: 12
+}
 export const usersReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
-        case 'FOLLOW': return state.map((el: UserType) =>
-            el.id === action.userId ? { ...el, follow: true } : el);
-        case 'UNFOLLOW': return state.map((el: UserType) =>
-            el.id === action.userId ? { ...el, follow: false } : el);
-        case 'SET_USERS': return [...action.users];
+        case 'FOLLOW': return {
+            ...state,
+            users: state.users.map((el: UserType) =>
+                el.id === action.userId ? { ...el, follow: true } : el)
+        };
+        case 'UNFOLLOW': return {
+            ...state,
+            users: state.users.map((el: UserType) =>
+                el.id === action.userId ? { ...el, follow: false } : el)
+        };
+        case 'SET_USERS': return { ...state, users: [...action.users] };
+        case 'SET_TOTAL_USERS_COUNT': return { ...state, totalUsersCount: action.totalUsersCount }
+        case 'SET_CURRENT_PAGE': return { ...state, currentPage: action.currentPage }
         default: return state;
     }
 }
 
 export const followAC = (userId: string) => ({ type: 'FOLLOW', userId }) as const;
 export const unfollowAC = (userId: string) => ({ type: 'UNFOLLOW', userId }) as const;
-export const setUsersAC = (users: UsersDataType) => ({ type: 'SET_USERS', users }) as const;
+export const setUsersAC = (users: UserType[]) => ({ type: 'SET_USERS', users }) as const;
+export const setTotalUsersCountAC = (totalUsersCount: number) => ({ type: 'SET_TOTAL_USERS_COUNT', totalUsersCount }) as const;
+export const setCurrentPageAC = (currentPage: number) => ({ type: 'SET_CURRENT_PAGE', currentPage }) as const;
