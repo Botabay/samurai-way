@@ -9,6 +9,7 @@ import { Music } from './components/content/Music/Music';
 import { Settings } from './components/content/Settings/Settings';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { UsersContainer } from './components/content/Users/UsersContainer';
+import { ProfileContainer } from './components/content/Profile/ProfileContainer';
 
 export const App = () => {
     return (
@@ -18,7 +19,10 @@ export const App = () => {
                 <Sidebar />
                 <div className='content'>
                     <Routes>
-                        <Route path="/" element={<Profile />}></Route>
+                        {/* <Route path="/" element={<Profile />}></Route> */}
+                        {/* <Route path="/" element={<ProfileContainer />}></Route> */}
+                        {/* <Route path="/profile" element={<ProfileContainer />}></Route> */}
+                        <Route path="/profile/*" element={<ProfileContainer />}></Route>
                         <Route path="/dialogs" element={<DialogsContainer />}></Route>
                         <Route path="/news" element={<News pageName='News' />}></Route>
                         <Route path="/music" element={<Music pageName='Music' />}></Route>

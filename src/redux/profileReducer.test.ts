@@ -7,7 +7,8 @@ test('correct task should be added to correct array', () => {
             { id: 2, text: 'post2' },
             { id: 3, text: 'post3' }
         ],
-        newPostText: 'this is a place for your post'
+        newPostText: 'this is a place for your post',
+        profile:null
     };
 
     const action = addNewPostAC();
@@ -38,7 +39,8 @@ test('status of specified NewPostText should be changed', () => {
             { id: 2, text: 'post2' },
             { id: 3, text: 'post3' }
         ],
-        newPostText: 'this is a place for your post'
+        newPostText: 'this is a place for your post',
+        profile:null
     };
 
     const action = updateNewPostTextAC('test value')
