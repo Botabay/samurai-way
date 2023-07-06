@@ -1,6 +1,6 @@
 import s from './ProfileInfo.module.css'
 export const ProfileInfo = ({ profile, ...rest }: any) => {
-    if (!profile) return <>w</>;
+    if (!profile) return <></>;
     return (
         <div>
             {/* <h3 className={s.wallpaper}>{pageName}</h3> */}
