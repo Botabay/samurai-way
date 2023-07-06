@@ -64,12 +64,20 @@ const mapStateToProps = (state: AppRootStateType) => ({
     totalUsersCount: state.users.totalUsersCount,
     isFetching:state.users.isFetching
 })
-const mapDispatchToProps = (dispatch: any) => ({
-    toFollow: (id: string) => dispatch(followAC(id)),
-    toUnfollow: (id: string) => dispatch(unfollowAC(id)),
-    toSetUsers: (users: UserType[]) => dispatch(setUsersAC(users)),
-    toSetTotalUsersCount: (n: number) => dispatch(setTotalUsersCountAC(n)),
-    toSetCurrentPage: (n: number) => dispatch(setCurrentPageAC(n)),
-    toToggleIsFetching: (value:boolean)=>dispatch(toggleIsFetchingAC(value))
-})
+// const mapDispatchToProps = (dispatch: any) => ({
+//     toFollow: (id: string) => dispatch(followAC(id)),
+//     toUnfollow: (id: string) => dispatch(unfollowAC(id)),
+//     toSetUsers: (users: UserType[]) => dispatch(setUsersAC(users)),
+//     toSetTotalUsersCount: (n: number) => dispatch(setTotalUsersCountAC(n)),
+//     toSetCurrentPage: (n: number) => dispatch(setCurrentPageAC(n)),
+//     toToggleIsFetching: (value:boolean)=>dispatch(toggleIsFetchingAC(value))
+// })
+const mapDispatchToProps ={
+    toFollow: followAC,
+    toUnfollow: unfollowAC,
+    toSetUsers: setUsersAC,
+    toSetTotalUsersCount: setTotalUsersCountAC,
+    toSetCurrentPage: setCurrentPageAC,
+    toToggleIsFetching: toggleIsFetchingAC
+}
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContain)
