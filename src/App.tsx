@@ -10,12 +10,14 @@ import { Settings } from './components/content/Settings/Settings';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { UsersContainer } from './components/content/Users/UsersContainer';
 import { ProfileContainer } from './components/content/Profile/ProfileContainer';
+import { HeaderContainer } from './components/Header/HeaderContainer';
 
 export const App = () => {
     return (
         <div className="app">
             <BrowserRouter>
-                <Header />
+                {/* <Header /> */}
+                <HeaderContainer/>
                 <Sidebar />
                 <div className='content'>
                     <Routes>
