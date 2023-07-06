@@ -5,7 +5,7 @@ type LocactionType = {
 export type UserType = {
     id: string
     avatarUrl: string
-    follow: boolean
+    followed: boolean
     // fullName: string
     name: string
     status: string
@@ -44,12 +44,12 @@ export const usersReducer = (state = initialState, action: ActionsType) => {
         case 'FOLLOW': return {
             ...state,
             users: state.users.map((el: UserType) =>
-                el.id === action.userId ? { ...el, follow: true } : el)
+                el.id === action.userId ? { ...el, followed: true } : el)
         };
         case 'UNFOLLOW': return {
             ...state,
             users: state.users.map((el: UserType) =>
-                el.id === action.userId ? { ...el, follow: false } : el)
+                el.id === action.userId ? { ...el, followed: false } : el)
         };
         case 'SET_USERS': return { ...state, users: [...action.users] };
         case 'SET_TOTAL_USERS_COUNT': return { ...state, totalUsersCount: action.totalUsersCount }

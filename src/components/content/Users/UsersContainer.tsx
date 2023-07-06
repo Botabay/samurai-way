@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
-import { UserType, followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC } from "../../../redux/usersReducer";
+import { //UserType,
+     followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC } from "../../../redux/usersReducer";
 import { AppRootStateType } from "../../../redux/reduxStore";
 
 
 import { UsersDataType } from "../../../redux/usersReducer"
-import React, { useEffect } from "react"
-import s from './Users.module.css'
+import React from "react"
+// import s from './Users.module.css'
 import { Users } from "./Users"
 import axios from "axios";
 import { Preloader } from "../../../common/preloader/preloader";
@@ -23,7 +24,9 @@ type PropsType = {
 class UsersContain extends React.Component<PropsType>{
     componentDidMount(): void {
         this.props.toToggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}&page=${this.props.users.currentPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}&page=${this.props.users.currentPage}`,{
+            withCredentials: true,
+        })
             .then(res => {
                 this.props.toToggleIsFetching(false)
                 this.props.toSetUsers(res.data.items);
@@ -32,7 +35,9 @@ class UsersContain extends React.Component<PropsType>{
     }
     getPageUsers = (ind: number) => {
         this.props.toToggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}&page=${ind}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}&page=${ind}`,{
+            withCredentials: true,
+        })
             .then(res => {
                 this.props.toToggleIsFetching(false)
                 this.props.toSetUsers(res.data.items)

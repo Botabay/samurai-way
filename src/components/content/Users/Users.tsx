@@ -1,11 +1,12 @@
 // import axios from "axios"
 import { UserType, UsersDataType } from "../../../redux/usersReducer"
-import { User } from "./User/User"
-import React, { useEffect } from "react"
+// import { User } from "./User/User"
+// import React, { useEffect } from "react"
 import s from './Users.module.css'
 import s2 from '../../Sidebar/Navbar/Navbar.module.css'
 import avatar from '../../../assets/img/avatar.svg'
 import { NavLink } from "react-router-dom"
+import axios from "axios"
 
 type PropsType = {
     users: UsersDataType
@@ -24,6 +25,34 @@ export const Users = (props: PropsType) => {
     const onClickHandler = (el: number) => {
         props.toSetCurrentPage(el)
         props.getPageUsers(el);
+    }
+    const toUnfollow = (id: string) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${+id}`,
+            {
+                withCredentials: true,
+                headers: {
+                    "API-KEY": "29f17b06-ce57-44c0-9728-ae1bcd1096f2"
+                }
+            })
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    props.toUnfollow(id)
+                }
+            })
+    }
+    const toFollow = (id: string) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${+id}`, {},
+            {
+                withCredentials: true,
+                headers: {
+                    "API-KEY": "29f17b06-ce57-44c0-9728-ae1bcd1096f2"
+                }
+            })
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    props.toFollow(id)
+                }
+            })
     }
     return (<div>
         <div>
@@ -45,13 +74,13 @@ export const Users = (props: PropsType) => {
                             >
                                 <img
                                     src={!!el.avatarUrl ? el.avatarUrl : avatar}
-                                    alt="avatar image"
+                                    alt="avatar"
                                 />
                             </NavLink>
                         </p>
-                        <p>{el.follow ?
-                            <button onClick={() => props.toUnfollow(el.id)}>unfollow</button> :
-                            <button onClick={() => props.toFollow(el.id)}>follow</button>}
+                        <p>{el.followed ?
+                            <button onClick={() => toUnfollow(el.id)}>unfollow</button> :
+                            <button onClick={() => toFollow(el.id)}>follow</button>}
                         </p>
                     </div>
                     <div className="infoSection">
