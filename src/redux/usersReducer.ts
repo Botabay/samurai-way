@@ -78,7 +78,7 @@ export const setCurrentPageAC = (currentPage: number) => ({ type: 'SET_CURRENT_P
 export const toggleIsFetchingAC = (value: boolean) => ({ type: 'TOGGLE_IS_FETCHING', value }) as const;
 export const toggleIsFollowDisabledAC = (isDisabled: boolean, id: string) => ({ type: 'TOGGLE_IS_FOLLOW_DISABLED', isDisabled, id }) as const;
 
-export const getUsersDataTC = (pageSize:number, currentPage:number) => {
+export const getUsersDataTC = (pageSize: number, currentPage: number) => {
     return (dispatch: any) => {
         dispatch(toggleIsFetchingAC(true))
         usersAPI.getUsersData(pageSize, currentPage)
@@ -90,24 +90,24 @@ export const getUsersDataTC = (pageSize:number, currentPage:number) => {
     }
 }
 
-export const followTC = (id:string) => {
+export const followTC = (id: string) => {
     return (dispatch: any) => {
-        dispatch(toggleIsFollowDisabledAC(true,id))
+        dispatch(toggleIsFollowDisabledAC(true, id))
         followAPI.postFollowId(+id)
             .then(data => {
-                dispatch(toggleIsFollowDisabledAC(false,id))
+                dispatch(toggleIsFollowDisabledAC(false, id))
                 if (data.resultCode === 0) {
                     dispatch(followAC(id))
                 }
             })
     }
 }
-export const unfollowTC = (id:string) => {
+export const unfollowTC = (id: string) => {
     return (dispatch: any) => {
-        dispatch(toggleIsFollowDisabledAC(true,id))
+        dispatch(toggleIsFollowDisabledAC(true, id))
         followAPI.deleteFollowId(+id)
             .then(data => {
-                dispatch(toggleIsFollowDisabledAC(false,id))
+                dispatch(toggleIsFollowDisabledAC(false, id))
                 if (data.resultCode === 0) {
                     dispatch(unfollowAC(id))
                 }

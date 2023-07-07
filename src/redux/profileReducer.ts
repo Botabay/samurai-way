@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 const ADDNEWPOST = 'addNewPost';
 const UPDATENEWPOSTTEXT = 'updateNewPostText';
 
@@ -60,3 +62,8 @@ export const updateNewPostTextAC = (value: string) =>
     ({ type: UPDATENEWPOSTTEXT, value }) as const
 export const toSetUserProfileAC = (value: string) =>
     ({ type: 'SET_USER_PROFILE', value }) as const
+
+export const getProfileDataTC = (id: number) => (dispatch: any) => {
+    profileAPI.getProfileData(id)
+        .then(data => dispatch(toSetUserProfileAC(data)))
+}

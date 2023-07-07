@@ -1,3 +1,5 @@
+import { authAPI } from "../api/api";
+
 export type UsersDataType = {
     email: string | null
     login: string | null
@@ -18,10 +20,11 @@ export const authReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'FOLLOW': {
             return {
-            ...state,
-            ...action.payload,
-            isAuth: true
-        };}
+                ...state,
+                ...action.payload,
+                isAuth: true
+            };
+        }
         default: return state;
     }
 }
@@ -31,3 +34,10 @@ export const setAuthAC = ({ email, login, userId }: UsersDataType) => ({
         email, login, userId
     }
 }) as const;
+
+export const getAuthDataTC = () => (dispatch: any) => {
+    authAPI.getAuthData()
+        .then(data => {
+            dispatch(setAuthAC({ ...data.data, userId: data.data.id }))
+        })
+}

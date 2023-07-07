@@ -3,7 +3,6 @@ import s from './Users.module.css'
 import s2 from '../../Sidebar/Navbar/Navbar.module.css'
 import avatar from '../../../assets/img/avatar.svg'
 import { NavLink } from "react-router-dom"
-// import { followAPI } from "../../../api/api"
 
 type PropsType = {
     users: UserType[]
@@ -12,11 +11,8 @@ type PropsType = {
     pageSize: number
     currentPage: number
 
-    // toFollow: any
-    // toUnfollow: any
     toSetCurrentPage: any
     getPageUsers: any
-    // toggleIsFollowDisabled: any
     followTC:any
     unfollowTC:any
 }

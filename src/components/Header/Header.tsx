@@ -5,7 +5,7 @@ export const Header = (props: any) => {
     return (
         <header>
             <div className={s.header}>
-                {!props.auth.isAuth && <div>
+                {!props.isAuth && <div>
                     <NavLink to="/login">login</NavLink>
                 </div>}
                 <img src='./logo192.png' alt=''></img>
