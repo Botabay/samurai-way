@@ -3,11 +3,13 @@ import { Dialog } from './Dialog/Dialog'
 import { Message } from './Message/Message'
 import { MessageType, DialogType, } from '../../../redux/dialogReducer'
 import { NewItem } from '../NewItem/NewItem'
+import { Navigate } from 'react-router-dom'
 
 type DialogsPropsType = {
     dialogs: DialogType[]
     messages: MessageType[]
     newMessageText: string
+    isAuth: boolean
     updateNewMessageText: (v: string) => void
     addNewMessage: () => void
 }
@@ -15,10 +17,12 @@ type DialogsPropsType = {
 export const Dialogs = ({
     dialogs,
     messages,
+    isAuth,
     updateNewMessageText,
     addNewMessage,
     newMessageText
 }: DialogsPropsType) => {
+    if (!isAuth) return <Navigate to='/login' />
     return (
         <div className={s.dialogs}>
             <div className="dialogItems">
@@ -40,5 +44,6 @@ export const Dialogs = ({
                 addNewItem={addNewMessage}
             />
         </div>
+
     )
 }

@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state: AppRootStateType) => ({
     dialogs: state.dialogs.dialogs,
     messages: state.dialogs.messages,
-    newMessageText: state.dialogs.newMessageText
+    newMessageText: state.dialogs.newMessageText,
+    isAuth: state.auth.isAuth,
 })
 
 const mapDispatchToProps = (dispatch: any) => ({

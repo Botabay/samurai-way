@@ -1,6 +1,6 @@
 import './App.css';
-import { Header } from './components/Header/Header';
-import { Profile } from './components/content/Profile/Profile';
+// import { Header } from './components/Header/Header';
+// import { Profile } from './components/content/Profile/Profile';
 import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter } from "react-router-dom";
 import { DialogsContainer } from './components/content/Dialogs/DialogsContainer';
@@ -11,6 +11,7 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 import { UsersContainer } from './components/content/Users/UsersContainer';
 import { ProfileContainer } from './components/content/Profile/ProfileContainer';
 import { HeaderContainer } from './components/Header/HeaderContainer';
+import { Login } from './components/Login/Login';
 
 export const App = () => {
     return (
@@ -30,6 +31,7 @@ export const App = () => {
                         <Route path="/music" element={<Music pageName='Music' />}></Route>
                         <Route path="/settings" element={<Settings pageName='Settings' />}></Route>
                         <Route path="/users" element={<UsersContainer />}></Route>
+                        <Route path="/login" element={<Login />}></Route>
                     </Routes>
                 </div>
             </BrowserRouter>

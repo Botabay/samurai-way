@@ -5,6 +5,7 @@ import { AppRootStateType } from "../../../redux/reduxStore";
 import { getProfileDataTC } from "../../../redux/profileReducer";
 
 import {
+    Navigate,
     useLocation,
     useNavigate,
     useParams,
@@ -35,6 +36,7 @@ export class ProfileContain extends React.Component<any>{
         this.props.getProfileDataTC(id)
     }
     render = () => {
+        if (!this.props.isAuth ) return <Navigate to='/login' />
         return (
             <Profile {...this.props} />
         )
@@ -44,7 +46,8 @@ export class ProfileContain extends React.Component<any>{
 const ProfileContainWithRoute = withRouter(ProfileContain);
 
 const mapStateToProps = (state: AppRootStateType) => ({
-    profile: state.profile.profile
+    profile: state.profile.profile,
+    isAuth:state.auth.isAuth
 })
 const mapDispatchToProps = {
     getProfileDataTC
