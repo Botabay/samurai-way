@@ -3,7 +3,7 @@ import s from './Users.module.css'
 import s2 from '../../Sidebar/Navbar/Navbar.module.css'
 import avatar from '../../../assets/img/avatar.svg'
 import { NavLink } from "react-router-dom"
-import { followAPI } from "../../../api/api"
+// import { followAPI } from "../../../api/api"
 
 type PropsType = {
     users: UserType[]
@@ -12,11 +12,13 @@ type PropsType = {
     pageSize: number
     currentPage: number
 
-    toFollow: any
-    toUnfollow: any
+    // toFollow: any
+    // toUnfollow: any
     toSetCurrentPage: any
     getPageUsers: any
-    toggleIsFollowDisabled: any
+    // toggleIsFollowDisabled: any
+    followTC:any
+    unfollowTC:any
 }
 
 export const Users = (props: PropsType) => {
@@ -28,24 +30,10 @@ export const Users = (props: PropsType) => {
         props.getPageUsers(el);
     }
     const toUnfollow = (id: string) => {
-        props.toggleIsFollowDisabled(true,id)
-        followAPI.deleteFollowId(+id)
-            .then(data => {
-                props.toggleIsFollowDisabled(false,id)
-                if (data.resultCode === 0) {
-                    props.toUnfollow(id)
-                }
-            })
+        props.unfollowTC(id)
     }
     const toFollow = (id: string) => {
-        props.toggleIsFollowDisabled(true,id)
-        followAPI.postFollowId(+id)
-            .then(data => {
-                props.toggleIsFollowDisabled(false,id)
-                if (data.resultCode === 0) {
-                    props.toFollow(id)
-                }
-            })
+        props.followTC(id)
     }
     return (<div>
         <div>
