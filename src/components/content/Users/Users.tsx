@@ -1,4 +1,4 @@
-import { UserType, UsersDataType } from "../../../redux/usersReducer"
+import { UserType } from "../../../redux/usersReducer"
 import s from './Users.module.css'
 import s2 from '../../Sidebar/Navbar/Navbar.module.css'
 import avatar from '../../../assets/img/avatar.svg'
@@ -6,15 +6,21 @@ import { NavLink } from "react-router-dom"
 import { followAPI } from "../../../api/api"
 
 type PropsType = {
-    users: UsersDataType
+    users: UserType[]
+    isFollowDisabled: number[]
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+
     toFollow: any
     toUnfollow: any
     toSetCurrentPage: any
     getPageUsers: any
+    toggleIsFollowDisabled: any
 }
 
 export const Users = (props: PropsType) => {
-    const pagesCount = Math.ceil(props.users.totalUsersCount / props.users.pageSize)
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     const arr = []
     for (let i = 1; i < pagesCount; i++) arr.push(i);
     const onClickHandler = (el: number) => {
@@ -22,16 +28,20 @@ export const Users = (props: PropsType) => {
         props.getPageUsers(el);
     }
     const toUnfollow = (id: string) => {
+        props.toggleIsFollowDisabled(true,id)
         followAPI.deleteFollowId(+id)
             .then(data => {
+                props.toggleIsFollowDisabled(false,id)
                 if (data.resultCode === 0) {
                     props.toUnfollow(id)
                 }
             })
     }
     const toFollow = (id: string) => {
+        props.toggleIsFollowDisabled(true,id)
         followAPI.postFollowId(+id)
             .then(data => {
+                props.toggleIsFollowDisabled(false,id)
                 if (data.resultCode === 0) {
                     props.toFollow(id)
                 }
@@ -41,13 +51,13 @@ export const Users = (props: PropsType) => {
         <div>
             {arr.map((el: number) => <span
                 onClick={() => onClickHandler(el)}
-                className={el === props.users.currentPage ? s.selected : ''}
+                className={el === props.currentPage ? s.selected : ''}
             >
                 {el}
             </span>)}
         </div>
         {
-            props.users.users.map((el: UserType) => (
+            props.users.map((el: UserType) => (
                 <div key={el.id}>
                     <div className="avatarSection">
                         <p>
@@ -62,8 +72,12 @@ export const Users = (props: PropsType) => {
                             </NavLink>
                         </p>
                         <p>{el.followed ?
-                            <button onClick={() => toUnfollow(el.id)}>unfollow</button> :
-                            <button onClick={() => toFollow(el.id)}>follow</button>}
+                            <button disabled={props.isFollowDisabled.includes(+el.id)}
+                                onClick={() => toUnfollow(el.id)}
+                            >unfollow</button> :
+                            <button disabled={props.isFollowDisabled.includes(+el.id)}
+                                onClick={() => toFollow(el.id)}
+                            >follow</button>}
                         </p>
                     </div>
                     <div className="infoSection">
