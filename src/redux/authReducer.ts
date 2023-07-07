@@ -1,5 +1,3 @@
-import { log } from "console";
-
 export type UsersDataType = {
     email: string | null
     login: string | null
@@ -19,8 +17,6 @@ const initialState: UsersDataType = {
 export const authReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'FOLLOW': {
-            console.log(action.payload);
-            // debugger;
             return {
             ...state,
             ...action.payload,

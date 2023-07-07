@@ -1,5 +1,6 @@
 import s from './ProfileInfo.module.css'
 export const ProfileInfo = ({ profile, ...rest }: any) => {
+    // debugger;
     if (!profile) return <></>;
     return (
         <div>

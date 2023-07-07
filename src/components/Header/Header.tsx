@@ -2,8 +2,6 @@ import { NavLink } from 'react-router-dom';
 import s from './Header.module.css';
 
 export const Header = (props: any) => {
-    console.log(props.auth);
-
     return (
         <header>
             <div className={s.header}>
