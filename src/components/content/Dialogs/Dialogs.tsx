@@ -22,7 +22,6 @@ export const Dialogs = ({
     addNewMessage,
     newMessageText
 }: DialogsPropsType) => {
-    if (!isAuth) return <Navigate to='/login' />
     return (
         <div className={s.dialogs}>
             <div className="dialogItems">

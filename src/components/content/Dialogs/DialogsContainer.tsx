@@ -2,7 +2,9 @@ import { AppRootStateType, store } from '../../../redux/reduxStore';
 import { addNewMessageAC, updateNewMessageTextAC } from '../../../redux/dialogReducer'
 import { Dialogs } from './Dialogs';
 import { connect } from 'react-redux';
+import { RedirectHoc } from '../../../HOCs/RedirectHoc';
 
+const WithRedirect=RedirectHoc(Dialogs)
 
 const mapStateToProps = (state: AppRootStateType) => ({
     dialogs: state.dialogs.dialogs,
@@ -20,4 +22,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 })
 
 export const DialogsContainer = connect(mapStateToProps,
-    mapDispatchToProps)(Dialogs)
+    mapDispatchToProps)(WithRedirect)
