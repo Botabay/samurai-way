@@ -1,6 +1,6 @@
+import React from 'react';
 import s from './ProfileInfo.module.css'
 export const ProfileInfo = ({ profile, ...rest }: any) => {
-    // debugger;
     if (!profile) return <></>;
     return (
         <div>
@@ -18,7 +18,56 @@ export const ProfileInfo = ({ profile, ...rest }: any) => {
                     <p>education</p>
                     <p>web site</p>
                 </div>
+                <ProfileStatus status={'hi there'} />
             </div>
         </div>
     )
 }
+
+class ProfileStatus extends React.Component<any> {
+    state = {
+        editMode: false
+    }
+
+    activateMode = () => {
+        this.setState({ ...this.state, editMode: true })
+    }
+    deactivateMode = () => {
+        this.setState({ ...this.state, editMode: false })
+    }
+    render(): React.ReactNode {
+        console.log('render');
+        return (
+            <div>
+                ProfileStatus
+                {this.state.editMode ?
+                    <div>
+                        <input
+                            type='text'
+                            value={this.props.status}
+                            onBlur={this.deactivateMode}
+                            autoFocus={true}
+                        />
+                    </div> :
+                    <div>
+                        <span onDoubleClick={this.activateMode}>{this.props.status}</span>
+                    </div>}
+            </div>
+        )
+    }
+}
+
+
+// const ProfileStatus=(props:any)=>{
+//     return (
+//         <div>
+//             ProfileStatus
+//             <div>
+//                 <span>{props.status}</span>
+//             </div>
+//             <div>
+//                 <input type='text' value={props.status}/>
+//             </div>
+//         </div>
+//     )
+// } 

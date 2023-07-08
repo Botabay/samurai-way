@@ -11,7 +11,7 @@ export const withRedirectHoc = (Component: any) => {
 
     class RedirectComponent extends React.Component<any> {
         render() {
-            return !this.props.isAuth ?
+            return this.props.isAuth ?
                 <Component {...this.props} /> :
                 <Navigate to='/login' />
         }
