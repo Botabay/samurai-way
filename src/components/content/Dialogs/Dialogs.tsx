@@ -3,7 +3,6 @@ import { Dialog } from './Dialog/Dialog'
 import { Message } from './Message/Message'
 import { MessageType, DialogType, } from '../../../redux/dialogReducer'
 import { NewItem } from '../NewItem/NewItem'
-import { Navigate } from 'react-router-dom'
 
 type DialogsPropsType = {
     dialogs: DialogType[]
@@ -17,7 +16,6 @@ type DialogsPropsType = {
 export const Dialogs = ({
     dialogs,
     messages,
-    isAuth,
     updateNewMessageText,
     addNewMessage,
     newMessageText
