@@ -6,6 +6,7 @@ import React from "react"
 import { Users } from "./Users"
 import { Preloader } from "../../../common/preloader/preloader";
 import { withRedirectHoc } from "../../../HOCs/withRedirectHoc";
+import { compose } from "redux";
 
 type PropsType = {
     users: UserType[]
@@ -49,7 +50,7 @@ class UsersContain extends React.Component<PropsType>{
     }
 }
 
-const WithRedirect=withRedirectHoc(UsersContain)
+// const WithRedirect=withRedirectHoc(UsersContain)
 
 const mapStateToProps = (state: any) => ({
     users: state.users.users,
@@ -65,4 +66,10 @@ const mapDispatchToProps = {
     followTC,
     unfollowTC
 }
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(WithRedirect)
+
+// const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(WithRedirect)
+
+export const UsersContainer=compose(
+    withRedirectHoc,
+    connect(mapStateToProps, mapDispatchToProps)
+)(UsersContain)

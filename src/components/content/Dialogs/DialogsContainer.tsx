@@ -3,8 +3,9 @@ import { addNewMessageAC, updateNewMessageTextAC } from '../../../redux/dialogRe
 import { Dialogs } from './Dialogs';
 import { connect } from 'react-redux';
 import { withRedirectHoc } from '../../../HOCs/withRedirectHoc';
+import { compose } from 'redux';
 
-const WithRedirect = withRedirectHoc(Dialogs)
+// const WithRedirect = withRedirectHoc(Dialogs)
 
 const mapStateToProps = (state: AppRootStateType) => ({
     dialogs: state.dialogs.dialogs,
@@ -20,5 +21,10 @@ const mapDispatchToProps = (dispatch: any) => ({
 
 })
 
-export const DialogsContainer = connect(mapStateToProps,
-    mapDispatchToProps)(WithRedirect)
+// export const DialogsContainer = connect(mapStateToProps,
+    // mapDispatchToProps)(WithRedirect)
+
+export const DialogsContainer = compose(
+    withRedirectHoc,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Dialogs)
