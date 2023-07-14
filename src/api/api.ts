@@ -33,7 +33,17 @@ export const profileAPI = {
         return instance
             .get(`profile/${id}`)
             .then(res => res.data)
-    }
+    },
+    getProfileStatus(id: number = 1){
+        return instance
+            .get(`profile/status/${id}`)
+            .then(res => res.data)
+    },
+    updateProfileStatus(status:string){
+        return instance
+            .put(`profile/status`,{status})
+            .then(res => res.data)
+    },
 }
 
 export const followAPI = {

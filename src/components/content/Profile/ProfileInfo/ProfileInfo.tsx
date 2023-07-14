@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {  createRef } from 'react';
 import s from './ProfileInfo.module.css'
-export const ProfileInfo = ({ profile, ...rest }: any) => {
+export const ProfileInfo = ({ profile, status,update, ...rest }: any) => {
     if (!profile) return <></>;
     return (
         <div>
@@ -11,6 +11,7 @@ export const ProfileInfo = ({ profile, ...rest }: any) => {
                     <img src={profile.photos.large}
                         alt='avatar'></img>
                 </div>
+                {/* <div>{status} ddd</div> */}
                 <div className={s.profile_data}>
                     <p>{profile.fullName}</p>
                     <p>date of birth</p>
@@ -18,15 +19,17 @@ export const ProfileInfo = ({ profile, ...rest }: any) => {
                     <p>education</p>
                     <p>web site</p>
                 </div>
-                <ProfileStatus status={'hi there'} />
+                <ProfileStatus status={status} update={update}/>
             </div>
         </div>
     )
 }
 
 class ProfileStatus extends React.Component<any> {
+    // ref=createRef<HTMLInputElement>()
     state = {
-        editMode: false
+        editMode: false,
+        status:this.props.status
     }
 
     activateMode = () => {
@@ -34,24 +37,28 @@ class ProfileStatus extends React.Component<any> {
     }
     deactivateMode = () => {
         this.setState({ ...this.state, editMode: false })
+        // this.props.update(this.ref.current?.value)
+        this.props.update(this.state.status)
     }
     render(): React.ReactNode {
-        console.log('render');
         return (
             <div>
-                ProfileStatus
-                {this.state.editMode ?
-                    <div>
-                        <input
-                            type='text'
-                            value={this.props.status}
-                            onBlur={this.deactivateMode}
-                            autoFocus={true}
-                        />
-                    </div> :
-                    <div>
-                        <span onDoubleClick={this.activateMode}>{this.props.status}</span>
-                    </div>}
+                ProfileStatus:
+                {
+                    this.state.editMode ?
+                        <div>
+                            <input
+                                // ref={this.ref}
+                                type='text'
+                                value={this.state.status}
+                                onBlur={this.deactivateMode}
+                                autoFocus={true}
+                            />
+                        </div> :
+                        <div>
+                            <span onDoubleClick={this.activateMode}>{this.props.status ? this.props.status:'no status'}</span>
+                        </div>
+                }
             </div>
         )
     }

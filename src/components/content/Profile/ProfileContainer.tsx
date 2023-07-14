@@ -2,7 +2,7 @@ import React from "react"
 import { Profile } from "./Profile"
 import { connect } from "react-redux";
 import { AppRootStateType } from "../../../redux/reduxStore";
-import { getProfileDataTC } from "../../../redux/profileReducer";
+import { getProfileDataTC,getProfileStatusTC ,updateProfileStatusTC} from "../../../redux/profileReducer";
 
 import {
     useLocation,
@@ -34,7 +34,8 @@ function withRouter(Component: any) {
 export class ProfileContain extends React.Component<any>{
     componentDidMount(): void {
         const id = !this.props.router.params.userId ? 2 : this.props.router.params.userId;
-        this.props.getProfileDataTC(id)
+        this.props.getProfileDataTC(id);
+        this.props.getProfileStatusTC(id);
     }
     render = () => {
         return (
@@ -49,9 +50,12 @@ export class ProfileContain extends React.Component<any>{
 
 const mapStateToProps = (state: AppRootStateType) => ({
     profile: state.profile.profile,
+    status: state.profile.status,
 })
 const mapDispatchToProps = {
-    getProfileDataTC
+    getProfileDataTC,
+    getProfileStatusTC,
+    updateProfileStatusTC,
 }
 
 // const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileContainWithRoute)
