@@ -8,8 +8,8 @@ const mapStateToProps=(state:AppRootStateType)=>({
 })
 
 const mapDispatchToProps=(dispatch:any)=>({
-    addNewPost : () => 
-        dispatch(addNewPostAC()),
+    addNewPost : (value:string) => 
+        dispatch(addNewPostAC(value)),
     updateNewPostText : (v: string) => 
         dispatch(updateNewPostTextAC(v))    
 })

@@ -49,7 +49,7 @@ export const profileReducer = (
             //return state;
             return {
                 ...state, posts: [
-                    { id: state.posts.length + 1, text: state.newPostText }, ...state.posts
+                    { id: state.posts.length + 1, text: action.value }, ...state.posts
                 ], newPostText: ''
             }
         }
@@ -70,7 +70,7 @@ export const profileReducer = (
     }
 }
 
-export const addNewPostAC = () => ({ type: ADDNEWPOST }) as const
+export const addNewPostAC = (value:string) => ({ type: ADDNEWPOST,value }) as const
 export const updateNewPostTextAC = (value: string) =>
     ({ type: UPDATENEWPOSTTEXT, value }) as const
 export const toSetUserProfileAC = (value: string) =>

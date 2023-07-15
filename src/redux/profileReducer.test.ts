@@ -12,7 +12,7 @@ test('correct task should be added to correct array', () => {
         status:''
     };
 
-    const action = addNewPostAC();
+    const action = addNewPostAC('something');
 
     const endState = profileReducer(startState, action)
 

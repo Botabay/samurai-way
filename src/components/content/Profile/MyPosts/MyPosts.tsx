@@ -5,7 +5,7 @@ import { NewItem } from '../../NewItem/NewItem'
 
 type MyPostsPropsType = {
     postsData: ProfileDataType
-    addNewPost: () => void
+    addNewPost: (value:string) => void
     updateNewPostText: (v: string) => void
 }
 export const MyPosts = ({
