@@ -16,7 +16,7 @@ test('correct dialog should be added to correct array', () => {
         newMessageText: 'this is a place for your message'
     }
 
-    const action = addNewMessageAC();
+    const action = addNewMessageAC('something');
 
     const endState = dialogReducer(startState, action)
 

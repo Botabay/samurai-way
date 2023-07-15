@@ -16,8 +16,8 @@ const mapStateToProps = (state: AppRootStateType) => ({
 const mapDispatchToProps = (dispatch: any) => ({
     updateNewMessageText: (v: string) =>
         dispatch(updateNewMessageTextAC(v)),
-    addNewMessage: () =>
-        store.dispatch(addNewMessageAC())
+    addNewMessage: (value:string) =>
+        store.dispatch(addNewMessageAC(value))
 
 })
 

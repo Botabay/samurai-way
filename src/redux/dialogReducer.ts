@@ -1,15 +1,10 @@
 const ADDNEWMESSAGE = 'addNewMessage';
 const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
-type addNewMessageACType = {
-    type: string
-}
-type updateNewMessageTextACType = {
-    type: string
-    value: string
-}
-export const addNewMessageAC = (): addNewMessageACType => ({ type: ADDNEWMESSAGE }) as const;
+type addNewMessageACType = ReturnType<typeof addNewMessageAC>
+type updateNewMessageTextACType = ReturnType<typeof updateNewMessageTextAC>
+export const addNewMessageAC = (value:string) => ({ type: ADDNEWMESSAGE , value}) as const;
 export const updateNewMessageTextAC =
-    (value: string): updateNewMessageTextACType => ({ type: UPDATENEWMESSAGETEXT, value }) as const;
+    (value: string) => ({ type: UPDATENEWMESSAGETEXT, value }) as const;
 
 export type DialogType = {
     id: number,
@@ -46,7 +41,7 @@ export const dialogReducer = (state: DialogDataType = initS, action: any): Dialo
             //     state.messages.push({ id: 5, text: state.newMessageText })
             //     state.newMessageText = '';
             return {
-                ...state, messages: [{ id: 5, text: state.newMessageText },
+                ...state, messages: [{ id: 5, text: action.value },
                 ...state.messages],
                 newMessageText: ''
             }
