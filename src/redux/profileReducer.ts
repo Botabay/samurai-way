@@ -2,16 +2,13 @@ import { AnyAction, Dispatch } from "redux";
 import { profileAPI } from "../api/api";
 
 const ADDNEWPOST = 'addNewPost';
-const UPDATENEWPOSTTEXT = 'updateNewPostText';
 
 type addNewPostACType = ReturnType<typeof addNewPostAC>
-type updateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
 type toSetUserProfileACType = ReturnType<typeof toSetUserProfileAC>
 type toGetStatusACType = ReturnType<typeof toGetStatusAC>
 type toUdateStatusACType = ReturnType<typeof toUpdateStatusAC>
 
 type ActionsType = addNewPostACType
-    | updateNewPostTextACType
     | toSetUserProfileACType
     | toGetStatusACType
     | toUdateStatusACType
@@ -20,42 +17,30 @@ export type PostsType = {
     id: number,
     text: string;
 }
-export type ProfileDataType = {
-    posts: PostsType[]
-    newPostText: string
-    profile: any
-    status: string
-}
-const initS: ProfileDataType = {
+
+const initS = {
     posts: [
         { id: 1, text: 'post1' },
         { id: 2, text: 'post2' },
         { id: 3, text: 'post3' }
-    ],
-    newPostText: 'this is a place for your post',
-    profile: null,
+    ] as PostsType[],
+    profile: null as null | string,
     status: ''
 }
+
+export type ProfileDataType = typeof initS
 
 export const profileReducer = (
     state: ProfileDataType = initS,
     action: ActionsType
-) => {
+): ProfileDataType => {
     switch (action.type) {
-        // case ADDNEWPOST: addNewPost(state,state.newPostText);break;
         case ADDNEWPOST: {
-            // state.posts.push({ id: state.posts.length + 1, text: state.newPostText });
-            // state.newPostText = '';
-            //return state;
             return {
                 ...state, posts: [
                     { id: state.posts.length + 1, text: action.value }, ...state.posts
-                ], newPostText: ''
+                ]
             }
-        }
-        case UPDATENEWPOSTTEXT: {
-            // state.newPostText = action.value;
-            return { ...state, newPostText: action.value };
         }
         case 'SET_USER_PROFILE': {
             return { ...state, profile: action.value };
@@ -70,9 +55,7 @@ export const profileReducer = (
     }
 }
 
-export const addNewPostAC = (value:string) => ({ type: ADDNEWPOST,value }) as const
-export const updateNewPostTextAC = (value: string) =>
-    ({ type: UPDATENEWPOSTTEXT, value }) as const
+export const addNewPostAC = (value: string) => ({ type: ADDNEWPOST, value }) as const
 export const toSetUserProfileAC = (value: string) =>
     ({ type: 'SET_USER_PROFILE', value }) as const
 export const toGetStatusAC = (value: string) =>
@@ -91,8 +74,7 @@ export const getProfileStatusTC = (id: number) => (dispatch: Dispatch<AnyAction>
 export const updateProfileStatusTC = (status: string) => (dispatch: Dispatch<AnyAction>) => {
     profileAPI.updateProfileStatus(status)
         .then(data => {
-            // debugger;
-            if (data.resultCode===0)
-            dispatch(toUpdateStatusAC(status))
+            if (data.resultCode === 0)
+                dispatch(toUpdateStatusAC(status))
         })
 }

@@ -1,5 +1,5 @@
 import { MyPosts } from './MyPosts';
-import { addNewPostAC, updateNewPostTextAC } from '../../../../redux/profileReducer'
+import { addNewPostAC } from '../../../../redux/profileReducer'
 import {AppRootStateType} from '../../../../redux/reduxStore'
 import { connect } from 'react-redux';
 
@@ -9,9 +9,7 @@ const mapStateToProps=(state:AppRootStateType)=>({
 
 const mapDispatchToProps=(dispatch:any)=>({
     addNewPost : (value:string) => 
-        dispatch(addNewPostAC(value)),
-    updateNewPostText : (v: string) => 
-        dispatch(updateNewPostTextAC(v))    
+        dispatch(addNewPostAC(value)) 
 })
 
 export const MyPostsContainer = connect(mapStateToProps,

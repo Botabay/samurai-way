@@ -1,10 +1,6 @@
 const ADDNEWMESSAGE = 'addNewMessage';
-const UPDATENEWMESSAGETEXT = 'updateNewMessageText';
 type addNewMessageACType = ReturnType<typeof addNewMessageAC>
-type updateNewMessageTextACType = ReturnType<typeof updateNewMessageTextAC>
 export const addNewMessageAC = (value:string) => ({ type: ADDNEWMESSAGE , value}) as const;
-export const updateNewMessageTextAC =
-    (value: string) => ({ type: UPDATENEWMESSAGETEXT, value }) as const;
 
 export type DialogType = {
     id: number,
@@ -16,7 +12,7 @@ export type MessageType = {
 }
 
 
-export type DialogsACType = addNewMessageACType | updateNewMessageTextACType
+export type DialogsACType = addNewMessageACType 
 
 const initS = {
     dialogs: [
@@ -29,8 +25,7 @@ const initS = {
         { id: 2, text: 'Hey, zuuuup!' },
         { id: 3, text: 'yo' },
         { id: 4, text: 'Hey guys!' },
-    ] as MessageType[],
-    newMessageText: 'this is a place for your message'
+    ] as MessageType[]
 }
 
 export type DialogDataType = typeof initS
@@ -38,18 +33,9 @@ export type DialogDataType = typeof initS
 export const dialogReducer = (state: DialogDataType = initS, action: any): DialogDataType => {
     switch (action.type) {
         case ADDNEWMESSAGE: {
-            //     state.messages.push({ id: 5, text: state.newMessageText })
-            //     state.newMessageText = '';
             return {
                 ...state, messages: [{ id: 5, text: action.value },
-                ...state.messages],
-                newMessageText: ''
-            }
-        }
-        case UPDATENEWMESSAGETEXT: {
-            // state.newMessageText = action.value;//action does not work when typing
-            return {
-                ...state, newMessageText: action.value
+                ...state.messages]
             }
         }
         default: return state

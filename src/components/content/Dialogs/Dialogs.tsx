@@ -7,18 +7,14 @@ import { NewItem } from '../NewItem/NewItem'
 type DialogsPropsType = {
     dialogs: DialogType[]
     messages: MessageType[]
-    newMessageText: string
     isAuth: boolean
-    updateNewMessageText: (v: string) => void
     addNewMessage: () => void
 }
 
 export const Dialogs = ({
     dialogs,
     messages,
-    updateNewMessageText,
     addNewMessage,
-    newMessageText
 }: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
@@ -36,8 +32,6 @@ export const Dialogs = ({
             </div>
             <NewItem
                 title={'new message'}
-                newItemText={newMessageText}
-                updateNewItemText={updateNewMessageText}
                 addNewItem={addNewMessage}
             />
         </div>

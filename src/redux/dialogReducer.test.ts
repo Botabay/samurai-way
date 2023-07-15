@@ -1,4 +1,4 @@
-import { addNewMessageAC, updateNewMessageTextAC, DialogDataType, dialogReducer } from './dialogReducer';
+import { addNewMessageAC,  DialogDataType, dialogReducer } from './dialogReducer';
 
 test('correct dialog should be added to correct array', () => {
     const startState: DialogDataType = {
@@ -12,8 +12,7 @@ test('correct dialog should be added to correct array', () => {
             { id: 2, text: 'Hey, zuuuup!' },
             { id: 3, text: 'yo' },
             { id: 4, text: 'Hey guys!' },
-        ],
-        newMessageText: 'this is a place for your message'
+        ]
     }
 
     const action = addNewMessageAC('something');
@@ -36,7 +35,6 @@ test('correct dialog should be added to correct array', () => {
         newMessageText: ''
     })
 
-    expect(endState.newMessageText).toBe('')
     expect(endState.dialogs.length).toBe(3)
     expect(endState.messages.length).toBe(5)
     expect(endState.messages[4].id).toBeDefined()
@@ -56,16 +54,6 @@ test('value of specified NewPostText should be changed', () => {
             { id: 2, text: 'Hey, zuuuup!' },
             { id: 3, text: 'yo' },
             { id: 4, text: 'Hey guys!' },
-        ],
-        newMessageText: 'this is a place for your message'
+        ]
     }
-
-
-    const action = updateNewMessageTextAC('test value')
-
-    const endState = dialogReducer(startState, action)
-
-    expect(endState.dialogs.length).toBe(3)
-    expect(endState.messages.length).toBe(4)
-    expect(endState.newMessageText).toBe('test value')
 })
