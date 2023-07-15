@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 // import './index.css';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
-import { AppRootStateType, store } from './redux/reduxStore'
+import { store } from './redux/reduxStore'
 // import { Provider } from './contextTemp';
 import { Provider } from 'react-redux';
 // import {rerender} from './rerender'
@@ -12,8 +12,7 @@ const root = ReactDOM.createRoot(
 );
 // const rerender = () => {
   root.render(
-    //  <Provider store={store as AppRootStateType}> 
-    <Provider store={store as any}>
+    <Provider store={store}>
       <App />
     </Provider>
   );

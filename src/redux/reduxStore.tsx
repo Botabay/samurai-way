@@ -5,16 +5,22 @@ import { subjectReducer } from './subjectReducer'
 import { usersReducer } from './usersReducer'
 import { authReducer } from './authReducer'
 import thunkMiddleware from 'redux-thunk'
+// import {reducer as form} from 'redux-form'
+import { reducer as formReducer } from 'redux-form'
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
     dialogs: dialogReducer,
     profile: profileReducer,
     subject: subjectReducer,
     users: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 })
-export type AppRootStateType = ReturnType<typeof reducers>
-export const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));
+export type AppRootStateType = ReturnType<typeof rootReducer>
+export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
+
+// @ts-ignore
+window.store=store;
 
 // type Window {
 //     store: AppRootStateType; // Здесь вы можете указать конкретный тип для store вместо any

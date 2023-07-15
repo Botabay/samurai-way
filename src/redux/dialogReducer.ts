@@ -19,11 +19,7 @@ export type MessageType = {
     id: number,
     text: string
 }
-export type DialogDataType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
-    newMessageText: string
-}
+
 
 export type DialogsACType = addNewMessageACType | updateNewMessageTextACType
 
@@ -32,15 +28,17 @@ const initS = {
         { id: 1, name: 'Lee' },
         { id: 2, name: 'Kim' },
         { id: 3, name: 'John' }
-    ],
+    ] as DialogType[],
     messages: [
         { id: 1, text: 'Hallo everybody' },
         { id: 2, text: 'Hey, zuuuup!' },
         { id: 3, text: 'yo' },
         { id: 4, text: 'Hey guys!' },
-    ],
+    ] as MessageType[],
     newMessageText: 'this is a place for your message'
 }
+
+export type DialogDataType = typeof initS
 
 export const dialogReducer = (state: DialogDataType = initS, action: any): DialogDataType => {
     switch (action.type) {

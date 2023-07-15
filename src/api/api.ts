@@ -25,6 +25,15 @@ export const authAPI = {
                     return res.data
                 }
             })
+    },
+    toLogin(body:any){
+        return instance
+            .post(`auth/me`,body)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    return res.data
+                }
+            })
     }
 }
 

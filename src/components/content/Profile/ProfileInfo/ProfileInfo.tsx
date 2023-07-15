@@ -1,4 +1,4 @@
-import React, {  ChangeEvent, createRef } from 'react';
+import React, {  ChangeEvent } from 'react';
 import s from './ProfileInfo.module.css'
 export const ProfileInfo = ({ profile, status,update, ...rest }: any) => {
     if (!profile) return <></>;

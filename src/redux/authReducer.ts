@@ -1,3 +1,4 @@
+import { AnyAction, Dispatch } from "redux";
 import { authAPI } from "../api/api";
 
 export type UsersDataType = {
@@ -35,7 +36,20 @@ export const setAuthAC = ({ email, login, userId }: UsersDataType) => ({
     }
 }) as const;
 
-export const getAuthDataTC = () => (dispatch: any) => {
+export const getAuthDataTC = () => (dispatch: Dispatch<AnyAction>) => {
+    authAPI.getAuthData()
+        .then(data => {
+            dispatch(setAuthAC({ ...data.data, userId: data.data.id }))
+        })
+}
+
+export const toLoginAC = ({ email, login, userId }: UsersDataType) => ({
+    type: 'FOLLOW', payload: {
+        email, login, userId
+    }
+}) as const;
+
+export const toLoginTC = () => (dispatch: Dispatch<AnyAction>) => {
     authAPI.getAuthData()
         .then(data => {
             dispatch(setAuthAC({ ...data.data, userId: data.data.id }))
