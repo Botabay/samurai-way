@@ -28,7 +28,7 @@ export const authAPI = {
     },
     toLogin(body:any){
         return instance
-            .post(`auth/me`,body)
+            .post(`auth/login`,body)
             .then(res => {
                 if (res.data.resultCode === 0) {
                     return res.data
