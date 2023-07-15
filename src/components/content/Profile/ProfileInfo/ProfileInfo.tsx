@@ -1,4 +1,4 @@
-import React, {  createRef } from 'react';
+import React, {  ChangeEvent, createRef } from 'react';
 import s from './ProfileInfo.module.css'
 export const ProfileInfo = ({ profile, status,update, ...rest }: any) => {
     if (!profile) return <></>;
@@ -25,11 +25,15 @@ export const ProfileInfo = ({ profile, status,update, ...rest }: any) => {
     )
 }
 
+type ProfileStatusPropsType={
+    status:string
+    update:any
+}
 class ProfileStatus extends React.Component<any> {
     // ref=createRef<HTMLInputElement>()
     state = {
         editMode: false,
-        status:this.props.status
+        status:this.props.status? this.props.status:'no status'
     }
 
     activateMode = () => {
@@ -39,6 +43,14 @@ class ProfileStatus extends React.Component<any> {
         this.setState({ ...this.state, editMode: false })
         // this.props.update(this.ref.current?.value)
         this.props.update(this.state.status)
+    }
+    onChange=(e:ChangeEvent<HTMLInputElement>)=>{
+        this.setState({ ...this.state, status: e.currentTarget.value })
+    }
+    componentDidUpdate(prevProps:ProfileStatusPropsType): void {
+        if(prevProps.status!==this.props.status){
+            this.setState({status:this.props.status})
+        }
     }
     render(): React.ReactNode {
         return (
@@ -53,6 +65,7 @@ class ProfileStatus extends React.Component<any> {
                                 value={this.state.status}
                                 onBlur={this.deactivateMode}
                                 autoFocus={true}
+                                onChange={this.onChange}
                             />
                         </div> :
                         <div>
@@ -63,18 +76,3 @@ class ProfileStatus extends React.Component<any> {
         )
     }
 }
-
-
-// const ProfileStatus=(props:any)=>{
-//     return (
-//         <div>
-//             ProfileStatus
-//             <div>
-//                 <span>{props.status}</span>
-//             </div>
-//             <div>
-//                 <input type='text' value={props.status}/>
-//             </div>
-//         </div>
-//     )
-// } 

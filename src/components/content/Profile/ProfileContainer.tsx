@@ -33,7 +33,7 @@ function withRouter(Component: any) {
 // }
 export class ProfileContain extends React.Component<any>{
     componentDidMount(): void {
-        const id = !this.props.router.params.userId ? 2 : this.props.router.params.userId;
+        const id = !this.props.router.params.userId ? 29135 : this.props.router.params.userId;
         this.props.getProfileDataTC(id);
         this.props.getProfileStatusTC(id);
     }

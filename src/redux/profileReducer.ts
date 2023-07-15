@@ -90,5 +90,9 @@ export const getProfileStatusTC = (id: number) => (dispatch: Dispatch<AnyAction>
 }
 export const updateProfileStatusTC = (status: string) => (dispatch: Dispatch<AnyAction>) => {
     profileAPI.updateProfileStatus(status)
-        .then(data => dispatch(toUpdateStatusAC(data)))
+        .then(data => {
+            // debugger;
+            if (data.resultCode===0)
+            dispatch(toUpdateStatusAC(status))
+        })
 }
