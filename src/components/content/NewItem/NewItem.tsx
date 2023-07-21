@@ -1,4 +1,6 @@
 import { Field, reduxForm } from 'redux-form'
+import { maxLength, requiredValueValidator } from '../../../utils/validators'
+import { Textarea } from '../../../common/FormControlls/FormControlls'
 
 type NewItemPropsType = {
     title: string
@@ -21,14 +23,15 @@ export const NewItem = ({
         </div>
     )
 }
-
+const maxLength10 = maxLength(10);
 const NewItemForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <Field
                 name={'profileTextarea'}
                 placeholder={''}
-                component="textarea"
+                component={Textarea}
+                validate={[requiredValueValidator, maxLength10]}
             />
             <div>
                 <button >send</button>
