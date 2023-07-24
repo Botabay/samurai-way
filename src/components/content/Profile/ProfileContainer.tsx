@@ -2,7 +2,7 @@ import React from "react"
 import { Profile } from "./Profile"
 import { connect } from "react-redux";
 import { AppRootStateType } from "../../../redux/reduxStore";
-import { getProfileDataTC,getProfileStatusTC ,updateProfileStatusTC} from "../../../redux/profileReducer";
+import { getProfileDataTC, getProfileStatusTC, updateProfileStatusTC } from "../../../redux/profileReducer";
 
 import {
     useLocation,
@@ -12,7 +12,6 @@ import {
 import { withRedirectHoc } from "../../../HOCs/withRedirectHoc";
 import { compose } from "redux";
 
-// wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
 function withRouter(Component: any) {
     function ComponentWithRouterProp(props: any) {
         let location = useLocation();
@@ -28,12 +27,9 @@ function withRouter(Component: any) {
     return ComponentWithRouterProp;
 }
 
-// type PropsType = {
-//     toSetUserProfile:any
-// }
 export class ProfileContain extends React.Component<any>{
     componentDidMount(): void {
-        const id = !this.props.router.params.userId ? 29135 : this.props.router.params.userId;
+        const id = !this.props.router.params.userId ? this.props.authUserId : this.props.router.params.userId;
         this.props.getProfileDataTC(id);
         this.props.getProfileStatusTC(id);
     }
@@ -44,21 +40,16 @@ export class ProfileContain extends React.Component<any>{
     }
 }
 
-// const WithRedirect = withRedirectHoc(ProfileContain)
-
-// const ProfileContainWithRoute = withRouter(WithRedirect);
-
 const mapStateToProps = (state: AppRootStateType) => ({
     profile: state.profile.profile,
     status: state.profile.status,
+    authUserId: state.auth.userId
 })
 const mapDispatchToProps = {
     getProfileDataTC,
     getProfileStatusTC,
     updateProfileStatusTC,
 }
-
-// const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileContainWithRoute)
 
 export const ProfileContainer = compose(
     withRedirectHoc,

@@ -2,6 +2,7 @@ import { AnyAction, Dispatch } from "redux";
 import { authAPI } from "../api/api";
 import { ThunkDispatch } from "redux-thunk";
 import { AppRootStateType } from "./reduxStore";
+import { FormAction, stopSubmit } from "redux-form";
 
 export type UsersDataType = typeof initialState
 
@@ -36,11 +37,21 @@ export const getAuthDataTC = () => (dispatch: Dispatch<AnyAction>) => {
         })
 }
 
-export const loginTC = ({ email, password, rememberMe = false }: { email: string, password: string, rememberMe: boolean }) => (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsType>) => {
+export const loginTC = ({ email, password, rememberMe = false }: { email: string, password: string, rememberMe: boolean }) => (dispatch: ThunkDispatch<
+    AppRootStateType,
+    unknown,
+    ActionsType | FormAction
+>) => {
     authAPI.toLogin({ email, password, rememberMe })
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(getAuthDataTC())
+            } else {
+                dispatch(stopSubmit('login', {
+                    _error: res.data.messages.length > 0 ?
+                        res.data.messages[0] :
+                        'common error'
+                }))
             }
         })
 }

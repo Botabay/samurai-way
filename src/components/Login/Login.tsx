@@ -35,6 +35,7 @@ const LoginForm = (props: any) => {
                     type={"checkbox"}
                 />remember me
             </div>
+            <div>{props.error}</div>
             <div>
                 <button >send</button>
             </div>
