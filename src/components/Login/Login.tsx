@@ -1,17 +1,20 @@
 import { Field, reduxForm } from "redux-form"
-import { authAPI } from "../../api/api"
 import { maxLength, requiredValueValidator } from "../../utils/validators"
 import { Input } from "../../common/FormControlls/FormControlls";
+import { connect } from "react-redux";
+import { loginTC } from "../../redux/authReducer";
+import { Navigate, useNavigate } from "react-router-dom";
+import { AppRootStateType } from "../../redux/reduxStore";
 
-const maxLength10 = maxLength(10);
+const maxLength20 = maxLength(20);
 const LoginForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field
                     name={'email'}
-                    placeholder={'login'}
-                    validate={[requiredValueValidator, maxLength10]}
+                    placeholder={'email'}
+                    validate={[requiredValueValidator, maxLength20]}
                     component={Input}
                 />
             </div>
@@ -19,20 +22,21 @@ const LoginForm = (props: any) => {
                 <Field
                     name={'password'}
                     placeholder={'password'}
-                    validate={[requiredValueValidator, maxLength10]}
-                    component={Input} 
-                    />
+                    validate={[requiredValueValidator, maxLength20]}
+                    component={Input}
+                    type={'password'}
+                />
             </div>
             <div>
-                <Field 
-                name={'rememberMe'} 
-                validate={[requiredValueValidator, maxLength10]}
-                component={Input} 
-                type={"checkbox"}
-                 />remember me
+                <Field
+                    name={'rememberMe'}
+                    validate={[requiredValueValidator, maxLength20]}
+                    component={Input}
+                    type={"checkbox"}
+                />remember me
             </div>
             <div>
-                <button>send</button>
+                <button >send</button>
             </div>
         </form>
     )
@@ -40,9 +44,13 @@ const LoginForm = (props: any) => {
 
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
-export const Login = () => {
+const miniLogin = (props: any) => {
     const onSubmit = (dataForm: any) => {
-        authAPI.toLogin(dataForm)
+        const { email, password, rememberMe } = dataForm
+        props.loginTC({ email, password, rememberMe })
+    }
+    if (props.isAuth) {
+        return <Navigate to={'/profile'}/>
     }
     return (
         <div>
@@ -51,3 +59,9 @@ export const Login = () => {
         </div>
     )
 }
+
+const mapStateToProps = (state: AppRootStateType) => ({
+    isAuth: state.auth.isAuth,
+})
+
+export const Login = connect(mapStateToProps, { loginTC })(miniLogin)

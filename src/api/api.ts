@@ -26,14 +26,11 @@ export const authAPI = {
                 }
             })
     },
-    toLogin(body:any){
-        return instance
-            .post(`auth/login`,body)
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    return res.data
-                }
-            })
+    toLogin(body: any) {
+        return instance.post(`auth/login`, body)
+    },
+    toLogout() {
+        return instance.delete(`auth/login`)
     }
 }
 
@@ -43,14 +40,14 @@ export const profileAPI = {
             .get(`profile/${id}`)
             .then(res => res.data)
     },
-    getProfileStatus(id: number = 1){
+    getProfileStatus(id: number = 1) {
         return instance
             .get(`profile/status/${id}`)
             .then(res => res.data)
     },
-    updateProfileStatus(status:string){
+    updateProfileStatus(status: string) {
         return instance
-            .put(`profile/status`,{status})
+            .put(`profile/status`, { status })
             .then(res => res.data)
     },
 }

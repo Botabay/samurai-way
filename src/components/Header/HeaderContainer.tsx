@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { Header } from "./Header"
-import { getAuthDataTC } from "../../redux/authReducer"
+import { getAuthDataTC ,logoutTC} from "../../redux/authReducer"
 import React from "react"
 
 class HeaderContain extends React.Component<any> {
@@ -13,9 +13,11 @@ class HeaderContain extends React.Component<any> {
 }
 
 const mapStateToProps = (state: any) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    login:state.auth.login
 })
 const mapDispatchToProps = {
-    getAuthDataTC
+    getAuthDataTC,
+    logoutTC
 }
 export const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderContain)
