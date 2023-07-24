@@ -1,11 +1,9 @@
 import ReactDOM from 'react-dom/client';
-// import './index.css';
-import { App } from './App';
+import  App  from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './redux/reduxStore'
-// import { Provider } from './contextTemp';
 import { Provider } from 'react-redux';
-// import {rerender} from './rerender'
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +11,9 @@ const root = ReactDOM.createRoot(
 // const rerender = () => {
   root.render(
     <Provider store={store}>
+      <BrowserRouter>
       <App />
+      </BrowserRouter>
     </Provider>
   );
 // }

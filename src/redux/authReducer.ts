@@ -31,7 +31,7 @@ export const setAuthAC = ({ email, login, userId, isAuth }: UsersDataType) => ({
 }) as const;
 
 export const getAuthDataTC = () => (dispatch: Dispatch<AnyAction>) => {
-    authAPI.getAuthData()
+    return authAPI.getAuthData()
         .then(data => {
             dispatch(setAuthAC({ ...data.data, userId: data.data.id, isAuth: true }))
         })

@@ -29,7 +29,12 @@ function withRouter(Component: any) {
 
 export class ProfileContain extends React.Component<any>{
     componentDidMount(): void {
-        const id = !this.props.router.params.userId ? this.props.authUserId : this.props.router.params.userId;
+        const id = this.props.router.params.userId ?
+            this.props.authUserId :
+            this.props.router.params.userId;
+        // if(!id) {
+        //     this.props.history.push('/login')
+        // }
         this.props.getProfileDataTC(id);
         this.props.getProfileStatusTC(id);
     }

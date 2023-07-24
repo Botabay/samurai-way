@@ -4,9 +4,9 @@ import { getAuthDataTC ,logoutTC} from "../../redux/authReducer"
 import React from "react"
 
 class HeaderContain extends React.Component<any> {
-    componentDidMount(): void {
-        this.props.getAuthDataTC()
-    }
+    // componentDidMount(): void {
+    //     this.props.getAuthDataTC()
+    // }
     render = () => (
         <Header {...this.props} />
     )
@@ -17,7 +17,7 @@ const mapStateToProps = (state: any) => ({
     login:state.auth.login
 })
 const mapDispatchToProps = {
-    getAuthDataTC,
+    // getAuthDataTC,
     logoutTC
 }
 export const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderContain)
