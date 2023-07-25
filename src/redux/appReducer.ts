@@ -1,8 +1,6 @@
-import { AnyAction, Dispatch } from "redux";
-import { authAPI } from "../api/api";
 import { ThunkDispatch } from "redux-thunk";
 import { AppRootStateType } from "./reduxStore";
-import { FormAction, stopSubmit } from "redux-form";
+import { FormAction } from "redux-form";
 import { getAuthDataTC } from "./authReducer";
 
 export type AppDataType = typeof initialState

@@ -65,16 +65,16 @@ export const toUpdateStatusAC = (value: string) =>
 
 export const getProfileDataTC = (id: number) => (dispatch: Dispatch<AnyAction>) => {
     profileAPI.getProfileData(id)
-        .then(data => dispatch(toSetUserProfileAC(data)))
+        .then(res=> dispatch(toSetUserProfileAC(res.data)))
 }
 export const getProfileStatusTC = (id: number) => (dispatch: Dispatch<AnyAction>) => {
     profileAPI.getProfileStatus(id)
-        .then(data => dispatch(toGetStatusAC(data)))
+        .then(res => dispatch(toGetStatusAC(res.data)))
 }
 export const updateProfileStatusTC = (status: string) => (dispatch: Dispatch<AnyAction>) => {
     profileAPI.updateProfileStatus(status)
-        .then(data => {
-            if (data.resultCode === 0)
+        .then(res => {
+            if (res.data.resultCode === 0)
                 dispatch(toUpdateStatusAC(status))
         })
 }

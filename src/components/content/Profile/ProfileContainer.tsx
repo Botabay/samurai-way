@@ -5,6 +5,7 @@ import { AppRootStateType } from "../../../redux/reduxStore";
 import { getProfileDataTC, getProfileStatusTC, updateProfileStatusTC } from "../../../redux/profileReducer";
 
 import {
+    Navigate,
     useLocation,
     useNavigate,
     useParams,
@@ -29,12 +30,13 @@ function withRouter(Component: any) {
 
 export class ProfileContain extends React.Component<any>{
     componentDidMount(): void {
-        const id = this.props.router.params.userId ?
-            this.props.authUserId :
-            this.props.router.params.userId;
-        // if(!id) {
-        //     this.props.history.push('/login')
-        // }
+        let id = this.props.router.params.userId;
+        if (!id) {
+            id = this.props.authUserId
+        }
+        if (!id) {
+            this.props.router.navigate('/login')
+        }
         this.props.getProfileDataTC(id);
         this.props.getProfileStatusTC(id);
     }
@@ -57,7 +59,7 @@ const mapDispatchToProps = {
 }
 
 export const ProfileContainer = compose(
-    withRedirectHoc,
+    // withRedirectHoc,
     withRouter,
     connect(mapStateToProps, mapDispatchToProps)
 )(ProfileContain)

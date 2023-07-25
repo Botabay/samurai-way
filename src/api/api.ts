@@ -10,21 +10,13 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsersData(pageSize: number = 3, currentPage: number = 1) {
-        return instance
-            .get(`users?count=${pageSize}&page=${currentPage}`)
-            .then(res => res.data)
+        return instance.get(`users?count=${pageSize}&page=${currentPage}`)
     }
 }
 
 export const authAPI = {
     getAuthData() {
-        return instance
-            .get(`auth/me`)
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    return res.data
-                }
-            })
+        return instance.get(`auth/me`)
     },
     toLogin(body: any) {
         return instance.post(`auth/login`, body)
@@ -36,31 +28,21 @@ export const authAPI = {
 
 export const profileAPI = {
     getProfileData(id: number = 1) {
-        return instance
-            .get(`profile/${id}`)
-            .then(res => res.data)
+        return instance.get(`profile/${id}`)
     },
     getProfileStatus(id: number = 1) {
-        return instance
-            .get(`profile/status/${id}`)
-            .then(res => res.data)
+        return instance.get(`profile/status/${id}`)
     },
     updateProfileStatus(status: string) {
-        return instance
-            .put(`profile/status`, { status })
-            .then(res => res.data)
+        return instance.put(`profile/status`, { status })
     },
 }
 
 export const followAPI = {
     deleteFollowId(id: number = 1) {
-        return instance
-            .delete(`follow/${id}`)
-            .then(res => res.data)
+        return instance.delete(`follow/${id}`)
     },
     postFollowId(id: number = 1) {
-        return instance
-            .post(`follow/${id}`, {})
-            .then(res => res.data)
+        return instance.post(`follow/${id}`, {})
     }
 }
