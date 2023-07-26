@@ -22,16 +22,15 @@ export const appReducer = (state: AppDataType = initialState, action: ActionsTyp
 }
 
 export const setInitializedAC = () => ({
-    type: INITIALIZED_SUCCESS}) as const;
+    type: INITIALIZED_SUCCESS
+}) as const;
 
-    const INITIALIZED_SUCCESS = 'APP/INITIALIZED_SUCCESS';
-export const setInitializedTC = () => (dispatch: ThunkDispatch<
-        AppRootStateType,
-        unknown,
-        ActionsType | FormAction
-    >) => {
-        //@ts-ignore
-        dispatch(getAuthDataTC()).then(res => {
-            dispatch(setInitializedAC())
-        })
-    }
+const INITIALIZED_SUCCESS = 'APP/INITIALIZED_SUCCESS';
+export const setInitializedTC = () => async (dispatch: ThunkDispatch<
+    AppRootStateType,
+    unknown,
+    ActionsType | FormAction
+>) => {    
+    await dispatch(getAuthDataTC());
+    dispatch(setInitializedAC())
+}

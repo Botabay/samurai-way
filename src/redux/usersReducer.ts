@@ -115,26 +115,23 @@ const TOGGLE_IS_FOLLOW_DISABLED =
     'USERS/TOGGLE_IS_FOLLOW_DISABLED'
 
 export const getUsersDataTC = (pageSize: number, currentPage: number) => {
-    return (dispatch: any) => {
+    return async (dispatch: any) => {
         dispatch(toggleIsFetchingAC(true))
-        usersAPI.getUsersData(pageSize, currentPage)
-            .then(res => {
-                dispatch(toggleIsFetchingAC(false))
-                dispatch(setUsersAC(res.data.items));
-                dispatch(setTotalUsersCountAC(res.data.totalCount));
-            })
+        const res = await usersAPI.getUsersData(pageSize, currentPage)
+        dispatch(toggleIsFetchingAC(false))
+        dispatch(setUsersAC(res.data.items));
+        dispatch(setTotalUsersCountAC(res.data.totalCount));
     }
 }
 
-const followTCHelpUtil = (id:string, dispatch:any, apiMethod:any, followValue:boolean) => {
+const followTCHelpUtil = async (id: string, dispatch: any, apiMethod: any, followValue: boolean) => {
     dispatch(toggleIsFollowDisabledAC(true, id))
-    apiMethod(+id)
-        .then((res:any) => {
-            dispatch(toggleIsFollowDisabledAC(false, id))
-            if (res.data.resultCode === 0) {
-                dispatch(setFollowAC(id,followValue))
-            }
-        })
+    const res = await apiMethod(+id)
+    dispatch(toggleIsFollowDisabledAC(false, id))
+    if (res.data.resultCode === 0) {
+        dispatch(setFollowAC(id, followValue))
+    }
+
 }
 export const followTC = (id: string) => {
     return (dispatch: any) => {

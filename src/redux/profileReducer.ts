@@ -75,18 +75,17 @@ export const toUpdateStatusAC = (value: string) => ({
     value
 } as const)
 
-export const getProfileDataTC = (id: number) => (dispatch: Dispatch<AnyAction>) => {
-    profileAPI.getProfileData(id)
-        .then(res => dispatch(toSetUserProfileAC(res.data)))
+export const getProfileDataTC = (id: number) => async (dispatch: Dispatch<AnyAction>) => {
+    const res = await profileAPI.getProfileData(id)
+    dispatch(toSetUserProfileAC(res.data))
 }
-export const getProfileStatusTC = (id: number) => (dispatch: Dispatch<AnyAction>) => {
-    profileAPI.getProfileStatus(id)
-        .then(res => dispatch(toGetStatusAC(res.data)))
+export const getProfileStatusTC = (id: number) => async (dispatch: Dispatch<AnyAction>) => {
+    const res = await profileAPI.getProfileStatus(id)
+    dispatch(toGetStatusAC(res.data))
 }
-export const updateProfileStatusTC = (status: string) => (dispatch: Dispatch<AnyAction>) => {
-    profileAPI.updateProfileStatus(status)
-        .then(res => {
-            if (res.data.resultCode === 0)
-                dispatch(toUpdateStatusAC(status))
-        })
+export const updateProfileStatusTC = (status: string) => async (dispatch: Dispatch<AnyAction>) => {
+    const res = await profileAPI.updateProfileStatus(status)
+    if (res.data.resultCode === 0)
+        dispatch(toUpdateStatusAC(status))
+
 }

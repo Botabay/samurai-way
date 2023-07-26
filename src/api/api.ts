@@ -15,7 +15,7 @@ export const usersAPI = {
 }
 
 export const authAPI = {
-    getAuthData() {
+    getAuthData() {//me-request
         return instance.get(`auth/me`)
     },
     toLogin(body: any) {

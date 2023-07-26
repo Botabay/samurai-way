@@ -31,43 +31,44 @@ export const setAuthAC = ({ email, login, userId, isAuth }: UsersDataType) => ({
 } as const)
 
 const SET_USER_DATA = 'AUTH/SET_USER_DATA'
-export const getAuthDataTC = () => (dispatch: Dispatch<AnyAction>) => {
-    return authAPI.getAuthData()
-        .then(data => {
-            dispatch(setAuthAC({ ...data.data, userId: data.data.id, isAuth: true }))
-        })
+export const getAuthDataTC = () => async (dispatch: Dispatch<AnyAction>) => {
+    const res = await authAPI.getAuthData();
+    dispatch(setAuthAC({ ...res.data, userId: res.data.id, isAuth: true }))
+    return res
 }
 
-export const loginTC = ({ email, password, rememberMe = false }: { email: string, password: string, rememberMe: boolean }) => (dispatch: ThunkDispatch<
+export const loginTC = ({ email, password, rememberMe = false }: { email: string, password: string, rememberMe: boolean }) => async (dispatch: ThunkDispatch<
     AppRootStateType,
     unknown,
     ActionsType | FormAction
 >) => {
-    authAPI.toLogin({ email, password, rememberMe })
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(getAuthDataTC())
-            } else {
-                dispatch(stopSubmit('login', {
-                    _error: res.data.messages.length > 0 ?
-                        res.data.messages[0] :
-                        'common error'
-                }))
-            }
-        })
+    const res = await authAPI.toLogin({
+        email,
+        password,
+        rememberMe
+    })
+    if (res.data.resultCode === 0) {
+        dispatch(getAuthDataTC())
+    } else {
+        dispatch(stopSubmit('login', {
+            _error: res.data.messages.length > 0 ?
+                res.data.messages[0] :
+                'common error'
+        }))
+    }
+
 }
 export const logoutTC = ({ email, password, rememberMe = false }: {
     email: string,
     password: string,
     rememberMe: boolean
-}) => (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsType>) => {
-    authAPI.toLogout()
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(setAuthAC({
-                    email: null, login: null, userId: null, isAuth: false
-                }))
-            }
-        })
+}) => async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsType>) => {
+    const res = await authAPI.toLogout()
+    if (res.data.resultCode === 0) {
+        dispatch(setAuthAC({
+            email: null, login: null, userId: null, isAuth: false
+        }))
+    }
+
 }
 
