@@ -1,3 +1,4 @@
+import { Field } from 'redux-form';
 import s from './FormControlls.module.css'
 
 const UniForm = ({ meta, children, ...props }: any) => {
@@ -26,4 +27,23 @@ export const Input = (props: any) => {
             <input {...input} {...restProps} />
         </UniForm>
     )
+}
+
+export const createField = (
+    name:any,
+    placeholder:any,
+    validate=[],
+    component={},
+    props={},
+    text=''
+) => {
+    return <div>
+        <Field
+            name={name}
+            placeholder={placeholder}
+            validate={validate}
+            component={component}
+            {...props}
+        />{text}
+    </div>
 }
