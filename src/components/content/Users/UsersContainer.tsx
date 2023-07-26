@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import {
-    UserType, getUsersDataTC, setCurrentPageAC, followTC, unfollowTC
+    UserType, getUsersDataTC, setCurrentPageAC,followTC,
+    unfollowTC
 } from "../../../redux/usersReducer";
 import React from "react"
 import { Users } from "./Users"
@@ -18,8 +19,8 @@ type PropsType = {
 
     toSetCurrentPage: any
     getUsersDataTC: any
-    unfollowTC: any
     followTC: any
+    unfollowTC: any
 }
 
 class UsersContain extends React.Component<PropsType>{
@@ -50,8 +51,6 @@ class UsersContain extends React.Component<PropsType>{
     }
 }
 
-// const WithRedirect=withRedirectHoc(UsersContain)
-
 const mapStateToProps = (state: any) => ({
     users: state.users.users,
     currentPage: state.users.currentPage,
@@ -67,7 +66,6 @@ const mapDispatchToProps = {
     unfollowTC
 }
 
-// const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(WithRedirect)
 
 export const UsersContainer=compose(
     withRedirectHoc,

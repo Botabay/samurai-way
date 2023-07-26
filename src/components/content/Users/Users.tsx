@@ -13,8 +13,8 @@ type PropsType = {
 
     toSetCurrentPage: any
     getPageUsers: any
-    followTC:any
-    unfollowTC:any
+    followTC: any
+    unfollowTC: any
 }
 
 export const Users = (props: PropsType) => {

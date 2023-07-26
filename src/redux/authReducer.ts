@@ -18,7 +18,7 @@ const initialState = {
 }
 export const authReducer = (state: UsersDataType = initialState, action: ActionsType): UsersDataType => {
     switch (action.type) {
-        case 'SET_USER_DATA': {
+        case SET_USER_DATA: {
             return action.payload
         }
         default: return state;
@@ -26,10 +26,11 @@ export const authReducer = (state: UsersDataType = initialState, action: Actions
 }
 
 export const setAuthAC = ({ email, login, userId, isAuth }: UsersDataType) => ({
-    type: 'SET_USER_DATA',
+    type: SET_USER_DATA,
     payload: { email, login, userId, isAuth }
-}) as const;
+} as const)
 
+const SET_USER_DATA = 'AUTH/SET_USER_DATA'
 export const getAuthDataTC = () => (dispatch: Dispatch<AnyAction>) => {
     return authAPI.getAuthData()
         .then(data => {

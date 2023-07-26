@@ -1,6 +1,11 @@
-const ADDNEWMESSAGE = 'addNewMessage';
-type addNewMessageACType = ReturnType<typeof addNewMessageAC>
-export const addNewMessageAC = (value:string) => ({ type: ADDNEWMESSAGE , value}) as const;
+const ADD_NEW_MESSAGE = 'DIALOGS/ADD_NEW_MESSAGE';
+
+type AddNewMessageACType = ReturnType<typeof addNewMessageAC>
+
+export const addNewMessageAC = (value: string) => ({
+    type: ADD_NEW_MESSAGE,
+    value
+} as const)
 
 export type DialogType = {
     id: number,
@@ -12,7 +17,7 @@ export type MessageType = {
 }
 
 
-export type DialogsACType = addNewMessageACType 
+export type DialogsACType = AddNewMessageACType
 
 const initS = {
     dialogs: [
@@ -32,7 +37,7 @@ export type DialogDataType = typeof initS
 
 export const dialogReducer = (state: DialogDataType = initS, action: any): DialogDataType => {
     switch (action.type) {
-        case ADDNEWMESSAGE: {
+        case ADD_NEW_MESSAGE: {
             return {
                 ...state, messages: [{ id: 5, text: action.value },
                 ...state.messages]

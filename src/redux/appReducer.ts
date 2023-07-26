@@ -14,23 +14,24 @@ const initialState = {
 }
 export const appReducer = (state: AppDataType = initialState, action: ActionsType): AppDataType => {
     switch (action.type) {
-        case 'INITIALIZED_SUCCESS': {
-            return {...state,initialized:true}
+        case INITIALIZED_SUCCESS: {
+            return { ...state, initialized: true }
         }
         default: return state;
     }
 }
 
 export const setInitializedAC = () => ({
-    type: 'INITIALIZED_SUCCESS'}) as const;
+    type: INITIALIZED_SUCCESS}) as const;
 
+    const INITIALIZED_SUCCESS = 'APP/INITIALIZED_SUCCESS';
 export const setInitializedTC = () => (dispatch: ThunkDispatch<
-    AppRootStateType,
-    unknown,
-    ActionsType | FormAction
->) => {
-     //@ts-ignore
-    dispatch(getAuthDataTC()).then(res=>{
-        dispatch(setInitializedAC())
-    })
-}
+        AppRootStateType,
+        unknown,
+        ActionsType | FormAction
+    >) => {
+        //@ts-ignore
+        dispatch(getAuthDataTC()).then(res => {
+            dispatch(setInitializedAC())
+        })
+    }

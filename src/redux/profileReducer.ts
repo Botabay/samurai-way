@@ -1,8 +1,6 @@
 import { AnyAction, Dispatch } from "redux";
 import { profileAPI } from "../api/api";
 
-const ADDNEWPOST = 'addNewPost';
-
 type addNewPostACType = ReturnType<typeof addNewPostAC>
 type toSetUserProfileACType = ReturnType<typeof toSetUserProfileAC>
 type toGetStatusACType = ReturnType<typeof toGetStatusAC>
@@ -35,37 +33,51 @@ export const profileReducer = (
     action: ActionsType
 ): ProfileDataType => {
     switch (action.type) {
-        case ADDNEWPOST: {
+        case ADD_NEW_POST: {
             return {
                 ...state, posts: [
                     { id: state.posts.length + 1, text: action.value }, ...state.posts
                 ]
             }
         }
-        case 'SET_USER_PROFILE': {
+        case SET_USER_PROFILE: {
             return { ...state, profile: action.value };
         }
-        case 'SET_STATUS': {
+        case SET_STATUS: {
             return { ...state, status: action.value }
         }
-        case 'UPDATE_STATUS': {
+        case UPDATE_STATUS: {
             return { ...state, status: action.value }
         }
         default: return state
     }
 }
 
-export const addNewPostAC = (value: string) => ({ type: ADDNEWPOST, value }) as const
-export const toSetUserProfileAC = (value: string) =>
-    ({ type: 'SET_USER_PROFILE', value }) as const
-export const toGetStatusAC = (value: string) =>
-    ({ type: 'SET_STATUS', value }) as const
-export const toUpdateStatusAC = (value: string) =>
-    ({ type: 'UPDATE_STATUS', value }) as const
+const ADD_NEW_POST = 'PROFILE/ADD_NEW_POST';
+const SET_USER_PROFILE = 'PROFILE/SET_USER_PROFILE'
+const SET_STATUS = 'PROFILE/SET_STATUS'
+const UPDATE_STATUS = 'PROFILE/UPDATE_STATUS'
+
+export const addNewPostAC = (value: string) => ({
+    type: ADD_NEW_POST,
+    value
+} as const)
+export const toSetUserProfileAC = (value: string) => ({
+    type: SET_USER_PROFILE,
+    value
+} as const)
+export const toGetStatusAC = (value: string) => ({
+    type: SET_STATUS,
+    value
+} as const)
+export const toUpdateStatusAC = (value: string) => ({
+    type: UPDATE_STATUS,
+    value
+} as const)
 
 export const getProfileDataTC = (id: number) => (dispatch: Dispatch<AnyAction>) => {
     profileAPI.getProfileData(id)
-        .then(res=> dispatch(toSetUserProfileAC(res.data)))
+        .then(res => dispatch(toSetUserProfileAC(res.data)))
 }
 export const getProfileStatusTC = (id: number) => (dispatch: Dispatch<AnyAction>) => {
     profileAPI.getProfileStatus(id)
