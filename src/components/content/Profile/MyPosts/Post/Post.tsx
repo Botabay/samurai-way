@@ -1,12 +1,12 @@
 // import s from './Post.module.css'
-export type PropsType={
-    id:number
-    text:string
+export type PropsType = {
+    id: number
+    text: string
 }
-export const Post = (props:PropsType) => {
+export const Post = ({ id, text, ...props }: PropsType) => {
     return (
         <div>
-            <h3>id:{props.id} {props.text}</h3>
+            <h3>id:{id} {text}</h3>
         </div>
     )
 }

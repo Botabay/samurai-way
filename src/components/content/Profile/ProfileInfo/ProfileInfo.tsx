@@ -1,6 +1,6 @@
-import React, {  ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 import s from './ProfileInfo.module.css'
-export const ProfileInfo = ({ profile, status,update, ...rest }: any) => {
+export const ProfileInfo = ({ profile, status, update, ...rest }: any) => {
     if (!profile) return <></>;
     return (
         <div>
@@ -19,21 +19,20 @@ export const ProfileInfo = ({ profile, status,update, ...rest }: any) => {
                     <p>education</p>
                     <p>web site</p>
                 </div>
-                <ProfileStatus status={status} update={update}/>
+                <ProfileStatus status={status} update={update} />
             </div>
         </div>
     )
 }
 
-type ProfileStatusPropsType={
-    status:string
-    update:any
+type ProfileStatusPropsType = {
+    status: string
+    update: any
 }
 class ProfileStatus extends React.Component<any> {
-    // ref=createRef<HTMLInputElement>()
     state = {
         editMode: false,
-        status:this.props.status? this.props.status:'no status'
+        status: this.props.status ? this.props.status : 'no status'
     }
 
     activateMode = () => {
@@ -41,15 +40,14 @@ class ProfileStatus extends React.Component<any> {
     }
     deactivateMode = () => {
         this.setState({ ...this.state, editMode: false })
-        // this.props.update(this.ref.current?.value)
         this.props.update(this.state.status)
     }
-    onChange=(e:ChangeEvent<HTMLInputElement>)=>{
+    onChange = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({ ...this.state, status: e.currentTarget.value })
     }
-    componentDidUpdate(prevProps:ProfileStatusPropsType): void {
-        if(prevProps.status!==this.props.status){
-            this.setState({status:this.props.status})
+    componentDidUpdate(prevProps: ProfileStatusPropsType): void {
+        if (prevProps.status !== this.props.status) {
+            this.setState({ status: this.props.status })
         }
     }
     render(): React.ReactNode {
@@ -60,7 +58,6 @@ class ProfileStatus extends React.Component<any> {
                     this.state.editMode ?
                         <div>
                             <input
-                                // ref={this.ref}
                                 type='text'
                                 value={this.state.status}
                                 onBlur={this.deactivateMode}
@@ -69,7 +66,7 @@ class ProfileStatus extends React.Component<any> {
                             />
                         </div> :
                         <div>
-                            <span onDoubleClick={this.activateMode}>{this.props.status ? this.props.status:'no status'}</span>
+                            <span onDoubleClick={this.activateMode}>{this.props.status ? this.props.status : 'no status'}</span>
                         </div>
                 }
             </div>

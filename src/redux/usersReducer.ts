@@ -50,8 +50,6 @@ const initialState: UsersDataType = {
 export const usersReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case SET_FOLLOW_VALUE: {
-            console.log(action);
-
             return {
                 ...state,
                 users: state.users.map((el: UserType) =>

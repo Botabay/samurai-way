@@ -1,12 +1,10 @@
 import s from './News.module.css';
-// import { MessagesType } from '../../state/state';
 
-type PropsType={
-    pageName:string
-    // messages?:MessagesType
+type PropsType = {
+    pageName: string
 }
 
-export const News = ({pageName}:PropsType) => {
+export const News = ({ pageName }: PropsType) => {
     return (
         <div className={s.news}>
             <div className={s.wallpaper}>{pageName}</div>

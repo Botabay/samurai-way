@@ -3,13 +3,13 @@ import { maxLength, requiredValueValidator } from "../../utils/validators"
 import { Input } from "../../common/FormControlls/FormControlls";
 import { connect } from "react-redux";
 import { loginTC } from "../../redux/authReducer";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { AppRootStateType } from "../../redux/reduxStore";
 
 const maxLength20 = maxLength(20);
-const LoginForm = (props: any) => {
+const LoginForm = ({ handleSubmit, error, ...restProps }: any) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field
                     name={'email'}
@@ -35,7 +35,7 @@ const LoginForm = (props: any) => {
                     type={"checkbox"}
                 />remember me
             </div>
-            <div>{props.error}</div>
+            <div>{error}</div>
             <div>
                 <button >send</button>
             </div>
@@ -45,20 +45,18 @@ const LoginForm = (props: any) => {
 
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
-const miniLogin = (props: any) => {
+const miniLogin = ({ loginTC, isAuth, ...restProps }: any) => {
     const onSubmit = (dataForm: any) => {
         const { email, password, rememberMe } = dataForm
-        props.loginTC({ email, password, rememberMe })
+        loginTC({ email, password, rememberMe })
     }
-    if (props.isAuth) {
-        return <Navigate to={'/profile'}/>
-    }
-    return (
+    return isAuth ?
+        <Navigate to={'/profile'} /> :
         <div>
             <h1>login</h1>
             <LoginReduxForm onSubmit={onSubmit} />
         </div>
-    )
+
 }
 
 const mapStateToProps = (state: AppRootStateType) => ({

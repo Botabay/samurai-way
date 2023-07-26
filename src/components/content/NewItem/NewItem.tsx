@@ -24,9 +24,9 @@ export const NewItem = ({
     )
 }
 const maxLength10 = maxLength(10);
-const NewItemForm = (props: any) => {
+const NewItemForm = ({ handleSubmit, ...props }: any) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field
                 name={'profileTextarea'}
                 placeholder={''}

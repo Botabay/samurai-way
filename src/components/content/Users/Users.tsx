@@ -17,31 +17,42 @@ type PropsType = {
     unfollowTC: any
 }
 
-export const Users = (props: PropsType) => {
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+export const Users = ({
+    users,
+    isFollowDisabled,
+    totalUsersCount,
+    pageSize,
+    currentPage,
+
+    toSetCurrentPage,
+    getPageUsers,
+    followTC,
+    unfollowTC,
+}: PropsType) => {
+    const pagesCount = Math.ceil(totalUsersCount / pageSize)
     const arr = []
     for (let i = 1; i < pagesCount; i++) arr.push(i);
     const onClickHandler = (el: number) => {
-        props.toSetCurrentPage(el)
-        props.getPageUsers(el);
+        toSetCurrentPage(el)
+        getPageUsers(el);
     }
     const toUnfollow = (id: string) => {
-        props.unfollowTC(id)
+        unfollowTC(id)
     }
     const toFollow = (id: string) => {
-        props.followTC(id)
+        followTC(id)
     }
     return (<div>
         <div>
             {arr.map((el: number) => <span
                 onClick={() => onClickHandler(el)}
-                className={el === props.currentPage ? s.selected : ''}
+                className={el === currentPage ? s.selected : ''}
             >
                 {el}
             </span>)}
         </div>
         {
-            props.users.map((el: UserType) => (
+            users.map((el: UserType) => (
                 <div key={el.id}>
                     <div className="avatarSection">
                         <p>
@@ -56,10 +67,10 @@ export const Users = (props: PropsType) => {
                             </NavLink>
                         </p>
                         <p>{el.followed ?
-                            <button disabled={props.isFollowDisabled.includes(+el.id)}
+                            <button disabled={isFollowDisabled.includes(+el.id)}
                                 onClick={() => toUnfollow(el.id)}
                             >unfollow</button> :
-                            <button disabled={props.isFollowDisabled.includes(+el.id)}
+                            <button disabled={isFollowDisabled.includes(+el.id)}
                                 onClick={() => toFollow(el.id)}
                             >follow</button>}
                         </p>

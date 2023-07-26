@@ -5,10 +5,10 @@ import { store } from "./redux/reduxStore";
 // export const TContext = createContext<AppRootStateType>(store.getState())
 export const TContext = createContext(store)
 
-export const Provider =(props:any)=>{
+export const Provider =({children, ...rest}:any)=>{
     return (
         <TContext.Provider value={store}>
-            {props.children}
+            {children}
         </TContext.Provider>
     )
 }

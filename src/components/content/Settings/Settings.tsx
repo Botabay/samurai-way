@@ -1,12 +1,11 @@
 import s from './Settings.module.css';
 // import { MessagesType } from '../../state/state';
 
-type PropsType={
-    pageName:string
-    // messages?:MessagesType
+type PropsType = {
+    pageName: string
 }
 
-export const Settings = ({pageName}:PropsType) => {
+export const Settings = ({ pageName }: PropsType) => {
     return (
         <div className={s.settings}>
             <div className={s.wallpaper}>{pageName}</div>
