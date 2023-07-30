@@ -48,8 +48,9 @@ export const Pagination = ({
       <div>
         {arr
           .filter((el) => el <= rightSidePageNumber && el >= leftSidePageNumber)
-          .map((el: number) => (
+          .map((el: number, ind: number) => (
             <span
+              key={ind}
               onClick={() => onClickHandler(el)}
               className={el === currentPage ? s.selected : ""}
             >
