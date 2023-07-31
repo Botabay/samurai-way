@@ -11,6 +11,7 @@ export const Profile = (props: any) => {
         status={props.status}
         update={props.updateProfileStatusTC}
         saveFile={props.saveFile}
+        saveProfile={props.saveProfile}
       />
       <MyPostsContainer />
     </div>

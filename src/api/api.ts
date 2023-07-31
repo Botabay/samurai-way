@@ -46,6 +46,9 @@ export const profileAPI = {
       //   headers: { "Content-Type": "image/png" },
     });
   },
+  saveProfile(formData: string) {
+    return instance.put(`profile`, formData);
+  },
 };
 export const followAPI = {
   deleteFollowId(id: number = 1) {

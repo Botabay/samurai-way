@@ -1,25 +1,25 @@
 .wallpaper {
-    background-color: rgb(136, 136, 145);
-    height: 10vh;
+  background-color: rgb(136, 136, 145);
+  height: 10vh;
 }
 
 .about_me {
-    padding: 10px;
-    position: relative;
+  padding: 10px;
+  position: relative;
 }
 
 .about_me img {
-    width: 70%;
+  width: 70%;
 }
 
 .avatar {
-    position: absolute;
-    width: 20%;
-    height: 50%;
+  /* position: absolute; */
+  width: 20%;
+  height: 50%;
 }
 
 .profile_data {
-    position: relative;
-    left: 20%;
-    width: 20%;
+  position: relative;
+  left: 20%;
+  width: 20%;
 }

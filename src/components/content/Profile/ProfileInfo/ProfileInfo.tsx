@@ -1,6 +1,12 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import s from "./ProfileInfo.module.css";
 import myAvatarPhoto from "../../../../assets/img/myAvatar.svg";
+import {
+  Input,
+  Textarea,
+  createField,
+} from "../../../../common/FormControlls/FormControlls";
+import { reduxForm } from "redux-form";
 
 export const ProfileInfo = ({
   profile,
@@ -8,11 +14,16 @@ export const ProfileInfo = ({
   update,
   isOwner,
   saveFile,
+  saveProfile,
   ...rest
 }: any) => {
+  const [editMode, setEditMode] = useState<boolean>(false);
   if (!profile) return <></>;
   const onChangeFileInput = (e: any) => {
     saveFile(e.target.files[0]);
+  };
+  const onSubmit = (formData: any) => {
+    saveProfile(formData).then(() => setEditMode(false));
   };
   return (
     <div>
@@ -27,14 +38,91 @@ export const ProfileInfo = ({
           />
           {isOwner && <input type="file" onChange={onChangeFileInput} />}
         </div>
-        <div className={s.profile_data}>
-          <p>{profile.fullName}</p>
-          <p>date of birth</p>
-          <p>city</p>
-          <p>education</p>
-          <p>web site</p>
+        <div>
+          {editMode ? (
+            <ProfileEditFormReduxForm
+              //@ts-ignore
+              profile={profile}
+              onSubmit={onSubmit}
+              initialValues={profile}
+            />
+          ) : (
+            <ProfileDetails
+              profile={profile}
+              isOwner={isOwner}
+              setEditMode={() => setEditMode(true)}
+            />
+          )}
         </div>
         <ProfileStatus status={status} update={update} />
+      </div>
+    </div>
+  );
+};
+const ProfileEditForm = ({ profile, handleSubmit, error }: any) => {
+  return (
+    <form onSubmit={handleSubmit}>
+      <p>
+        <button>save</button>
+      </p>
+      {error && <div>{error}------------------</div>}
+      <p>full name: {createField("fullName", "fullName", [], Input)}</p>
+      <p>
+        looking for a job:
+        {createField("lookingForAJob", "", [], Input, { type: "checkbox" })}
+      </p>
+      <p>
+        my professional skills:
+        {createField(
+          "lookingForAJobDescription",
+          "my professional skills",
+
+          [],
+          Textarea
+        )}
+      </p>
+      <p>
+        about me:
+        {createField("aboutMe", "about me", [], Textarea)}
+      </p>
+      <div>
+        <p>contacts:</p>
+        {Object.keys(profile.contacts).map((el, ind) => (
+          <p key={ind}>
+            {el}: {createField("contacts." + el, el, [], Input)}
+          </p>
+        ))}
+      </div>
+    </form>
+  );
+};
+
+const ProfileEditFormReduxForm = reduxForm({ form: "ProfileEditForm" })(
+  ProfileEditForm
+);
+
+const ProfileDetails = ({ profile, setEditMode, isOwner }: any) => {
+  return (
+    <div className={s.profile_data}>
+      {isOwner && (
+        <p>
+          <button onClick={setEditMode}>edit</button>
+        </p>
+      )}
+      <p>full name: {profile.fullName}</p>
+      <p>looling for a job: {profile.lookingForAJob ? "yes" : "no"}</p>
+      {profile.lookingForAJob && (
+        <p>
+          my professional skills:{" "}
+          {profile.lookingForAJobDescription || "lookingForAJobDescription"}
+        </p>
+      )}
+      <p>about me: {profile.aboutMe}</p>
+      <div>
+        <p>contacts:</p>
+        {Object.keys(profile.contacts).map((el, ind) => (
+          <p key={ind}>{el}:</p>
+        ))}
       </div>
     </div>
   );

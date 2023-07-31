@@ -7,6 +7,7 @@ import {
   getProfileStatusTC,
   updateProfileStatusTC,
   saveFile,
+  saveProfile,
 } from "../../../redux/profileReducer";
 
 import {
@@ -43,7 +44,7 @@ export class ProfileContain extends React.Component<any> {
   componentDidMount(): void {
     this.f();
   }
-  componentShouldUpdate(
+  componentDidUpdate(
     prevProps: Readonly<any>,
     prevState: Readonly<{}>,
     snapshot?: any
@@ -58,6 +59,7 @@ export class ProfileContain extends React.Component<any> {
         {...this.props}
         isOwner={!this.props.router.params.userId}
         saveFile={this.props.saveFile}
+        saveProfile={this.props.saveProfile}
       />
     );
   };
@@ -73,6 +75,7 @@ const mapDispatchToProps = {
   getProfileStatusTC,
   updateProfileStatusTC,
   saveFile,
+  saveProfile,
 };
 
 export const ProfileContainer = compose(
