@@ -60,3 +60,9 @@ export const followAPI = {
     return instance.post(`follow/${id}`, {});
   },
 };
+
+export const securityAPI = {
+  getCaptchaURL() {
+    return instance.get(`security/get-captcha-url`);
+  },
+};
