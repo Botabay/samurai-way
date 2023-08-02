@@ -6,7 +6,7 @@ import {
   Textarea,
   createField,
 } from "../../../../common/FormControlls/FormControlls";
-import { reduxForm } from "redux-form";
+import { InjectedFormProps, reduxForm } from "redux-form";
 
 export const ProfileInfo = ({
   profile,
@@ -41,7 +41,6 @@ export const ProfileInfo = ({
         <div>
           {editMode ? (
             <ProfileEditFormReduxForm
-              //@ts-ignore
               profile={profile}
               onSubmit={onSubmit}
               initialValues={profile}
@@ -97,11 +96,20 @@ const ProfileEditForm = ({ profile, handleSubmit, error }: any) => {
   );
 };
 
-const ProfileEditFormReduxForm = reduxForm({ form: "ProfileEditForm" })(
-  ProfileEditForm
-);
+const ProfileEditFormReduxForm = reduxForm<InjectedFormProps<any>, any>({
+  form: "ProfileEditForm",
+})(ProfileEditForm);
 
-const ProfileDetails = ({ profile, setEditMode, isOwner }: any) => {
+type ProfileDetailsPropsType = {
+  profile: any;
+  setEditMode: any;
+  isOwner: boolean;
+};
+const ProfileDetails = ({
+  profile,
+  setEditMode,
+  isOwner,
+}: ProfileDetailsPropsType) => {
   return (
     <div className={s.profile_data}>
       {isOwner && (
@@ -132,7 +140,10 @@ type ProfileStatusPropsType = {
   status: string;
   update: any;
 };
-class ProfileStatus extends React.Component<any> {
+class ProfileStatus extends React.Component<{
+  status: string;
+  update: (v: string) => void;
+}> {
   state = {
     editMode: false,
     status: this.props.status ? this.props.status : "no status",

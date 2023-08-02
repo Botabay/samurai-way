@@ -1,4 +1,4 @@
-import { reduxForm } from "redux-form";
+import { InjectedFormProps, reduxForm } from "redux-form";
 import { maxLength, requiredValueValidator } from "../../utils/validators";
 import { Input, createField } from "../../common/FormControlls/FormControlls";
 import { connect } from "react-redux";
@@ -42,7 +42,9 @@ const LoginForm = ({ handleSubmit, error, captchaURL, ...restProps }: any) => {
   );
 };
 
-const LoginReduxForm = reduxForm({ form: "login" })(LoginForm);
+const LoginReduxForm = reduxForm<InjectedFormProps<any>, any>({
+  form: "login",
+})(LoginForm);
 
 const miniLogin = ({ loginTC, isAuth, captchaURL, ...restProps }: any) => {
   const onSubmit = (dataForm: any) => {
@@ -54,11 +56,7 @@ const miniLogin = ({ loginTC, isAuth, captchaURL, ...restProps }: any) => {
   ) : (
     <div>
       <h1>login</h1>
-      <LoginReduxForm
-        onSubmit={onSubmit}
-        //@ts-ignore
-        captchaURL={captchaURL}
-      />
+      <LoginReduxForm onSubmit={onSubmit} captchaURL={captchaURL} />
     </div>
   );
 };

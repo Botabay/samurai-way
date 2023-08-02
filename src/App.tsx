@@ -9,29 +9,21 @@ import { HeaderContainer } from "./components/Header/HeaderContainer";
 import { Login } from "./components/Login/Login";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import React, { Component, FC, Suspense } from "react";
+import React, { Component, Suspense } from "react";
 import { setInitializedTC } from "./redux/appReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AppRootStateType } from "./redux/reduxStore";
 import { Preloader } from "./common/preloader/preloader";
 
-// import { DialogsContainer } from "./components/content/Dialogs/DialogsContainer";
-// import { ProfileContainer } from "./components/content/Profile/ProfileContainer";
-// const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
-const DialogsContainer = React.lazy(
-  //@ts-ignore
-  () =>
-    import("./components/content/Dialogs/DialogsContainer").then((module) => ({
-      default: module.DialogsContainer,
-    }))
+const DialogsContainer = React.lazy(() =>
+  import("./components/content/Dialogs/DialogsContainer").then((module) => ({
+    default: module.DialogsContainer,
+  }))
 );
-// const MyComponent = React.lazy(() => import('./myModule').then(module => ({ default: module.MyComponent })));
-const ProfileContainer = React.lazy(
-  //@ts-ignore
-  () =>
-    import("./components/content/Profile/ProfileContainer").then((module) => ({
-      default: module.ProfileContainer,
-    }))
+const ProfileContainer = React.lazy(() =>
+  import("./components/content/Profile/ProfileContainer").then((module) => ({
+    default: module.ProfileContainer,
+  }))
 );
 function withRouter(Component: any) {
   function ComponentWithRouterProp(props: any) {
@@ -42,20 +34,17 @@ function withRouter(Component: any) {
   }
   return ComponentWithRouterProp;
 }
-class App extends Component {
+class App extends Component<{ setInitializedTC: any; initialized: boolean }> {
   componentDidMount(): void {
-    //@ts-ignore
     this.props.setInitializedTC();
   }
 
   render = () => {
-    //@ts-ignore
     if (!this.props.initialized) {
       return <Preloader />;
     }
     return (
       <div className="app">
-        {/* <BrowserRouter> */}
         <HeaderContainer />
         <Sidebar />
         <div className="content">
@@ -89,7 +78,6 @@ class App extends Component {
             </Routes>
           </Suspense>
         </div>
-        {/* </BrowserRouter> */}
       </div>
     );
   };
