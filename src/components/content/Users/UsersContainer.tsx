@@ -39,18 +39,15 @@ class UsersContain extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: AppRootStateType): any => {
-  console.log(state);
+const mapStateToProps = (state: AppRootStateType) => ({
+  users: state.users.users,
+  currentPage: state.users.currentPage,
+  pageSize: state.users.pageSize,
+  totalItemsCount: state.users.totalUsersCount,
+  isFetching: state.users.isFetching,
+  isFollowDisabled: state.users.isFollowDisabled,
+});
 
-  return {
-    users: state.users.users,
-    currentPage: state.users.currentPage,
-    pageSize: state.users.pageSize,
-    totalItemsCount: state.users.totalUsersCount,
-    isFetching: state.users.isFetching,
-    isFollowDisabled: state.users.isFollowDisabled,
-  };
-};
 const mapDispatchToProps = {
   toSetCurrentPage: setCurrentPageAC,
   getUsersDataTC,

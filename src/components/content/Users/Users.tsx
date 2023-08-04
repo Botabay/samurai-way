@@ -1,18 +1,23 @@
-import { UserType, setCurrentPageACType } from "../../../redux/usersReducer";
+import {
+  ActionsType,
+  UserType,
+  setCurrentPageACType,
+} from "../../../redux/usersReducer";
 import { Pagination } from "../../../common/Pagination/Pagination";
 import { User } from "./User/User";
+import { Dispatch } from "redux";
 
 type PropsType = {
   users: UserType[];
-  isFollowDisabled: number[];
+  isFollowDisabled: string[];
   totalItemsCount: number;
   pageSize: number;
   currentPage: number;
 
-  toSetCurrentPage: any;
-  getPageUsers: any;
-  followTC: any;
-  unfollowTC: any;
+  toSetCurrentPage: (currentPage: number) => setCurrentPageACType;
+  getPageUsers: (ind: number) => void;
+  followTC: (id: string) => (dispatch: Dispatch<ActionsType>) => void;
+  unfollowTC: (id: string) => (dispatch: Dispatch<ActionsType>) => void;
 };
 
 export const Users = ({

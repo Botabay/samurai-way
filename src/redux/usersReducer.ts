@@ -1,4 +1,6 @@
+import { Dispatch } from "redux";
 import { followAPI, usersAPI } from "../api/api";
+import { AxiosResponse } from "axios";
 
 type LocactionType = {
   city: string;
@@ -125,7 +127,7 @@ const TOGGLE_IS_FETCHING = "USERS/TOGGLE_IS_FETCHING";
 const TOGGLE_IS_FOLLOW_DISABLED = "USERS/TOGGLE_IS_FOLLOW_DISABLED";
 
 export const getUsersDataTC = (pageSize: number, currentPage: number) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch<ActionsType>) => {
     dispatch(toggleIsFetchingAC(true));
     const res = await usersAPI.getUsersData(pageSize, currentPage);
     dispatch(toggleIsFetchingAC(false));
@@ -136,8 +138,8 @@ export const getUsersDataTC = (pageSize: number, currentPage: number) => {
 
 const followTCHelpUtil = async (
   id: string,
-  dispatch: any,
-  apiMethod: any,
+  dispatch: Dispatch<ActionsType>,
+  apiMethod: (id?: number) => Promise<AxiosResponse<any, any>>,
   followValue: boolean
 ) => {
   dispatch(toggleIsFollowDisabledAC(true, id));
@@ -148,12 +150,12 @@ const followTCHelpUtil = async (
   }
 };
 export const followTC = (id: string) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<ActionsType>) => {
     followTCHelpUtil(id, dispatch, followAPI.postFollowId, true);
   };
 };
 export const unfollowTC = (id: string) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<ActionsType>) => {
     followTCHelpUtil(id, dispatch, followAPI.deleteFollowId, false);
   };
 };
