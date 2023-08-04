@@ -1,5 +1,6 @@
 import { useState } from "react";
 import s from "./Pagination.module.css";
+import { setCurrentPageACType } from "../../redux/usersReducer";
 
 type PropsType = {
   totalItemsCount: number;
@@ -7,8 +8,8 @@ type PropsType = {
   currentPage: number;
   partSize: number;
 
-  toSetCurrentPage: any; //??setCurrentPageACType
-  getPageUsers: any;
+  toSetCurrentPage: (el: number) => setCurrentPageACType;
+  getPageUsers: (ind: number) => void;
 };
 
 export const Pagination = ({

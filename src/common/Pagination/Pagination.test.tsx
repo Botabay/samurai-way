@@ -9,6 +9,7 @@ describe("pagination component tests", () => {
         pageSize={1}
         partSize={10}
         currentPage={2}
+        //@ts-ignore
         toSetCurrentPage={() => {}}
         getPageUsers={() => {}}
       />
@@ -24,6 +25,7 @@ describe("pagination component tests", () => {
         pageSize={1}
         partSize={10}
         currentPage={2}
+        // @ts-ignore
         toSetCurrentPage={() => {}}
         getPageUsers={() => {}}
       />
