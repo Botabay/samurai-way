@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import {
-  UserType,
   getUsersDataTC,
   setCurrentPageAC,
   followTC,
@@ -12,21 +11,21 @@ import { Preloader } from "../../../common/preloader/preloader";
 import { withRedirectHoc } from "../../../HOCs/withRedirectHoc";
 import { compose } from "redux";
 
-type PropsType = {
-  users: UserType[];
-  isFollowDisabled: number[];
-  isFetching: boolean;
-  pageSize: number;
-  currentPage: number;
-  totalItemsCount: number;
+// type UsersContainPropsType = {
+//   users: UserType[];
+//   isFollowDisabled: number[];
+//   isFetching: boolean;
+//   pageSize: number;
+//   currentPage: number;
+//   totalItemsCount: number;
 
-  toSetCurrentPage: any;
-  getUsersDataTC: any;
-  followTC: any;
-  unfollowTC: any;
-};
+//   toSetCurrentPage: any; //setCurrentPageACType
+//   getUsersDataTC: any;
+//   followTC: any;
+//   unfollowTC: any;
+// };
 
-class UsersContain extends React.Component<PropsType> {
+class UsersContain extends React.Component<Props> {
   componentDidMount(): void {
     this.props.getUsersDataTC(this.props.pageSize, this.props.currentPage);
   }
@@ -34,6 +33,8 @@ class UsersContain extends React.Component<PropsType> {
     this.props.getUsersDataTC(this.props.pageSize, ind);
   };
   render() {
+    console.log(this.props.toSetCurrentPage);
+
     return (
       <>
         {this.props.isFetching ? <Preloader /> : ""}
@@ -70,5 +71,14 @@ const mapDispatchToProps = {
 
 export const UsersContainer = compose(
   withRedirectHoc,
-  connect(mapStateToProps, mapDispatchToProps)
+  connect<
+    StateProps,
+    DispatchProps //, OwnProps
+  >(mapStateToProps, mapDispatchToProps)
 )(UsersContain);
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
+// type OwnProps = {};
+
+type Props = StateProps & DispatchProps; // & OwnProps;

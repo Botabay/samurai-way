@@ -7,7 +7,7 @@ type PropsType = {
   currentPage: number;
   partSize: number;
 
-  toSetCurrentPage: any;
+  toSetCurrentPage: any; //??setCurrentPageACType
   getPageUsers: any;
 };
 

@@ -9,7 +9,6 @@ export type UserType = {
   id: string;
   avatarUrl: string;
   followed: boolean;
-  // fullName: string
   name: string;
   status: string;
   location: LocactionType;
@@ -33,7 +32,7 @@ export type toggleIsFollowDisabledACType = ReturnType<
   typeof toggleIsFollowDisabledAC
 >;
 
-type ActionsType =
+export type ActionsType =
   | setFollowACType
   | setUsersACType
   | setTotalUsersCountACType

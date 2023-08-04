@@ -1,4 +1,4 @@
-import { UserType } from "../../../redux/usersReducer";
+import { UserType, setCurrentPageACType } from "../../../redux/usersReducer";
 import { Pagination } from "../../../common/Pagination/Pagination";
 import { User } from "./User/User";
 
