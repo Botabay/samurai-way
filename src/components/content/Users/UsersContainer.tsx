@@ -10,20 +10,7 @@ import { Users } from "./Users";
 import { Preloader } from "../../../common/preloader/preloader";
 import { withRedirectHoc } from "../../../HOCs/withRedirectHoc";
 import { compose } from "redux";
-
-// type UsersContainPropsType = {
-//   users: UserType[];
-//   isFollowDisabled: number[];
-//   isFetching: boolean;
-//   pageSize: number;
-//   currentPage: number;
-//   totalItemsCount: number;
-
-//   toSetCurrentPage: any; //setCurrentPageACType
-//   getUsersDataTC: any;
-//   followTC: any;
-//   unfollowTC: any;
-// };
+import { AppRootStateType } from "../../../redux/reduxStore";
 
 class UsersContain extends React.Component<Props> {
   componentDidMount(): void {
@@ -33,8 +20,6 @@ class UsersContain extends React.Component<Props> {
     this.props.getUsersDataTC(this.props.pageSize, ind);
   };
   render() {
-    console.log(this.props.toSetCurrentPage);
-
     return (
       <>
         {this.props.isFetching ? <Preloader /> : ""}
@@ -54,14 +39,18 @@ class UsersContain extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  users: state.users.users,
-  currentPage: state.users.currentPage,
-  pageSize: state.users.pageSize,
-  totalItemsCount: state.users.totalUsersCount,
-  isFetching: state.users.isFetching,
-  isFollowDisabled: state.users.isFollowDisabled,
-});
+const mapStateToProps = (state: AppRootStateType): any => {
+  console.log(state);
+
+  return {
+    users: state.users.users,
+    currentPage: state.users.currentPage,
+    pageSize: state.users.pageSize,
+    totalItemsCount: state.users.totalUsersCount,
+    isFetching: state.users.isFetching,
+    isFollowDisabled: state.users.isFollowDisabled,
+  };
+};
 const mapDispatchToProps = {
   toSetCurrentPage: setCurrentPageAC,
   getUsersDataTC,
@@ -71,14 +60,14 @@ const mapDispatchToProps = {
 
 export const UsersContainer = compose(
   withRedirectHoc,
-  connect<
-    StateProps,
-    DispatchProps //, OwnProps
-  >(mapStateToProps, mapDispatchToProps)
+  connect<StateProps, DispatchProps, OwnProps, AppRootStateType>(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(UsersContain);
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
-// type OwnProps = {};
+type OwnProps = unknown;
 
-type Props = StateProps & DispatchProps; // & OwnProps;
+type Props = StateProps & DispatchProps & OwnProps;

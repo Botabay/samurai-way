@@ -14,15 +14,6 @@ export type UserType = {
   location: LocactionType;
 };
 
-export type UsersDataType = {
-  users: UserType[];
-  currentPage: number;
-  pageSize: number;
-  totalUsersCount: number;
-  isFetching: boolean;
-  isFollowDisabled: number[];
-};
-
 export type setFollowACType = ReturnType<typeof setFollowAC>;
 export type setUsersACType = ReturnType<typeof setUsersAC>;
 export type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>;
@@ -40,16 +31,21 @@ export type ActionsType =
   | toggleIsFetchingACType
   | toggleIsFollowDisabledACType;
 
-const initialState: UsersDataType = {
-  users: [],
+const initialState = {
+  users: [] as UserType[],
   currentPage: 1,
   pageSize: 50,
   totalUsersCount: 12,
   isFetching: false,
-  isFollowDisabled: [],
+  isFollowDisabled: [] as string[],
 };
 
-export const usersReducer = (state = initialState, action: ActionsType) => {
+type UsersDataType = typeof initialState;
+
+export const usersReducer = (
+  state: UsersDataType = initialState,
+  action: ActionsType
+): UsersDataType => {
   switch (action.type) {
     case SET_FOLLOW_VALUE: {
       return {
@@ -81,7 +77,7 @@ export const usersReducer = (state = initialState, action: ActionsType) => {
         ...state,
         isFollowDisabled: action.isDisabled
           ? [...state.isFollowDisabled, action.id]
-          : state.isFollowDisabled.filter((el) => el !== +action.id),
+          : state.isFollowDisabled.filter((el) => el !== action.id),
       };
     default:
       return state;
