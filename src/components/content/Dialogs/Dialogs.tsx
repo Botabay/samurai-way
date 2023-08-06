@@ -3,16 +3,13 @@ import { Dialog } from "./Dialog/Dialog";
 import { Message } from "./Message/Message";
 import { MessageType, DialogType } from "../../../redux/dialogReducer";
 import { NewItem } from "../NewItem/NewItem";
-import { Props } from "./DialogsContainer";
+import { DialogsPropsType } from "./DialogsContainer";
 
-// type DialogsPropsType = {
-//   dialogs: DialogType[];
-//   messages: MessageType[];
-//   isAuth: boolean;
-//   addNewMessage: () => void;
-// };
-
-export const Dialogs = ({ dialogs, messages, addNewMessage }: Props) => {
+export const Dialogs = ({
+  dialogs,
+  messages,
+  addNewMessage,
+}: DialogsPropsType) => {
   return (
     <div className={s.dialogs}>
       <div className="dialogItems">

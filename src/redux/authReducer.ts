@@ -1,7 +1,6 @@
 import { AnyAction, Dispatch } from "redux";
 import { authAPI, securityAPI } from "../api/api";
-import { ThunkDispatch } from "redux-thunk";
-import { AppRootStateType } from "./reduxStore";
+// import { AppRootStateType } from "./reduxStore";
 import { FormAction, stopSubmit } from "redux-form";
 
 export type UsersDataType = typeof initialState;
@@ -61,22 +60,15 @@ export const getAuthDataTC = () => async (dispatch: Dispatch<AnyAction>) => {
   }
   // return res;
 };
-
+export type LoginTCPropsType = {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+  captchaURL: string;
+};
 export const loginTC =
-  ({
-    email,
-    password,
-    rememberMe = false,
-    captchaURL,
-  }: {
-    email: string;
-    password: string;
-    rememberMe: boolean;
-    captchaURL: string;
-  }) =>
-  async (
-    dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsType | FormAction>
-  ) => {
+  ({ email, password, rememberMe = false, captchaURL }: LoginTCPropsType) =>
+  async (dispatch: Dispatch<ActionsType | FormAction | any>) => {
     const res = await authAPI.toLogin({
       email,
       password,
@@ -101,10 +93,7 @@ export const loginTC =
   };
 
 export const getCaptchaURL =
-  () =>
-  async (
-    dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsType | FormAction>
-  ) => {
+  () => async (dispatch: Dispatch<ActionsType | FormAction>) => {
     const res = await securityAPI.getCaptchaURL();
     dispatch(setCaptchaURL(res.data.url));
   };
@@ -119,7 +108,7 @@ export const logoutTC =
     password: string;
     rememberMe: boolean;
   }) =>
-  async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsType>) => {
+  async (dispatch: Dispatch<ActionsType>) => {
     const res = await authAPI.toLogout();
     if (res.data.resultCode === 0) {
       dispatch(

@@ -26,4 +26,4 @@ type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 type OwnProps = unknown;
 
-export type Props = StateProps & DispatchProps & OwnProps;
+export type DialogsPropsType = StateProps & DispatchProps & OwnProps;
